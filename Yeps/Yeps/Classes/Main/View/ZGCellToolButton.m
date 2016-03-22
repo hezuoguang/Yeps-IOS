@@ -6,13 +6,20 @@
 //  Copyright © 2016年 weimi. All rights reserved.
 //
 
-#import "ZGButton.h"
+#import "ZGCellToolButton.h"
 
-@implementation ZGButton
+@implementation ZGCellToolButton
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setTitleColor:[UIColor popFontColor] forState:UIControlStateNormal];
+        UIEdgeInsets titleEdgeInsets = self.titleEdgeInsets;
+        titleEdgeInsets.left += 8;
+        self.titleEdgeInsets = titleEdgeInsets;
+        UIEdgeInsets imageEdgeInsets = self.imageEdgeInsets;
+        imageEdgeInsets.right += 8;
+        self.imageEdgeInsets = imageEdgeInsets;
+        self.titleLabel.font = [UIFont systemFontOfSize:15];
     }
     return self;
 }

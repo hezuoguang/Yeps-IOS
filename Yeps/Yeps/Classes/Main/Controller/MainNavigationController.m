@@ -7,6 +7,7 @@
 //
 
 #import "MainNavigationController.h"
+#import "ZGBarButtonItem.h"
 
 @interface MainNavigationController ()
 
@@ -28,9 +29,18 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     if (self.childViewControllers.count > 0) {
         viewController.hidesBottomBarWhenPushed = YES;
+        viewController.navigationItem.leftBarButtonItem = [ZGBarButtonItem leftBarButtonItemWithImage:@"nav_back"highlightImage:@"nav_back_h" addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
     }
     [super pushViewController:viewController animated:animated];
+    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.interactivePopGestureRecognizer.delegate = nil;
+        self.interactivePopGestureRecognizer.enabled = YES;
+    }
     
+}
+
+- (void)popViewController {
+    [self popViewControllerAnimated:YES];
 }
 
 @end

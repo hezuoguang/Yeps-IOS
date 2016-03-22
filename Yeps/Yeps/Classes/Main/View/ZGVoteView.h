@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class StatusModel;
 @interface ZGVoteView : UIView
 
+@property (nonatomic, strong) StatusModel *status;
+
++ (CGSize)sizeWithStatus:(StatusModel *)status;
 @end

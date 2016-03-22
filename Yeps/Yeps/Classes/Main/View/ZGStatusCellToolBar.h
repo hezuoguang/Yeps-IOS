@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class StatusModel;
 
 @interface ZGStatusCellToolBar : UIView
+
+@property (nonatomic, strong) StatusModel *status;
 
 @end

@@ -89,22 +89,22 @@
     //imageList
     CGFloat toolBarY = CGRectGetMaxY(self.contentTextViewF) + kCellPadding;
     if (status.image_list.count != 0) {
-        CGFloat imageListViewX = kCellPadding;
+        CGFloat imageListViewX = 0;
         CGFloat imageListViewY = CGRectGetMaxY(self.contentTextViewF) + kCellPadding;
         CGSize imageListViewSize = [ZGStatusImageListView sizeWithStatus:status];
         if (status.image_list.count == 1) {
             self.imageListViewF = (CGRect){{0, imageListViewY}, imageListViewSize};
-            toolBarY = CGRectGetMaxY(self.imageListViewF) + 1;
+            toolBarY = CGRectGetMaxY(self.imageListViewF) + 2;
         }
         else {
             self.imageListViewF = (CGRect){{imageListViewX, imageListViewY}, imageListViewSize};
-            toolBarY = CGRectGetMaxY(self.imageListViewF) + kCellPadding;
+            toolBarY = CGRectGetMaxY(self.imageListViewF) + 2;
         }
     }
     
     if (status.type == 1) {//投票
-        CGFloat voteX = kCellPadding;
-        CGFloat voteY = toolBarY;
+        CGFloat voteX = 0;
+        CGFloat voteY = toolBarY + kCellPadding;
         CGSize voteSize = [ZGVoteView sizeWithStatus:status];
         self.voteViewF = CGRectMake(voteX, voteY, voteSize.width, voteSize.height);
         toolBarY = CGRectGetMaxY(self.voteViewF) + kCellPadding;

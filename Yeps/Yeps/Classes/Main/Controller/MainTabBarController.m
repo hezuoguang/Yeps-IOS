@@ -13,6 +13,7 @@
 #import "ZGYepViewController.h"
 #import "ZGDiscoverViewController.h"
 #import "ZGProfileViewController.h"
+#import "SwitchStatusTypeViewController.h"
 @interface MainTabBarController ()
 
 @end
@@ -37,8 +38,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    [self setValue:[[ZGTabBar alloc] init] forKey:@"tabBar"];
+    ZGTabBar *tabBar = [[ZGTabBar alloc] init];
+    tabBar.publishButtonDidClick = ^(){
+        SwitchStatusTypeViewController *typeVC = [[SwitchStatusTypeViewController alloc] init];
+        [self presentViewController:typeVC animated:NO completion:nil];
+    };
+    [self setValue:tabBar forKey:@"tabBar"];
     
     ZGHomeViewController *homeVC = [[ZGHomeViewController alloc] init];
     [self addChildVC:homeVC title:@"首页" image:@"Y" selectImage:@"Y_s"];

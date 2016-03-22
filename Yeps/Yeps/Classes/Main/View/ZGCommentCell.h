@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class CommentFrameModel;
 @interface ZGCommentCell : UITableViewCell
+
+@property (nonatomic, strong) CommentFrameModel *commentF;
+
++ (instancetype)commentCellWithTableView:(UITableView *)tableView;
 
 @end

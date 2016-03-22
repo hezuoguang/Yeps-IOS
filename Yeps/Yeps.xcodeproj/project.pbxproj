@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		301322981C9CEA6500AB7011 /* ZGBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 301322971C9CEA6500AB7011 /* ZGBarButtonItem.m */; };
 		3013229C1C9CF02C00AB7011 /* ZGStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3013229B1C9CF02C00AB7011 /* ZGStatusView.m */; };
+		301323401C9E99B200AB7011 /* PostStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3013233F1C9E99B200AB7011 /* PostStatusViewController.m */; };
+		301323431C9E9A5900AB7011 /* ZGEditTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 301323421C9E9A5900AB7011 /* ZGEditTextView.m */; };
+		301323461C9E9AB000AB7011 /* EmotionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 301323451C9E9AB000AB7011 /* EmotionModel.m */; };
+		301323491C9E9C4700AB7011 /* EmotionTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 301323481C9E9C4700AB7011 /* EmotionTextAttachment.m */; };
+		3013234C1C9E9F7600AB7011 /* SwitchStatusTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3013234B1C9E9F7600AB7011 /* SwitchStatusTypeViewController.m */; };
+		3013234F1C9EA8B700AB7011 /* ZGSwitchStatusTypeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3013234E1C9EA8B700AB7011 /* ZGSwitchStatusTypeButton.m */; };
 		302A2BE51C87287500CF21CE /* ZGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302A2BE41C87287500CF21CE /* ZGHomeViewController.m */; };
 		302A2BE81C87289800CF21CE /* ZGYepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302A2BE71C87289800CF21CE /* ZGYepViewController.m */; };
 		302A2BEB1C87292600CF21CE /* ZGDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302A2BEA1C87292600CF21CE /* ZGDiscoverViewController.m */; };
@@ -94,6 +100,18 @@
 		301322971C9CEA6500AB7011 /* ZGBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGBarButtonItem.m; sourceTree = "<group>"; };
 		3013229A1C9CF02C00AB7011 /* ZGStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGStatusView.h; sourceTree = "<group>"; };
 		3013229B1C9CF02C00AB7011 /* ZGStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGStatusView.m; sourceTree = "<group>"; };
+		3013233E1C9E99B200AB7011 /* PostStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostStatusViewController.h; sourceTree = "<group>"; };
+		3013233F1C9E99B200AB7011 /* PostStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostStatusViewController.m; sourceTree = "<group>"; };
+		301323411C9E9A5900AB7011 /* ZGEditTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGEditTextView.h; sourceTree = "<group>"; };
+		301323421C9E9A5900AB7011 /* ZGEditTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGEditTextView.m; sourceTree = "<group>"; };
+		301323441C9E9AB000AB7011 /* EmotionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionModel.h; sourceTree = "<group>"; };
+		301323451C9E9AB000AB7011 /* EmotionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionModel.m; sourceTree = "<group>"; };
+		301323471C9E9C4700AB7011 /* EmotionTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionTextAttachment.h; sourceTree = "<group>"; };
+		301323481C9E9C4700AB7011 /* EmotionTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionTextAttachment.m; sourceTree = "<group>"; };
+		3013234A1C9E9F7600AB7011 /* SwitchStatusTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchStatusTypeViewController.h; sourceTree = "<group>"; };
+		3013234B1C9E9F7600AB7011 /* SwitchStatusTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchStatusTypeViewController.m; sourceTree = "<group>"; };
+		3013234D1C9EA8B700AB7011 /* ZGSwitchStatusTypeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGSwitchStatusTypeButton.h; sourceTree = "<group>"; };
+		3013234E1C9EA8B700AB7011 /* ZGSwitchStatusTypeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGSwitchStatusTypeButton.m; sourceTree = "<group>"; };
 		302A2BE31C87287500CF21CE /* ZGHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGHomeViewController.h; sourceTree = "<group>"; };
 		302A2BE41C87287500CF21CE /* ZGHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGHomeViewController.m; sourceTree = "<group>"; };
 		302A2BE61C87289800CF21CE /* ZGYepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGYepViewController.h; sourceTree = "<group>"; };
@@ -560,6 +578,10 @@
 				30BE4D771C8BEE210077C8FB /* PickTagsViewController.m */,
 				303FF6B51C96F79D002B746F /* StatusDetailViewController.h */,
 				303FF6B61C96F79D002B746F /* StatusDetailViewController.m */,
+				3013233E1C9E99B200AB7011 /* PostStatusViewController.h */,
+				3013233F1C9E99B200AB7011 /* PostStatusViewController.m */,
+				3013234A1C9E9F7600AB7011 /* SwitchStatusTypeViewController.h */,
+				3013234B1C9E9F7600AB7011 /* SwitchStatusTypeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -581,6 +603,10 @@
 				303FF6B91C998869002B746F /* CommentModel.m */,
 				303FF6BB1C99887F002B746F /* CommentFrameModel.h */,
 				303FF6BC1C99887F002B746F /* CommentFrameModel.m */,
+				301323441C9E9AB000AB7011 /* EmotionModel.h */,
+				301323451C9E9AB000AB7011 /* EmotionModel.m */,
+				301323471C9E9C4700AB7011 /* EmotionTextAttachment.h */,
+				301323481C9E9C4700AB7011 /* EmotionTextAttachment.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -620,6 +646,10 @@
 				303FF6BF1C9988A0002B746F /* ZGCommentCell.m */,
 				301322961C9CEA6500AB7011 /* ZGBarButtonItem.h */,
 				301322971C9CEA6500AB7011 /* ZGBarButtonItem.m */,
+				301323411C9E9A5900AB7011 /* ZGEditTextView.h */,
+				301323421C9E9A5900AB7011 /* ZGEditTextView.m */,
+				3013234D1C9EA8B700AB7011 /* ZGSwitchStatusTypeButton.h */,
+				3013234E1C9EA8B700AB7011 /* ZGSwitchStatusTypeButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -825,11 +855,13 @@
 				30BE4DAE1C8F16970077C8FB /* ZGTextView.m in Sources */,
 				30BE4D9C1C8DB5FB0077C8FB /* VoteModel.m in Sources */,
 				303FF6BD1C99887F002B746F /* CommentFrameModel.m in Sources */,
+				301323491C9E9C4700AB7011 /* EmotionTextAttachment.m in Sources */,
 				302A2BEB1C87292600CF21CE /* ZGDiscoverViewController.m in Sources */,
 				30BE4D651C8ABA3C0077C8FB /* SMSTool.m in Sources */,
 				30BE4DA21C8F15630077C8FB /* StatusFrameModel.m in Sources */,
 				30E5C1191C81A423000EF4E8 /* MainTabBarController.m in Sources */,
 				30BE4DAB1C8F167D0077C8FB /* ZGLabel.m in Sources */,
+				3013234C1C9E9F7600AB7011 /* SwitchStatusTypeViewController.m in Sources */,
 				301322981C9CEA6500AB7011 /* ZGBarButtonItem.m in Sources */,
 				3013229C1C9CF02C00AB7011 /* ZGStatusView.m in Sources */,
 				30BE4D951C8C622E0077C8FB /* LoginStepTwoViewController.m in Sources */,
@@ -860,10 +892,14 @@
 				30BE4D841C8C50220077C8FB /* UserBaseInfoModel.m in Sources */,
 				303FF6BA1C998869002B746F /* CommentModel.m in Sources */,
 				30BE4D7E1C8BFF120077C8FB /* ZGTagListView.m in Sources */,
+				3013234F1C9EA8B700AB7011 /* ZGSwitchStatusTypeButton.m in Sources */,
 				302A2C051C89C2EC00CF21CE /* RegisterStepFourViewController.m in Sources */,
 				30BE4D781C8BEE210077C8FB /* PickTagsViewController.m in Sources */,
 				30BE4D8A1C8C53750077C8FB /* UserTool.m in Sources */,
+				301323461C9E9AB000AB7011 /* EmotionModel.m in Sources */,
 				30E5C1151C819CA2000EF4E8 /* UIColor+Extension.m in Sources */,
+				301323431C9E9A5900AB7011 /* ZGEditTextView.m in Sources */,
+				301323401C9E99B200AB7011 /* PostStatusViewController.m in Sources */,
 				302A2C021C888CF800CF21CE /* RegisterStepThreeViewController.m in Sources */,
 				303FF6B71C96F79D002B746F /* StatusDetailViewController.m in Sources */,
 				302A2BF11C872F5500CF21CE /* UnLoginViewController.m in Sources */,

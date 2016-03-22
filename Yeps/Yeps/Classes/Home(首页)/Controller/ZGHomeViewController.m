@@ -22,6 +22,7 @@
 @property (nonatomic, weak) ZGTableView *tableView1;
 @property (nonatomic, weak) ZGTableView *tableView2;
 @property (nonatomic, strong) NSMutableArray *tableViewConentOffsets;
+@property (nonatomic, strong) NSMutableArray *tableViewNoMoreDataStatus;
 @property (nonatomic, strong) NSMutableArray *typeModels;
 @property (nonatomic, weak) ZGStatusTypeScrollView *typeScrollView;
 @property (nonatomic, assign) NSInteger curType;
@@ -42,6 +43,16 @@
         }
     }
     return _tableViewConentOffsets;
+}
+
+- (NSMutableArray *)tableViewNoMoreDataStatus {
+    if (_tableViewNoMoreDataStatus == nil) {
+        _tableViewNoMoreDataStatus = [NSMutableArray array];
+        for (NSInteger i = 0; i < kTypeStrs.count; i++) {
+            [_tableViewNoMoreDataStatus addObject:@(0)];
+        }
+    }
+    return _tableViewNoMoreDataStatus;
 }
 
 - (NSMutableArray *)typeModels {
@@ -151,14 +162,33 @@
         if (self.tableView1.frame.origin.x == 0) {
             self.tableView1.type = type;
             self.tableViewConentOffsets[self.curType] = [NSValue valueWithCGPoint:self.tableView2.contentOffset];
-            NSLog(@"%d --- %@",type, self.tableViewConentOffsets[type]);
+            NSLog(@"%ld --- %@",(long)type, self.tableViewConentOffsets[type]);
+            /**
+             *  恢复footer状态
+             */
+            NSNumber *noMoreStatus = self.tableViewNoMoreDataStatus[type];
+            if (noMoreStatus.intValue == 1) {
+                [self.tableView1 endRefreshingWithNoMoreData];
+            } else {
+                [self.tableView1 resetNoMoreData];
+            }
+            
             [self.tableView1 reloadData];
             self.tableView1.contentOffset = [self.tableViewConentOffsets[type] CGPointValue];
         } else {
             self.tableView2.type = type;
             self.tableViewConentOffsets[self.curType] = [NSValue valueWithCGPoint:self.tableView1.contentOffset];
+            /**
+             *  恢复footer状态
+             */
+            NSNumber *noMoreStatus = self.tableViewNoMoreDataStatus[type];
+            if (noMoreStatus.intValue == 1) {
+                [self.tableView2 endRefreshingWithNoMoreData];
+            } else {
+                [self.tableView2 resetNoMoreData];
+            }
             [self.tableView2 reloadData];
-            NSLog(@"%d --- %@",type, self.tableViewConentOffsets[type]);
+            NSLog(@"%ld --- %@",(long)type, self.tableViewConentOffsets[type]);
             self.tableView2.contentOffset = [self.tableViewConentOffsets[type] CGPointValue];
         }
         self.curType = type;
@@ -293,6 +323,8 @@
         [tableView stopPullUpRefresh];
         NSArray *statuses = data;
         if (statuses.count == 0) {
+            [tableView endRefreshingWithNoMoreData];
+            self.tableViewNoMoreDataStatus[tableView.type] = @(1);
             return;
         }
         NSArray *statusModelList = [StatusModel mj_objectArrayWithKeyValuesArray:statuses];

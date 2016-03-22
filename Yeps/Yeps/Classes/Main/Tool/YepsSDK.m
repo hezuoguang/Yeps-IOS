@@ -219,6 +219,7 @@ static FMDatabase *_db;
     } failure:failure];
 }
 
+//切换学校
 + (void)switchActiveUniversity:(NSString *)university success:(void (^)(id))success error:(void (^)(id))error failure:(void (^)(NSError *))failure {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"action"] = @"switch_active_university";
@@ -247,16 +248,16 @@ static FMDatabase *_db;
     NSString *active_university = [UserTool getActiveUniversity];
     NSMutableArray *statuses = [NSMutableArray array];
     NSString *sql = nil;
-    NSLog(@"%d --- %d", since_id, type);
+    NSLog(@"%ld --- %ld", (long)since_id, (long)type);
     if (is_follow) {
         type = -1;
     }
     if (since_id != -1) {
-        sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %d and user_sha1 = '%@' and status_id > %d order by status_id limit 20",active_university ,is_follow, type, user_sha1, since_id];//小在前
+        sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %ld and user_sha1 = '%@' and status_id > %ld order by status_id limit 20",active_university ,is_follow, (long)type, user_sha1, (long)since_id];//小在前
     } else if(max_id != -1) {
-        sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %d and user_sha1 = '%@' and status_id < %d order by status_id desc limit 20",active_university ,is_follow, type, user_sha1, max_id];//大在前
+        sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %ld and user_sha1 = '%@' and status_id < %ld order by status_id desc limit 20",active_university ,is_follow, (long)type, user_sha1, (long)max_id];//大在前
     } else {
-        sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %d and user_sha1 = '%@' order by status_id desc limit 20",active_university ,is_follow, type, user_sha1];//大在前
+        sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %ld and user_sha1 = '%@' order by status_id desc limit 20",active_university ,is_follow, (long)type, user_sha1];//大在前
     }
     FMResultSet *results = [[self db] executeQuery:sql];
     while (results.next) {

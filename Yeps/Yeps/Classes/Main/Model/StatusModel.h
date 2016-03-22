@@ -15,10 +15,13 @@
 #define kCellPadding 10.0
 #define kCellMargin 8.0
 #define kPhotoViewWH 50
-#define kImageViewWH 100
+#define kImageViewMargin 2
+#define kImageViewPadding 0
+#define kImageViewWH2 ((kMaxW - kImageViewMargin - 2 * kImageViewPadding) * 0.5)
+#define kImageViewWH3 ((kMaxW - 2 * kImageViewMargin - 2 * kImageViewPadding) / 3.0)
 #define kNickLabelFont [UIFont systemFontOfSize:19]
 #define kTimeLabelFont [UIFont systemFontOfSize:13.0]
-#define kTypeLabelFont [UIFont systemFontOfSize:15]
+#define kTypeLabelFont [UIFont systemFontOfSize:14]
 #define kTitleLabelFont [UIFont systemFontOfSize:21]
 #define kContentTextViewFont [UIFont systemFontOfSize:15]
 #define kToolBarH 38
@@ -26,7 +29,6 @@
 #define kVoteOptionMargin 10
 #define kVoteBtnW 100
 #define kVoteBtnH 30
-#define kTypeStrs @[@"微交流", @"微评选", @"随手拍", @"一起玩", @"发现", @"二手"]
 #define ktypeScrollViewH 44
 @class UserBaseInfoModel, VoteModel;
 @interface StatusModel : NSObject

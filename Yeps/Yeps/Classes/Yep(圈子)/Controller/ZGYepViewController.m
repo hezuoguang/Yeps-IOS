@@ -127,6 +127,7 @@
         [tableView stopPullUpRefresh];
         NSArray *statuses = data;
         if (statuses.count == 0) {
+            [tableView endRefreshingWithNoMoreData];
             return;
         }
         NSArray *statusModelList = [StatusModel mj_objectArrayWithKeyValuesArray:statuses];

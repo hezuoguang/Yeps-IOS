@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class StatusFrameModel;
 @interface ZGStatusView : UIView
+
+@property (nonatomic, strong) StatusFrameModel *statusF;
 
 @end

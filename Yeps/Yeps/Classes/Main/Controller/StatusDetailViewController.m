@@ -18,6 +18,7 @@
 #import "UserBaseInfoModel.h"
 #import "UserInfoModel.h"
 #import "ZGStatusView.h"
+#import <MJExtension.h>
 
 @interface StatusDetailViewController()<ZGTableViewDelegate, UITableViewDataSource>
 
@@ -27,6 +28,8 @@
 @property (nonatomic, weak) ZGStatusView *statusView;
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, assign) CGFloat maxOffsetY;
+@property (nonatomic, assign) CGFloat beginRefreshOffsetY;
+@property (nonatomic, assign) BOOL isFirst;
 
 @end
 
@@ -41,27 +44,27 @@
 - (NSMutableArray *)commetFs {
     if (_commetFs == nil) {
         _commetFs = [NSMutableArray array];
-        UserBaseInfoModel *user = [UserTool getCurrentUserInfo];
-        for (NSInteger i = 0; i < 10; i++) {
-            CommentModel *model = [[CommentModel alloc] init];
-            model.create_user = user;
-            model.create_time = @"2014-11-22 23:23:22";
-            model.content = @"h";
-            if (i % 3 == 0) {
-                model.is_me = YES;
-            } else {
-                model.is_me = NO;
-            }
-            if (i % 4 == 0) {
-                model.content = @"自定义UINavigationController 在viewDidLoad方法中将其背景色设置为白色即可";
-            }
-            if (i % 5 == 0) {
-                model.content = @"该纪录片将向你展示一个壮观、不受重视但却充斥人类周遭的迷你宇宙，一个怪异、凶猛但出奇美丽的无脊椎昆虫世界！奇特的蝉、发出萤光的蠕虫、吐丝技巧复杂的蜘蛛，以及专吃蝙蝠的蜈蚣…这些生物或许渺小，但牠们的生活机制却惊人的庞";
-            }
-            CommentFrameModel *modelF = [[CommentFrameModel alloc] init];
-            modelF.comment = model;
-            [_commetFs addObject:modelF];
-        }
+//        UserBaseInfoModel *user = [UserTool getCurrentUserInfo];
+//        for (NSInteger i = 0; i < 10; i++) {
+//            CommentModel *model = [[CommentModel alloc] init];
+//            model.create_user = user;
+//            model.create_time = @"2014-11-22 23:23:22";
+//            model.content = @"h";
+//            if (i % 3 == 0) {
+//                model.is_me = YES;
+//            } else {
+//                model.is_me = NO;
+//            }
+//            if (i % 4 == 0) {
+//                model.content = @"自定义UINavigationController 在viewDidLoad方法中将其背景色设置为白色即可";
+//            }
+//            if (i % 5 == 0) {
+//                model.content = @"该纪录片将向你展示一个壮观、不受重视但却充斥人类周遭的迷你宇宙，一个怪异、凶猛但出奇美丽的无脊椎昆虫世界！奇特的蝉、发出萤光的蠕虫、吐丝技巧复杂的蜘蛛，以及专吃蝙蝠的蜈蚣…这些生物或许渺小，但牠们的生活机制却惊人的庞";
+//            }
+//            CommentFrameModel *modelF = [[CommentFrameModel alloc] init];
+//            modelF.comment = model;
+//            [_commetFs addObject:modelF];
+//        }
     }
     return _commetFs;
 }
@@ -105,13 +108,20 @@
     [tableView reloadData];
     CGFloat maxScrollViewY = self.statusView.frame.size.height + maxH - 64 - kToolBarH;
     self.maxOffsetY = self.statusView.frame.size.height - kToolBarH - 64;
+    self.beginRefreshOffsetY = self.statusView.frame.size.height - maxH;
     self.scrollView.contentSize = CGSizeMake(0, maxScrollViewY);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (self.scrollView == scrollView) {
-        
-        if (fabs(scrollView.contentOffset.y - self.maxOffsetY) < 2) {
+        CGFloat fabsY = fabs(scrollView.contentOffset.y - self.maxOffsetY);
+        if (scrollView.contentOffset.y > self.beginRefreshOffsetY + 5) {
+            if (!self.isFirst) {
+                self.isFirst = YES;
+                [self.tableView beginRefresh];
+            }
+        }
+        if (fabsY < 2) {
             self.tableView.userInteractionEnabled = YES;
         } else {
             self.tableView.userInteractionEnabled = NO;
@@ -147,34 +157,38 @@
 
 - (void)tableViewDidRefresh:(ZGTableView *)tableView {
     NSString *status_sha1 = self.statusF.status.status_sha1;
-//    [YepsSDK getNewStatus:since_id type:type success:^(id data) {
-//        [tableView stopRefresh];
-//        NSArray *statuses = data[@"status_list"];
-//        if (statuses.count == 0) {
-//            return;
-//        }
-//        NSArray *statusModelList = [StatusModel mj_objectArrayWithKeyValuesArray:statuses];
-//        NSMutableArray *statusFrameList = [NSMutableArray array];
-//        for (StatusModel *status in statusModelList) {
-//            StatusFrameModel *frameModel = [[StatusFrameModel alloc] init];
-//            frameModel.status = status;
-//            [statusFrameList addObject:frameModel];
-//        }
-//        [models insertObjects:statusFrameList atIndexes:[[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, statusFrameList.count)]];
-//        [tableView reloadData];
-//        
-//        
-//    } error:^(id data) {
-//        [tableView stopRefresh];
-//        [SVProgressHUD showErrorWithStatus:data[@"info"]];
-//        
-//    } failure:^(NSError *error) {
-//        [tableView stopRefresh];
-//        [SVProgressHUD showErrorWithStatus:@"网络故障"];
-//        
-//    }];
-    [self.tableView stopRefresh];
+    CommentFrameModel *commentF = self.commetFs.firstObject;
+    NSInteger max_id = -1;
+    if (commentF) {
+        CommentModel *comment = commentF.comment;
+        max_id = comment.comment_id;
+    }
+    [YepsSDK getOldComment:max_id status_sha1:status_sha1 success:^(id data) {
+        [tableView stopRefresh];
+        NSArray *comments = data;
+        if (comments.count == 0) {
+            return;
+        }
+        NSArray *commentModelList = [CommentModel mj_objectArrayWithKeyValuesArray:comments];
+        NSMutableArray *commentFrameList = [NSMutableArray array];
+        for (CommentModel *comment in commentModelList) {
+            CommentFrameModel *frameModel = [[CommentFrameModel alloc] init];
+            frameModel.comment = comment;
+            [commentFrameList addObject:frameModel];
+        }
+        [self.commetFs insertObjects:commentFrameList atIndexes:[[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, commentFrameList.count)]];
+        [tableView reloadData];
+    } error:^(id data) {
+        [tableView stopRefresh];
+        [SVProgressHUD showErrorWithStatus:data[@"info"]];
+    } failure:^(NSError *error) {
+        [tableView stopRefresh];
+        [SVProgressHUD showErrorWithStatus:@"网络故障"];
+    }];
 }
 
+- (void)tableViewDidPullUpRefresh:(ZGTableView *)tableView {
+    
+}
 
 @end

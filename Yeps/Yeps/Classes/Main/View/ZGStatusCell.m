@@ -6,35 +6,33 @@
 //  Copyright © 2016年 weimi. All rights reserved.
 //
 
-#import "ZGStatusTableViewCell.h"
-#import "ZGPhotoView.h"
-#import "ZGImageView.h"
-#import "ZGLabel.h"
-#import "ZGTextView.h"
+#import "ZGStatusCell.h"
+#import "ZGStatusView.h"
+#import "StatusFrameModel.h"
+#import "StatusModel.h"
 
-@interface ZGStatusTableViewCell()
+@interface ZGStatusCell()
 
-/**
- *  头像
- */
-@property (nonatomic, weak) ZGPhotoView *photoView;
-
-@property (nonatomic, weak) ZGLabel *nickLabel;
-
-@property (nonatomic, weak) ZGLabel *timeLabel;
-
-@property (nonatomic, weak) ZGLabel *typeLabel;
-
-@property (nonatomic, weak) ZGImageView *bannerImageView;
-
-@property (nonatomic, weak) ZGLabel *titleLabel;
-
-@property (nonatomic, weak) ZGTextView *contentTextView;
-
+@property (nonatomic, weak) ZGStatusView *statusView;
 
 @end
 
-@implementation ZGStatusTableViewCell
+@implementation ZGStatusCell
+
++ (instancetype)statusCellWithTableView:(UITableView *)tableView {
+    static NSString *ID = @"StatusCellID";
+    ZGStatusCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[ZGStatusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.contentView.backgroundColor = [UIColor popCellColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        ZGStatusView *statusView = [[ZGStatusView alloc] init];
+        [cell.contentView addSubview:statusView];
+        cell.statusView = statusView;
+    }
+    return cell;
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -45,5 +43,20 @@
 
     // Configure the view for the selected state
 }
+
+- (void)setStatusF:(StatusFrameModel *)statusF {
+    _statusF = statusF;
+    self.statusView.statusF = statusF;
+    [self setNeedsLayout];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if (self.statusF) {
+        self.contentView.frame = CGRectMake(0, kCellMargin, kMaxW, self.statusF.height - kCellMargin);
+    }
+}
+
+
 
 @end

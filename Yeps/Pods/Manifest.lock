@@ -26,20 +26,21 @@ PODS:
   - HappyDNS (0.2.3)
   - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
-  - MOBFoundation_IDFA (1.4.0)
+  - MOBFoundation_IDFA (1.5.1)
+  - pop (1.0.9)
   - Qiniu (7.0.16):
     - AFNetworking (~> 2.0)
     - HappyDNS (~> 0.2)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
-  - ShareSDK3 (3.2.0):
-    - ShareSDK3/ShareSDK (= 3.2.0)
-  - ShareSDK3/ShareSDK (3.2.0)
-  - ShareSDK3/ShareSDKPlatforms/QQ (3.2.0)
-  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.2.0)
-  - ShareSDK3/ShareSDKPlatforms/WeChat (3.2.0)
-  - SMSSDK (2.0.2)
+  - ShareSDK3 (3.2.3):
+    - ShareSDK3/ShareSDK (= 3.2.3)
+  - ShareSDK3/ShareSDK (3.2.3)
+  - ShareSDK3/ShareSDKPlatforms/QQ (3.2.3)
+  - ShareSDK3/ShareSDKPlatforms/SinaWeibo (3.2.3)
+  - ShareSDK3/ShareSDKPlatforms/WeChat (3.2.3)
+  - SMSSDK (2.0.4)
   - SVProgressHUD (1.1.3)
 
 DEPENDENCIES:
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - MOBFoundation_IDFA
+  - pop
   - Qiniu (~> 7.0)
   - SDWebImage
   - ShareSDK3
@@ -63,11 +65,12 @@ SPEC CHECKSUMS:
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
-  MOBFoundation_IDFA: 3c837e657549ded25f21dc3f34808065a4238502
+  MOBFoundation_IDFA: f5d3d1f89166f60c6985e34b7d90e6fb5d58fb61
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   Qiniu: 51a8702cddc02b50867e10cef99291b9a8a006b1
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  ShareSDK3: 2987b2c38210299d8c3259fff65740f59691a688
-  SMSSDK: 4c369e5df6d6998b5341f53bf98a0c18a5b90719
+  ShareSDK3: 76a2b7bee33fc7360fbc9670adb3e9e06534ee82
+  SMSSDK: 642b6a8c55fd382be44487cd5e0b0710681895f9
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
 
 COCOAPODS: 0.39.0

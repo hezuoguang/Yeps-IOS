@@ -1,5 +1,5 @@
 ## ShareSDK
-* ShareSDK is the most comprehensive Social SDK in the world,which share easily with 40+ platforms.
+* ShareSDK is the most popular social SDK for apps and mobile games in global world ! We've already support over 100,000 clients unitl now. ShareSDK could easily support 40+ social platforms in the world for third-party log in, sharing, and operating with friends list. Only few hours, this small package will make your app fully socialized! Wanna post something from your app on Chinese social platform? This might be your best choice!
 
 ## Contents
 * Getting Started
@@ -22,18 +22,26 @@
 
 **ShareSDK include：**
 
-**1、libraries（ShareSDK Library），Contains：**
+**1、ShareSDK（ShareSDK Library），Contains：**
 
-     1. extends：Third-party platform's SDK。（Platform SDK does not require can be removable）
-     2. MOBFoundation.framework：Basic Functions Framework。（necessary）
-     3. ShareSDK.bundle：ShareSDK Resources。（necessary）
-     4. ShareSDK.framework：Core Framework。（necessary）
-     5. ShareSDKConnector.framework：Acting framework for plug-ShareSDK frame and outer frame connection. When necessary, use a third-party SDK.
-     
-     6. ShareSDKExtension.framework：ShareSDK framework for functional expansion plug. Currently the main provider of third-party platform login, onekey share, screenshots sharing, shake sharing and other related functions. We need to use the above functions necessary。
-     7. ShareSDKInterfaceAdapter.framework：The interface-compatible package to ShareSDK v2.X。(Use ShareSDK v3.X of the proposal directly interfaces)
-     8. ShareSDKUI.bundle：Share menu bar and share editorial page Resources。（customize these UI can be removed directly）
-     9. ShareSDKUI.framework：Share menu bar and share editorial page。（customize these UI can be removed directly）
+```
+(1) ShareSDK.framework：Core Framework。（necessary）
+(2) Support Folder. Contains:
+     (a) Required :
+         ----- MOBFoundation.framework：Basic Functions Framework。（necessary)
+         ----- ShareSDK.bundle：ShareSDK Resources。（necessary）
+         ----- ShareSDKConnector.framework：Acting framework for plug-ShareSDK frame and outer frame connection. When necessary, use a third-party SDK.
+ 
+     (b) Optional :
+         ----- ShareSDKExtension.framework：ShareSDK framework for functional expansion plug. Currently the main provider of third-party platform login, onekey share, screenshots sharing, shake sharing and other related functions. We need to use the above functions necessary。
+         ----- ShareSDKInterfaceAdapter.framework：The interface-compatible package to ShareSDK v2.X。(Use ShareSDK v3.X of the proposal directly interfaces)
+         ----- ShareSDKUI.bundle：Share menu bar and share editorial page Resources。（customize these UI can be removed directly）
+         ----- ShareSDKUI.framework：Share menu bar and share editorial page。（customize these UI can be removed directly）
+ 
+     (c) PlatformSDK:Third-party platform's SDK（Platform SDK does not require can be removable）
+```
+
+
 
 **2、Demo（It contains Objective-C, swift sample Demo）**
  
@@ -66,7 +74,7 @@
   pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
   pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
  
-  pod 'ShareSDK3/ShareSDKPlatforms/GooglePlus'
+  pod 'ShareSDK3/ShareSDKPlatforms/Messenger'
   pod 'ShareSDK3/ShareSDKPlatforms/RenRen'
   pod 'ShareSDK3/ShareSDKPlatforms/AliPaySocial'
   pod 'ShareSDK3/ShareSDKPlatforms/Kakao'
@@ -103,7 +111,6 @@ then you will see the following window, check the "Copy items into destination g
   necessary for the SSO Login of Sina weibo
   
   ImageIO.framework
-  AdSupport.framework
   libsqlite3.dylib
   ```
   ```objc
@@ -120,14 +127,6 @@ then you will see the following window, check the "Copy items into destination g
   necessary for Mail or SMS
   
   MessageUI.framework
-  ```
-  ```objc
-  necessary for Google+ platform
-  
-  CoreMotion.framework
-  CoreLocation.framework
-  MediaPlayer.framework
-  AssetsLibrary.framework
   ```
 
 The steps of adding the framework:
@@ -148,7 +147,6 @@ The steps of adding the framework:
 //Links Native SDK use
 #import <ShareSDKConnector/ShareSDKConnector.h>
 
-//Use ShareSDK's UI(Share menu bar and share editorial page) needs
 #import <ShareSDKUI/ShareSDKUI.h>
 
 //QQ SDK header file
@@ -161,9 +159,6 @@ The steps of adding the framework:
 //SinaWeibo SDK header file
 #import "WeiboSDK.h"
 
-//GooglePlus SDK header file
-#import <GooglePlus/GooglePlus.h>
-//add “-ObjC” to Build Settings ---> Other linker flags
 ```
 
 and add the initialize code to the -(BOOL)application: didFinishLaunchingWithOptions: method
@@ -193,10 +188,6 @@ and add the initialize code to the -(BOOL)application: didFinishLaunchingWithOpt
                   case SSDKPlatformTypeSinaWeibo:
                           [ShareSDKConnector connectWeibo:[WeiboSDK class]];
                     break;
-                  case SSDKPlatformTypeGooglePlus:
-                          [ShareSDKConnector connectGooglePlus:[GPPSignIn class]
-                                                       shareClass:[GPPShare class]];
-                    break;
                   default:
                     break;
                 }
@@ -224,8 +215,7 @@ and add the initialize code to the -(BOOL)application: didFinishLaunchingWithOpt
                    case SSDKPlatformTypeGooglePlus:
                       [appInfo SSDKSetupGooglePlusByClientID:@"232554794995.apps.googleusercontent.com"
                                                 clientSecret:@"PEdFgtrMw97aCvf0joQj7EMk"
-                                                 redirectUri:@"http://localhost"
-                                                    authType:SSDKAuthTypeBoth];
+                                                 redirectUri:@"http://localhost"];
                     break;
                    default:
                     break;
@@ -393,20 +383,13 @@ Congratulations!you make it and the result may look like the following snapshop.
 
 1、 Log in to Google+ Developer platform to become a developer (https://console.developers.google.com/home/) and create a application to get the app’s ClientID.
 
-2、Back to your project , add “-ObjC” to Other linker flags. Here are steps:
 
-![(Google+ -ObjC)](http://www.mob.com/html/images/github/sharesdk-integrate-10.png)
-
-3、Back to your project , choose the -Info.plist (- represents your project name) file. Add a Google+ URL Scheme key and a URL identifier key, the value both are the BundleID (eg cn.appgo.sharebyone),and the value must same as Google+ dashboard's setting. Here are steps:
+2、Back to your project , choose the -Info.plist (- represents your project name) file. Add a Google+ URL Scheme key and a URL identifier key, the value both are the BundleID (eg cn.appgo.sharebyone),and the value must same as Google+ dashboard's setting. Here are steps:
 
 ![(Google+ url schemes)](http://bbs.mob.com/data/attachment/forum/201512/04/160940o399nbtt34fhk99z.png)
 
-4、Open -AppDelegate.m ( -represents your project name), import WechatSDK header file:
-```objc
-#import <GooglePlus/GooglePlus.h>
-```
 
-5、Add the codes in -(BOOL)application: didFinishLaunchingWithOptions: method
+3、Add the codes in -(BOOL)application: didFinishLaunchingWithOptions: method
 ```objc
 -   (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
 {        
@@ -432,8 +415,7 @@ Congratulations!you make it and the result may look like the following snapshop.
                   case SSDKPlatformTypeGooglePlus:
                        [appInfo SSDKSetupGooglePlusByClientID:@"***********" // Google+ clientID
                                                  clientSecret:@""
-                                                  redirectUri:@""
-                                                     authType:SSDKAuthTypeBoth];
+                                                  redirectUri:@""];
                   break;
                   default:
                       break;

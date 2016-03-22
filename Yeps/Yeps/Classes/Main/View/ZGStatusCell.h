@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @class StatusFrameModel;
-@interface ZGStatusTableViewCell : UITableViewCell
+@interface ZGStatusCell : UITableViewCell
 
 @property (nonatomic, strong) StatusFrameModel *statusF;
+
+
++ (instancetype)statusCellWithTableView:(UITableView *)tableView;
 
 @end

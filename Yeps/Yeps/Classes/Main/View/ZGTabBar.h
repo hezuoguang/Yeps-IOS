@@ -10,4 +10,6 @@
 
 @interface ZGTabBar : UITabBar
 
+@property (nonatomic, strong) void(^publishButtonDidClick)();
+
 @end

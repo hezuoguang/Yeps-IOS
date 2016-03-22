@@ -30,6 +30,7 @@
 @property (nonatomic, weak) UILabel *tagTip;
 @property (nonatomic, strong) NSArray *tagList;
 @property (nonatomic, copy) NSString *university;
+@property (nonatomic, weak) UIButton *cameraButton;
 //状态标识 status | 1\ status | 2
 @property (nonatomic, assign) NSInteger status;
 @end
@@ -57,6 +58,15 @@
     [photoView addGestureRecognizer:tap];
     self.photoView = photoView;
     [self.view addSubview:photoView];
+    
+    UIButton *cameraButton = [[UIButton alloc] init];
+    [cameraButton setImage:[UIImage imageNamed:@"Camera"] forState:UIControlStateNormal];
+    [cameraButton setImage:[UIImage imageNamed:@"Camera"] forState:UIControlStateHighlighted];
+    cameraButton.bounds = CGRectMake(0, 0, cameraButton.currentImage.size.width, cameraButton.currentImage.size.height);
+    cameraButton.center = self.photoView.center;
+    cameraButton.userInteractionEnabled = NO;
+    [self.view addSubview:cameraButton];
+    self.cameraButton = cameraButton;
     
     UIButton *universityBtn = [[UIButton alloc] init];
     universityBtn.frame = CGRectMake(0, CGRectGetMaxY(photoView.frame) + 20, screenW, 60);
@@ -188,6 +198,7 @@
     if (image == nil) {
         image = info[UIImagePickerControllerOriginalImage];
     }
+    self.cameraButton.hidden = YES;
     self.photoView.image = image;
     [self dismissViewControllerAnimated:YES completion:nil];
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
@@ -195,11 +206,13 @@
         [SVProgressHUD dismiss];
         self.status |= (1 << 1);
         self.photo = url;
+        self.cameraButton.hidden = YES;
         [self updateNextBtnStatus];
     } failure:^{
         [SVProgressHUD showErrorWithStatus:@"上传头像失败"];
         self.photoView.image = nil;
         self.phone = nil;
+        self.cameraButton.hidden = NO;
         self.status &= ~(1 << 1);
         [self updateNextBtnStatus];
     }];

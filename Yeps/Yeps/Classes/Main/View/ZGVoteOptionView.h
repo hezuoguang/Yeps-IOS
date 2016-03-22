@@ -10,4 +10,6 @@
 
 @interface ZGVoteOptionView : UIButton
 
+- (void)updateUIWithTitle:(NSString *)title optionCount:(NSInteger)optionCount totalCount:(NSInteger)totalCount;
+
 @end

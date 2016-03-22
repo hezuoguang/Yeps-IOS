@@ -41,7 +41,7 @@
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
-    tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    tableView.contentInset = UIEdgeInsetsMake(64, 0, 44, 0);
     tableView.tableFooterView = [[UIView alloc] init];
     self.tableView = tableView;
     [self.view addSubview:tableView];
@@ -50,7 +50,7 @@
     UITableView *searchTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     searchTableView.delegate = self;
     searchTableView.dataSource = self;
-    searchTableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    searchTableView.contentInset = UIEdgeInsetsMake(64, 0, 44, 0);
     searchTableView.tableFooterView = [[UIView alloc] init];
     searchTableView.hidden = YES;
     self.searchTableView = searchTableView;
@@ -62,7 +62,6 @@
     searchBar.placeholder = @"搜索学校";
     [searchBar setValue:[NSValue valueWithUIEdgeInsets:UIEdgeInsetsMake(20, 8, 0, 8)] forKeyPath:@"_contentInset"];
     searchBar.contentMode = UIViewContentModeBottom;
-    searchBar.tintColor = [UIColor popMaskColor];
     [self.view addSubview:searchBar];
     self.searchBar = searchBar;
     
@@ -137,7 +136,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor popMaskColor];
+    view.backgroundColor = [UIColor popCellColor];
     UILabel *label = [[UILabel alloc] init];
     label.font = [UIFont systemFontOfSize:16];
     if (tableView == self.tableView) {
@@ -152,13 +151,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 30;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (tableView == self.tableView) {
-        return @"热门学校";
-    }
-    return @"搜索学校";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -194,6 +186,10 @@
         self.didPickUniversityBlock(title);
     }
 //    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [self.view endEditing:YES];
 }
 
 - (void)closeBtnClick {

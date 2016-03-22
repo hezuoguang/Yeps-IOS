@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZGButton : UIButton
+@interface ZGCellToolButton : UIButton
 
 @end

@@ -31,6 +31,7 @@
 //create_time: "创建时间(2016-02-27 18:21:34)",
 //is_sub: "是否为子评论(0:不是 1:是)"
 @property (nonatomic, strong) UserBaseInfoModel *create_user;
+@property (nonatomic, strong) UserBaseInfoModel *other_user;
 @property (nonatomic, assign) NSInteger comment_id;
 @property (nonatomic, copy) NSString *comment_sha1;
 @property (nonatomic, copy) NSString *content;
