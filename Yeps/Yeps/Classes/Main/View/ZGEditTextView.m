@@ -26,7 +26,7 @@
         self.placeholder =  @"请输入内容";
         self.background = [UIImage imageNamed:@"chat_input_bg"];
         self.font = [UIFont systemFontOfSize:15.0];
-        self.textContainerInset = UIEdgeInsetsMake(self.textContainerInset.top, self.textContainerInset.left + 5, self.textContainerInset.bottom - 1 , self.textContainerInset.right + 30);
+        self.textContainerInset = UIEdgeInsetsMake(self.textContainerInset.top, self.textContainerInset.left + 5, self.textContainerInset.bottom - 1 , self.textContainerInset.right + 5);
         //        self.contentInset = UIEdgeInsetsMake(self.contentInset.top + 2, self.contentInset.left, self.contentInset.bottom + 2, self.contentInset.right);
         //NSLog(@"%f %f %f", self.contentOffset.y, self.textContainerInset.top, self.textContainerInset.bottom);
         self.contentOffset = CGPointMake(self.contentOffset.x, self.textContainerInset.top);

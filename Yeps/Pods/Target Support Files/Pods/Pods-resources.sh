@@ -64,6 +64,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "ShareSDK3/ShareSDK/Support/Required/ShareSDK.bundle"
   install_resource "ShareSDK3/ShareSDK/Support/PlatformSDK/QQSDK/TencentOpenApi_IOS_Bundle.bundle"
   install_resource "ShareSDK3/ShareSDK/Support/PlatformSDK/SinaWeiboSDK/WeiboSDK.bundle"
+  install_resource "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysAssetsPickerController.xib"
+  install_resource "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysAssetPickerController.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
@@ -72,6 +74,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "ShareSDK3/ShareSDK/Support/Required/ShareSDK.bundle"
   install_resource "ShareSDK3/ShareSDK/Support/PlatformSDK/QQSDK/TencentOpenApi_IOS_Bundle.bundle"
   install_resource "ShareSDK3/ShareSDK/Support/PlatformSDK/SinaWeiboSDK/WeiboSDK.bundle"
+  install_resource "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysAssetsPickerController.xib"
+  install_resource "UzysAssetsPickerController/UzysAssetsPickerController/Library/UzysAssetPickerController.bundle"
 fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

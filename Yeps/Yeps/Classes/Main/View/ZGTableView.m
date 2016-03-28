@@ -27,6 +27,8 @@
     tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:tableView refreshingAction:@selector(pullRefresh)];
     tableView.mj_header.ignoredScrollViewContentInsetTop = -kCellMargin + padding;
     tableView.mj_footer.automaticallyHidden = YES;
+    tableView.mj_header.automaticallyChangeAlpha = YES;
+    tableView.mj_footer.automaticallyChangeAlpha = YES;
     return tableView;
 }
 

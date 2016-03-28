@@ -11,7 +11,8 @@
 #import "NSString+Extension.h"
 #import <FMDB.h>
 #import "UserTool.h"
-#define HOST  @"http://192.168.0.102:8000/yeps/api/"
+#import "UploadImageTool.h"
+#define HOST  @"http://192.168.0.103:8000/yeps/api/"
 #define DBPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Yeps.sqlite"]
 
 static FMDatabase *_db;
@@ -363,6 +364,36 @@ static FMDatabase *_db;
             }
         }
     } failure:failure];
+}
+
++ (void)publishStatus:(NSString *)title content:(NSString *)content image_list:(NSArray *)image_list type:(NSInteger)type vote:(NSDictionary *)vote success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    [UploadImageTool uploadimages:image_list success:^(NSArray *urlArray) {
+        NSLog(@"%@", urlArray);
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"action"] = @"publish_status";
+        NSMutableDictionary *data = [NSMutableDictionary dictionary];
+        data[@"title"] = title;
+        data[@"content"] = content;
+        data[@"image_list"] = urlArray;
+        data[@"type"] = @(type);
+        data[@"access_token"] = [UserTool getAccessToken];
+        params[@"data"] = [NSString jsonStringWithObj:data];
+        [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+            if ([data[@"ret"] isEqualToString:@"0001"]) {
+                if (success) {
+                    success(data[@"data"]);
+                }
+            } else {
+                if (error) {
+                    error(data);
+                }
+            }
+        } failure:failure];
+    } failure:^{
+        if (failure) {
+            failure(nil);
+        }
+    }];
 }
 
 @end

@@ -10,8 +10,6 @@
 //16 : 10
 #define kMaxW [UIScreen mainScreen].bounds.size.width
 #define kMaxH [UIScreen mainScreen].bounds.size.height
-#define kBannerImageViewW [UIScreen mainScreen].bounds.size.width
-#define kBannerImageViewH ([UIScreen mainScreen].bounds.size.width * 10.0 / 16.0)
 #define kCellPadding 10.0
 #define kCellMargin 8.0
 #define kPhotoViewWH 50
@@ -19,6 +17,9 @@
 #define kImageViewPadding 0
 #define kImageViewWH2 ((kMaxW - kImageViewMargin - 2 * kImageViewPadding) * 0.5)
 #define kImageViewWH3 ((kMaxW - 2 * kImageViewMargin - 2 * kImageViewPadding) / 3.0)
+#define kImageViewWH4 ((kMaxW - 3 * kImageViewMargin - 2 * kImageViewPadding) / 4.0)
+#define kBannerImageViewW ([UIScreen mainScreen].bounds.size.width - 2 * kImageViewPadding)
+#define kBannerImageViewH ([UIScreen mainScreen].bounds.size.width * 10.0 / 16.0)
 #define kNickLabelFont [UIFont systemFontOfSize:19]
 #define kTimeLabelFont [UIFont systemFontOfSize:13.0]
 #define kTypeLabelFont [UIFont systemFontOfSize:14]

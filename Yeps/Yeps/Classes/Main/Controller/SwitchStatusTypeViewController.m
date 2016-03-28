@@ -9,6 +9,7 @@
 #import "SwitchStatusTypeViewController.h"
 #import "ZGSwitchStatusTypeButton.h"
 #import <pop/POP.h>
+#import "PostStatusViewController.h"
 
 @interface SwitchStatusTypeViewController()
 
@@ -50,7 +51,7 @@
     
     CGFloat baseY = self.view.center.y - kZGSwitchStatusTypeButtonH * 0.7;
     UILabel *label = [[UILabel alloc] init];
-    label.text = @"Yeps, 一见倾心";
+    label.text = @"Yeps 一见倾心";
     label.alpha = 1.0;
     label.textColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentCenter;
@@ -63,14 +64,21 @@
 
 - (void)btnClick:(ZGSwitchStatusTypeButton *)btn {
     self.view.userInteractionEnabled = NO;
-    POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
-    anim.toValue = [NSValue valueWithCGSize:CGSizeMake(1.25, 1.25)];
-    anim.duration = 0.15;
-    anim.completionBlock = ^(POPAnimation *anim, BOOL flag) {
+    POPBasicAnimation *anim0 = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    anim0.toValue = @(0.25);
+    anim0.duration = 0.15;
+    anim0.completionBlock = ^(POPAnimation *anim, BOOL flag) {
         if (flag) {
             [self dismissViewControllerAnimated:NO completion:nil];
+            if (self.didSelectStatusButton) {
+                self.didSelectStatusButton(btn);
+            }
         }
     };
+    [btn pop_addAnimation:anim0 forKey:kPOPViewAlpha];
+    POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    anim.toValue = [NSValue valueWithCGSize:CGSizeMake(3.0, 3.0)];
+    anim.duration = 0.25;
     [btn.layer pop_addAnimation:anim forKey:kPOPLayerScaleXY];
 }
 
@@ -184,5 +192,6 @@
     self.closeBtn.userInteractionEnabled = NO;
     [self dismissAnima];
 }
+
 
 @end

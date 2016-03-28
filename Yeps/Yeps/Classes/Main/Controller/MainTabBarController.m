@@ -14,6 +14,8 @@
 #import "ZGDiscoverViewController.h"
 #import "ZGProfileViewController.h"
 #import "SwitchStatusTypeViewController.h"
+#import "ZGSwitchStatusTypeButton.h"
+#import "PostStatusViewController.h"
 @interface MainTabBarController ()
 
 @end
@@ -41,6 +43,13 @@
     ZGTabBar *tabBar = [[ZGTabBar alloc] init];
     tabBar.publishButtonDidClick = ^(){
         SwitchStatusTypeViewController *typeVC = [[SwitchStatusTypeViewController alloc] init];
+        typeVC.didSelectStatusButton = ^(ZGSwitchStatusTypeButton *btn) {
+            PostStatusViewController *post = [[PostStatusViewController alloc] init];
+            post.type = btn.type;
+            MainNavigationController *nav = [[MainNavigationController alloc] init];
+            [nav pushViewController:post animated:NO];
+            [self presentViewController:nav animated:YES completion:nil];
+        };
         [self presentViewController:typeVC animated:NO completion:nil];
     };
     [self setValue:tabBar forKey:@"tabBar"];

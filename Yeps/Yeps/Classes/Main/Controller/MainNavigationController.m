@@ -15,10 +15,35 @@
 
 @implementation MainNavigationController
 
++ (void)initialize {
+    UIBarButtonItem *barButton = [UIBarButtonItem appearance];
+    NSDictionary *attr = @{
+                           NSFontAttributeName : [UIFont systemFontOfSize:17],
+                           NSForegroundColorAttributeName : [UIColor popNavFontColor]
+                           };
+    [barButton setTitleTextAttributes:attr forState:UIControlStateNormal];
+    
+    NSDictionary *attr2 = @{
+                           NSFontAttributeName : [UIFont systemFontOfSize:17],
+                           NSForegroundColorAttributeName : [UIColor popColor]
+                           };
+    [barButton setTitleTextAttributes:attr2 forState:UIControlStateHighlighted];
+    
+    NSDictionary *attr3 = @{
+                            NSFontAttributeName : [UIFont systemFontOfSize:17],
+                            NSForegroundColorAttributeName : [UIColor popFontDisableColor]
+                            };
+    [barButton setTitleTextAttributes:attr3 forState:UIControlStateDisabled];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    [self.navigationBar setBackgroundImage:[UIColor imageWithColor:[UIColor popNavBackColor] size:CGSizeMake(5, 5)] forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar.shadowImage = [[UIImage alloc] init];
+    self.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationBar.translucent = YES;
 }
 
 - (void)didReceiveMemoryWarning {

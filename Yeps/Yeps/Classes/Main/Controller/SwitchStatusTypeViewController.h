@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class ZGSwitchStatusTypeButton;
 @interface SwitchStatusTypeViewController : UIViewController
+
+@property (nonatomic, strong) void(^didSelectStatusButton)(ZGSwitchStatusTypeButton *btn);
 
 @end

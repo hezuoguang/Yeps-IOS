@@ -40,6 +40,8 @@
 		30550C561C8A7A4800EAB8D7 /* YepsSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C531C8A7A4800EAB8D7 /* YepsSDK.m */; };
 		30550C571C8A7A4800EAB8D7 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C551C8A7A4800EAB8D7 /* HttpTool.m */; };
 		30550C5A1C8A870700EAB8D7 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C591C8A870700EAB8D7 /* NSString+Extension.m */; };
+		30AECCE71CA78C4900A1A58F /* ZGPickImageListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AECCE61CA78C4900A1A58F /* ZGPickImageListView.m */; };
+		30AECCEB1CA7BAEF00A1A58F /* ZGPickImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AECCEA1CA7BAEF00A1A58F /* ZGPickImageView.m */; };
 		30BE4D651C8ABA3C0077C8FB /* SMSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BE4D641C8ABA3C0077C8FB /* SMSTool.m */; };
 		30BE4D691C8AD1D50077C8FB /* UploadImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BE4D681C8AD1D50077C8FB /* UploadImageTool.m */; };
 		30BE4D721C8AECCD0077C8FB /* PickUniversityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BE4D711C8AECCD0077C8FB /* PickUniversityViewController.m */; };
@@ -162,6 +164,10 @@
 		30550C551C8A7A4800EAB8D7 /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		30550C581C8A870700EAB8D7 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		30550C591C8A870700EAB8D7 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		30AECCE51CA78C4900A1A58F /* ZGPickImageListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPickImageListView.h; sourceTree = "<group>"; };
+		30AECCE61CA78C4900A1A58F /* ZGPickImageListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGPickImageListView.m; sourceTree = "<group>"; };
+		30AECCE91CA7BAEF00A1A58F /* ZGPickImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPickImageView.h; sourceTree = "<group>"; };
+		30AECCEA1CA7BAEF00A1A58F /* ZGPickImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGPickImageView.m; sourceTree = "<group>"; };
 		30BE4D631C8ABA3C0077C8FB /* SMSTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMSTool.h; sourceTree = "<group>"; };
 		30BE4D641C8ABA3C0077C8FB /* SMSTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMSTool.m; sourceTree = "<group>"; };
 		30BE4D671C8AD1D50077C8FB /* UploadImageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageTool.h; sourceTree = "<group>"; };
@@ -454,6 +460,17 @@
 			path = Tool;
 			sourceTree = "<group>";
 		};
+		30AECCE81CA78FC700A1A58F /* PickImageView */ = {
+			isa = PBXGroup;
+			children = (
+				30AECCE51CA78C4900A1A58F /* ZGPickImageListView.h */,
+				30AECCE61CA78C4900A1A58F /* ZGPickImageListView.m */,
+				30AECCE91CA7BAEF00A1A58F /* ZGPickImageView.h */,
+				30AECCEA1CA7BAEF00A1A58F /* ZGPickImageView.m */,
+			);
+			name = PickImageView;
+			sourceTree = "<group>";
+		};
 		30BE4D961C8C73000077C8FB /* LoginViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,6 +638,7 @@
 		30E5C1121C819C77000EF4E8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				30AECCE81CA78FC700A1A58F /* PickImageView */,
 				303FF6C11C999C02002B746F /* StatusCell */,
 				30E5C11D1C81A4C0000EF4E8 /* ZGTabBar.h */,
 				30E5C11E1C81A4C0000EF4E8 /* ZGTabBar.m */,
@@ -854,6 +872,7 @@
 			files = (
 				30BE4DAE1C8F16970077C8FB /* ZGTextView.m in Sources */,
 				30BE4D9C1C8DB5FB0077C8FB /* VoteModel.m in Sources */,
+				30AECCE71CA78C4900A1A58F /* ZGPickImageListView.m in Sources */,
 				303FF6BD1C99887F002B746F /* CommentFrameModel.m in Sources */,
 				301323491C9E9C4700AB7011 /* EmotionTextAttachment.m in Sources */,
 				302A2BEB1C87292600CF21CE /* ZGDiscoverViewController.m in Sources */,
@@ -869,6 +888,7 @@
 				302A2BE51C87287500CF21CE /* ZGHomeViewController.m in Sources */,
 				30E5C11C1C81A44B000EF4E8 /* MainNavigationController.m in Sources */,
 				30BE4D991C8DB5030077C8FB /* StatusModel.m in Sources */,
+				30AECCEB1CA7BAEF00A1A58F /* ZGPickImageView.m in Sources */,
 				30BE4DA51C8F15F60077C8FB /* ZGPhotoView.m in Sources */,
 				30BE4D811C8C12550077C8FB /* ZGTagCollectionViewCell.m in Sources */,
 				302A2C091C89D49000CF21CE /* RegisterStepEndViewController.m in Sources */,

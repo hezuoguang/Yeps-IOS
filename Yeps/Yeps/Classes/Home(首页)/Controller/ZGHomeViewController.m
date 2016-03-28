@@ -162,7 +162,6 @@
         if (self.tableView1.frame.origin.x == 0) {
             self.tableView1.type = type;
             self.tableViewConentOffsets[self.curType] = [NSValue valueWithCGPoint:self.tableView2.contentOffset];
-            NSLog(@"%ld --- %@",(long)type, self.tableViewConentOffsets[type]);
             /**
              *  恢复footer状态
              */
@@ -188,7 +187,6 @@
                 [self.tableView2 resetNoMoreData];
             }
             [self.tableView2 reloadData];
-            NSLog(@"%ld --- %@",(long)type, self.tableViewConentOffsets[type]);
             self.tableView2.contentOffset = [self.tableViewConentOffsets[type] CGPointValue];
         }
         self.curType = type;

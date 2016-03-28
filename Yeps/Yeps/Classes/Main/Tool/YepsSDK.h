@@ -49,4 +49,14 @@
 //获取评论
 + (void)getOldComment:(NSInteger)max_id status_sha1:(NSString *)status_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
 
+// 发布一条Status
+//title: "",
+//content: "",
+//image_list: "[]",
+//type: "类型 0:微交流(讨论) 1:微评选(投票) 2:随手拍 3:一起玩 4:发现 5:二手",
+//vote: {
+//vote_option: "[]选项列表[选项1, 选项二]",
+//end_time: "结束时间(0:6小时后, 1:12小时后, 2:1天后, 3:3天后, 4:7天后)"
+//}
++ (void)publishStatus:(NSString *)title content:(NSString *)content image_list:(NSArray *)image_list type:(NSInteger)type vote:(NSDictionary *)vote success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure ;
 @end

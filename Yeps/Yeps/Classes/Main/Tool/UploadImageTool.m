@@ -33,7 +33,7 @@ const NSString *qiniuHost = @"http://7xrlo2.com1.z0.glb.clouddn.com";
     [self getQiniuToken:fileName success:^(id data) {
         NSString *token = data[@"token"];
         QNUploadManager *upManager = [[QNUploadManager alloc] init];
-        NSData *imageData = UIImageJPEGRepresentation(image, 0.25);
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.45);
         [upManager putData:imageData key:fileName token:token complete: ^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             if(info.statusCode == 200 && resp) {
                 if (success) {
@@ -58,6 +58,10 @@ const NSString *qiniuHost = @"http://7xrlo2.com1.z0.glb.clouddn.com";
 }
 
 + (void)uploadimages:(NSArray *)images success:(void (^)(NSArray *urlArray))success failure:(void (^)())failure {
+    if (images.count == 0) {
+        success([NSArray array]);
+        return;
+    }
     UploadImageTool *tool = [UploadImageTool sharedInstance];
     __weak typeof(tool) weakTool = tool;
     if (tool.failureBlock || tool.successBlock) {
@@ -67,6 +71,8 @@ const NSString *qiniuHost = @"http://7xrlo2.com1.z0.glb.clouddn.com";
     NSMutableArray *array = [NSMutableArray array];
     __block NSUInteger index = 0;
     tool.failureBlock = ^() {
+        weakTool.failureBlock = nil;
+        weakTool.successBlock = nil;
         failure();
         return;
     };
@@ -74,6 +80,8 @@ const NSString *qiniuHost = @"http://7xrlo2.com1.z0.glb.clouddn.com";
         [array addObject:url];
         index++;
         if ([array count] == [images count]) {
+            weakTool.failureBlock = nil;
+            weakTool.successBlock = nil;
             success([array copy]);
             return;
         }

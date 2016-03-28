@@ -14,8 +14,10 @@
     ZGStatusTypeButton *btn = [[ZGStatusTypeButton alloc] init];
     [btn setTitle:title forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [btn setTitleColor:[UIColor popFontColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor popNavFontColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor popColor] forState:UIControlStateSelected];
+    btn.contentMode = UIViewContentModeCenter;
+    btn.titleLabel.textAlignment = NSTextAlignmentCenter;
     return btn;
 }
 

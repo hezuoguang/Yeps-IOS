@@ -12,6 +12,15 @@
 
 + (instancetype)colorWithR:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha;
 
+//tabbar背景颜色
++ (instancetype)popTabBarColor;
+
+//导航背景颜色
++ (instancetype)popNavBackColor;
+
+//导航字体颜色
++ (instancetype)popNavFontColor;
+
 //背景色
 + (instancetype)popBackGroundColor;
 
@@ -26,6 +35,8 @@
 
 + (instancetype)popFontGrayColor;
 
++ (instancetype)popFontDisableColor;
+
 + (instancetype)randomColor;
 
 + (instancetype)popBorderColor;
@@ -37,5 +48,7 @@
 + (instancetype)popMaskColor;
 
 + (instancetype)popCellColor;
+
++ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
 
 @end

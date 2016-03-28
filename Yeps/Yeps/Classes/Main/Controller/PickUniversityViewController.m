@@ -62,6 +62,9 @@
     searchBar.placeholder = @"搜索学校";
     [searchBar setValue:[NSValue valueWithUIEdgeInsets:UIEdgeInsetsMake(20, 8, 0, 8)] forKeyPath:@"_contentInset"];
     searchBar.contentMode = UIViewContentModeBottom;
+    searchBar.backgroundColor = [UIColor clearColor];
+    searchBar.backgroundImage = [UIColor imageWithColor:[UIColor popNavBackColor] size:searchBar.bounds.size];
+    
     [self.view addSubview:searchBar];
     self.searchBar = searchBar;
     
@@ -76,6 +79,7 @@
     closeBtn.bounds = CGRectMake(0, 0, screenW, 44);
     closeBtn.center = CGPointMake(self.view.center.x, screenH - 0.5 * CGRectGetHeight(closeBtn.bounds));
     [closeBtn addTarget:self action:@selector(closeBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    closeBtn.backgroundColor = [UIColor whiteColor];
     self.closeBtn = closeBtn;
     [self.view addSubview:closeBtn];
 }

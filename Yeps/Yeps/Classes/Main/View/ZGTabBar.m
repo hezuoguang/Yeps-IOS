@@ -15,6 +15,9 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        
+        self.backgroundImage = [UIColor imageWithColor:[UIColor popTabBarColor] size:CGSizeMake(5, 5)];
+        
         UIButton *publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [publishBtn setImage:[UIImage imageNamed:@"Add"] forState:UIControlStateNormal];
         [publishBtn setImage:[UIImage imageNamed:@"Add_s"] forState:UIControlStateHighlighted];

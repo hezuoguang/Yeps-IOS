@@ -10,8 +10,21 @@
 
 @implementation UIColor (Extension)
 
++ (instancetype)popNavFontColor {
+    return [UIColor whiteColor];
+}
+
 + (instancetype)colorWithR:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha{
     return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:alpha];
+}
+
++ (instancetype)popTabBarColor {
+    return [self colorWithR:236 g:240 b:241 alpha:0.96];
+}
+
++ (instancetype)popNavBackColor {
+//    return [self colorWithR:236 g:240 b:241 alpha:0.98];
+    return [self colorWithR:142 g:68 b:173 alpha:0.96];
 }
 
 + (instancetype)popBackGroundColor {
@@ -37,6 +50,10 @@
     return [self colorWithR:210 g:210 b:210 alpha:1.0];
 }
 
++ (instancetype)popFontDisableColor {
+    return [self colorWithR:189 g:195 b:199 alpha:1.0];
+}
+
 + (instancetype)randomColor {
     return [self colorWithR:random()%255 g:random()%255 b:random()%255 alpha:1.0];
 }
@@ -59,6 +76,21 @@
 
 + (instancetype)popCellColor {
     return [UIColor whiteColor];
+}
+
++ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size
+{
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 @end

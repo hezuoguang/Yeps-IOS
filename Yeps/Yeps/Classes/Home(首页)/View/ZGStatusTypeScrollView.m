@@ -96,7 +96,7 @@
     CGFloat Y = 0;
     CGFloat padding = 0;
     self.tipView.bounds = CGRectMake(0, 0, W, 1);
-    self.tipView.center = CGPointMake(W * 0.5, H);
+    self.tipView.center = CGPointMake(W * 0.5, H - 0.5);
     self.contentSize = CGSizeMake(2 * padding + kTypeStrs.count * W, 0);
     NSInteger index = 0;
     for (UIView *view in self.subviews) {
