@@ -9,6 +9,8 @@
 #import "PostStatusViewController.h"
 #import "ZGEditTextView.h"
 #import "ZGPickImageListView.h"
+#import "ZGCreateVoteView.h"
+
 #import <UzysAssetsPickerController.h>
 
 #define kTitleMaxLength 45
@@ -20,6 +22,8 @@
 @property (nonatomic, weak) ZGEditTextView *contentTextView;
 @property (nonatomic, weak) ZGPickImageListView *imageListView;
 @property (nonatomic, weak) UILabel *titleTipLabel;
+@property (nonatomic, weak) ZGCreateVoteView *voteView;
+@property (nonatomic, assign) CGPoint contentOffset;
 
 @end
 
@@ -38,13 +42,40 @@
     self.navigationItem.rightBarButtonItem = right;
     
     [self setupUI];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardFrameDidChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+- (void)keyBoardFrameDidChange:(NSNotification *)notifi {
+    NSDictionary *userInfo = notifi.userInfo;
+    CGRect frame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGPoint contentOffset = self.contentOffset;
+    if (frame.origin.y < self.view.bounds.size.height) {//键盘显示
+        if (![self.titleTexiView isFirstResponder] && ![self.contentTextView isFirstResponder]) {
+            CGFloat offsetY = [self.voteView inputFieldMinY] - 64;
+            contentOffset = CGPointMake(contentOffset.x, offsetY);
+        } else if([self.titleTexiView isFirstResponder]){
+            CGFloat offsetY = CGRectGetMinX(self.titleTexiView.frame) - 64;
+            contentOffset = CGPointMake(contentOffset.x, offsetY);
+        } else if([self.contentTextView isFirstResponder]) {
+            CGFloat offsetY = CGRectGetMinX(self.contentTextView.frame) - 64;
+            contentOffset = CGPointMake(contentOffset.x, offsetY);
+        } else {
+            contentOffset = self.scrollView.contentOffset;
+        }
+    } else {
+        contentOffset = self.scrollView.contentOffset;
+    }
+    self.contentOffset = self.scrollView.contentOffset;
+    [UIView animateWithDuration:0.25 animations:^{
+        self.scrollView.contentOffset = contentOffset;
+    }];
+
 }
 
 - (void)setupUI {
     
     CGFloat maxW = self.view.bounds.size.width;
-    CGFloat maxH = self.view.bounds.size.height;
-    
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     self.scrollView = scrollView;
     scrollView.frame = self.view.bounds;
@@ -79,14 +110,28 @@
     contentTextView.frame = CGRectMake(0, CGRectGetMaxY(titleTextView.frame) + 1, maxW, contentTextView.minHeight);
     [scrollView addSubview:contentTextView];
     
+    ZGCreateVoteView *voteView = [[ZGCreateVoteView alloc] init];
+    voteView.frame = CGRectMake(0, CGRectGetMaxY(self.contentTextView.frame) + 1, maxW, 1);
+    voteView.hidden = YES;
+    voteView.backgroundColor = [UIColor whiteColor];
+    self.voteView = voteView;
+    [scrollView addSubview:voteView];
+    
+    if (self.type == 1) {
+        voteView.hidden = NO;
+        voteView.frameDidChange = ^{
+            [self updateSubViewsFrame];
+        };
+    }
+    
     ZGPickImageListView *imageListView = [[ZGPickImageListView alloc] init];
     self.imageListView = imageListView;
-    imageListView.frame = CGRectMake(0, CGRectGetMaxY(contentTextView.frame) + 1, maxW, 0);
+    imageListView.frame = CGRectMake(0, CGRectGetMaxY(voteView.frame) + 1, maxW, 0);
     imageListView.delegate = self;
     [scrollView addSubview:imageListView];
     
     
-    scrollView.contentSize = CGSizeMake(0, maxH);
+    scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.imageListView.frame));
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -115,15 +160,18 @@
     [self.view endEditing:YES];
 }
 
-
 - (void)updateSubViewsFrame {
     CGRect imageListViewFrame = self.imageListView.frame;
-    imageListViewFrame.origin.y = CGRectGetMaxY(self.contentTextView.frame) + 1;
-    self.imageListView.frame = imageListViewFrame;
-    CGFloat maxH = self.view.bounds.size.height;
-    if (maxH < CGRectGetMaxY(self.imageListView.frame)) {
-        maxH = CGRectGetMaxY(self.imageListView.frame);
+    if (self.type != 1) {
+        imageListViewFrame.origin.y = CGRectGetMinY(self.voteView.frame) + 1;
+    } else {
+        imageListViewFrame.origin.y = CGRectGetMaxY(self.voteView.frame) + 1;
     }
+    self.imageListView.frame = imageListViewFrame;
+    CGFloat maxH = CGRectGetMaxY(self.imageListView.frame);
+//    if (maxH < CGRectGetMaxY(self.imageListView.frame)) {
+//        maxH = CGRectGetMaxY(self.imageListView.frame);
+//    }
     self.scrollView.contentSize = CGSizeMake(0,  maxH);
 }
 
@@ -165,9 +213,21 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (BOOL)validate {
+    return YES;
+}
+
 - (void)publish {
+    if (![self validate]) {
+        return;
+    }
+    NSMutableDictionary *vote = [NSMutableDictionary dictionary];
+    if (self.type == 1) {
+        vote[@"vote_option"] = [self.voteView voteOptions];
+        vote[@"end_time"] = @(4);
+    }
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-    [YepsSDK publishStatus:self.titleTexiView.text content:self.contentTextView.text image_list:self.imageListView.images type:self.type vote:nil success:^(id data) {
+    [YepsSDK publishStatus:self.titleTexiView.text content:self.contentTextView.text image_list:self.imageListView.images type:self.type vote:vote success:^(id data) {
         [SVProgressHUD dismiss];
         [self dismiss];
     } error:^(id data) {
@@ -178,7 +238,7 @@
 }
 
 - (void)dealloc {
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

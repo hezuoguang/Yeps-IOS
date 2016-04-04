@@ -65,6 +65,8 @@
 		30BE4DB11C8F1D7F0077C8FB /* ZGStatusCellToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BE4DB01C8F1D7F0077C8FB /* ZGStatusCellToolBar.m */; };
 		30BE4DB41C8F202C0077C8FB /* ZGVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BE4DB31C8F202C0077C8FB /* ZGVoteView.m */; };
 		30BE4DB71C8F21810077C8FB /* ZGStatusImageListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BE4DB61C8F21810077C8FB /* ZGStatusImageListView.m */; };
+		30CAD7BC1CB2624000D98D51 /* ZGCreateVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CAD7BB1CB2624000D98D51 /* ZGCreateVoteView.m */; };
+		30CAD7BF1CB263D900D98D51 /* ZGCreateVoteOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CAD7BE1CB263D900D98D51 /* ZGCreateVoteOptionView.m */; };
 		30E5C0D91C8182B3000EF4E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C0D81C8182B3000EF4E8 /* main.m */; };
 		30E5C0DC1C8182B3000EF4E8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C0DB1C8182B3000EF4E8 /* AppDelegate.m */; };
 		30E5C0E41C8182B4000EF4E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E5C0E31C8182B4000EF4E8 /* Assets.xcassets */; };
@@ -214,6 +216,10 @@
 		30BE4DB31C8F202C0077C8FB /* ZGVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGVoteView.m; sourceTree = "<group>"; };
 		30BE4DB51C8F21810077C8FB /* ZGStatusImageListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGStatusImageListView.h; sourceTree = "<group>"; };
 		30BE4DB61C8F21810077C8FB /* ZGStatusImageListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGStatusImageListView.m; sourceTree = "<group>"; };
+		30CAD7BA1CB2624000D98D51 /* ZGCreateVoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGCreateVoteView.h; sourceTree = "<group>"; };
+		30CAD7BB1CB2624000D98D51 /* ZGCreateVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCreateVoteView.m; sourceTree = "<group>"; };
+		30CAD7BD1CB263D900D98D51 /* ZGCreateVoteOptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGCreateVoteOptionView.h; sourceTree = "<group>"; };
+		30CAD7BE1CB263D900D98D51 /* ZGCreateVoteOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCreateVoteOptionView.m; sourceTree = "<group>"; };
 		30E5C0D41C8182B3000EF4E8 /* Yeps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yeps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E5C0D81C8182B3000EF4E8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		30E5C0DA1C8182B3000EF4E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -429,6 +435,8 @@
 			children = (
 				30BE4DB51C8F21810077C8FB /* ZGStatusImageListView.h */,
 				30BE4DB61C8F21810077C8FB /* ZGStatusImageListView.m */,
+				303FF6A91C950915002B746F /* ZGVoteOptionView.h */,
+				303FF6AA1C950915002B746F /* ZGVoteOptionView.m */,
 				30BE4D9D1C8F15090077C8FB /* ZGStatusCell.h */,
 				30BE4D9E1C8F15090077C8FB /* ZGStatusCell.m */,
 				3013229A1C9CF02C00AB7011 /* ZGStatusView.h */,
@@ -480,6 +488,17 @@
 				30BE4D941C8C622E0077C8FB /* LoginStepTwoViewController.m */,
 			);
 			name = LoginViewController;
+			sourceTree = "<group>";
+		};
+		30CAD7C01CB263DF00D98D51 /* CreateVoteView */ = {
+			isa = PBXGroup;
+			children = (
+				30CAD7BA1CB2624000D98D51 /* ZGCreateVoteView.h */,
+				30CAD7BB1CB2624000D98D51 /* ZGCreateVoteView.m */,
+				30CAD7BD1CB263D900D98D51 /* ZGCreateVoteOptionView.h */,
+				30CAD7BE1CB263D900D98D51 /* ZGCreateVoteOptionView.m */,
+			);
+			name = CreateVoteView;
 			sourceTree = "<group>";
 		};
 		30E5C0CB1C8182B3000EF4E8 = {
@@ -638,6 +657,7 @@
 		30E5C1121C819C77000EF4E8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				30CAD7C01CB263DF00D98D51 /* CreateVoteView */,
 				30AECCE81CA78FC700A1A58F /* PickImageView */,
 				303FF6C11C999C02002B746F /* StatusCell */,
 				30E5C11D1C81A4C0000EF4E8 /* ZGTabBar.h */,
@@ -656,8 +676,6 @@
 				30BE4DAA1C8F167D0077C8FB /* ZGLabel.m */,
 				30BE4DAC1C8F16970077C8FB /* ZGTextView.h */,
 				30BE4DAD1C8F16970077C8FB /* ZGTextView.m */,
-				303FF6A91C950915002B746F /* ZGVoteOptionView.h */,
-				303FF6AA1C950915002B746F /* ZGVoteOptionView.m */,
 				303FF6AC1C955996002B746F /* ZGTableView.h */,
 				303FF6AD1C955996002B746F /* ZGTableView.m */,
 				303FF6BE1C9988A0002B746F /* ZGCommentCell.h */,
@@ -895,6 +913,7 @@
 				30BE4D911C8C5BBC0077C8FB /* LoginViewStepOneController.m in Sources */,
 				303FF6B41C957F02002B746F /* ZGStatusTypeButton.m in Sources */,
 				302A2BEE1C87293C00CF21CE /* ZGProfileViewController.m in Sources */,
+				30CAD7BC1CB2624000D98D51 /* ZGCreateVoteView.m in Sources */,
 				30550C561C8A7A4800EAB8D7 /* YepsSDK.m in Sources */,
 				30BE4D721C8AECCD0077C8FB /* PickUniversityViewController.m in Sources */,
 				30BE4D9F1C8F15090077C8FB /* ZGStatusCell.m in Sources */,
@@ -931,6 +950,7 @@
 				30BE4D691C8AD1D50077C8FB /* UploadImageTool.m in Sources */,
 				303FF6B11C9576B4002B746F /* ZGStatusTypeScrollView.m in Sources */,
 				303FF6C01C9988A0002B746F /* ZGCommentCell.m in Sources */,
+				30CAD7BF1CB263D900D98D51 /* ZGCreateVoteOptionView.m in Sources */,
 				30550C571C8A7A4800EAB8D7 /* HttpTool.m in Sources */,
 				30BE4DB41C8F202C0077C8FB /* ZGVoteView.m in Sources */,
 				303FF6AB1C950915002B746F /* ZGVoteOptionView.m in Sources */,

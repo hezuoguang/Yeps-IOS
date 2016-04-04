@@ -49,7 +49,11 @@
         CGFloat optionViewY = 0;
         CGFloat optionViewW = self.frame.size.width - 2 * optionViewX;
         CGFloat optionViewH = kVoteOptionH;
-        for (ZGVoteOptionView *optionView in self.subviews) {
+        for (UIView *view in self.subviews) {
+            if (![view isKindOfClass:[ZGVoteOptionView class]]) {
+                continue;
+            }
+            ZGVoteOptionView *optionView = (ZGVoteOptionView *)view;
             if(index < count) {
                 optionView.hidden = NO;
                 [optionView updateUIWithTitle:vote.vote_option[index] optionCount:[vote.vote_result[index] integerValue] totalCount:totalCount];
@@ -82,6 +86,9 @@
 
 + (CGSize)sizeWithStatus:(StatusModel *)status {
     NSUInteger voteItemCount = status.vote.vote_option.count;
+    if (voteItemCount == 0) {
+        return CGSizeMake(kMaxW, 0);
+    }
     CGFloat voteH = voteItemCount * kVoteOptionH + (voteItemCount - 1) * kVoteOptionMargin;
     if (status.vote.me_is_vote == NO) {
         voteH += kVoteOptionMargin + kVoteBtnH;

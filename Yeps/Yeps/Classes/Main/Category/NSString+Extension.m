@@ -96,4 +96,9 @@
     return result;
 }
 
+- (NSString *)trimSpace {
+    NSCharacterSet *whiteSpace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    return [[NSString alloc] initWithString:[self stringByTrimmingCharactersInSet:whiteSpace]];
+}
+
 @end

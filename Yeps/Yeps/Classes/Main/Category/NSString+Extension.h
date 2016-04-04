@@ -20,4 +20,7 @@
 
 - (NSString *)md5String;
 
+/** 去除首尾空格*/
+- (NSString *)trimSpace;
+
 @end

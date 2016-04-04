@@ -24,7 +24,7 @@
         UIView *view = [[UIView alloc] init];
         self.backgroundColor = [UIColor popBorderColor];
         self.backView = view;
-        self.backView.backgroundColor = [UIColor randomColor];
+        self.backView.backgroundColor = [UIColor popMaskColor];
         self.titleLabel.font = [UIFont systemFontOfSize:14];
         [self setTitleColor:[UIColor popFontColor] forState:UIControlStateNormal];
         [self insertSubview:view atIndex:0];

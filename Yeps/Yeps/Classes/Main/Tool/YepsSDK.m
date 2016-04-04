@@ -377,6 +377,7 @@ static FMDatabase *_db;
         data[@"image_list"] = urlArray;
         data[@"type"] = @(type);
         data[@"access_token"] = [UserTool getAccessToken];
+        data[@"vote"] = vote;
         params[@"data"] = [NSString jsonStringWithObj:data];
         [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
             if ([data[@"ret"] isEqualToString:@"0001"]) {
