@@ -40,6 +40,10 @@
 		30550C561C8A7A4800EAB8D7 /* YepsSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C531C8A7A4800EAB8D7 /* YepsSDK.m */; };
 		30550C571C8A7A4800EAB8D7 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C551C8A7A4800EAB8D7 /* HttpTool.m */; };
 		30550C5A1C8A870700EAB8D7 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C591C8A870700EAB8D7 /* NSString+Extension.m */; };
+		3084B1D61CB8CE4C00ECE1F9 /* ZGPostCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1D51CB8CE4C00ECE1F9 /* ZGPostCommentView.m */; };
+		3084B1D91CB9173500ECE1F9 /* ZGShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1D81CB9173500ECE1F9 /* ZGShareView.m */; };
+		3084B1DD1CB91A4C00ECE1F9 /* ZGShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1DC1CB91A4C00ECE1F9 /* ZGShareButton.m */; };
+		3084B1E01CB93ADE00ECE1F9 /* ShareTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1DF1CB93ADE00ECE1F9 /* ShareTool.m */; };
 		30AECCE71CA78C4900A1A58F /* ZGPickImageListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AECCE61CA78C4900A1A58F /* ZGPickImageListView.m */; };
 		30AECCEB1CA7BAEF00A1A58F /* ZGPickImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AECCEA1CA7BAEF00A1A58F /* ZGPickImageView.m */; };
 		30BE4D651C8ABA3C0077C8FB /* SMSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BE4D641C8ABA3C0077C8FB /* SMSTool.m */; };
@@ -166,6 +170,14 @@
 		30550C551C8A7A4800EAB8D7 /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		30550C581C8A870700EAB8D7 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		30550C591C8A870700EAB8D7 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		3084B1D41CB8CE4C00ECE1F9 /* ZGPostCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPostCommentView.h; sourceTree = "<group>"; };
+		3084B1D51CB8CE4C00ECE1F9 /* ZGPostCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGPostCommentView.m; sourceTree = "<group>"; };
+		3084B1D71CB9173500ECE1F9 /* ZGShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGShareView.h; sourceTree = "<group>"; };
+		3084B1D81CB9173500ECE1F9 /* ZGShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGShareView.m; sourceTree = "<group>"; };
+		3084B1DB1CB91A4C00ECE1F9 /* ZGShareButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGShareButton.h; sourceTree = "<group>"; };
+		3084B1DC1CB91A4C00ECE1F9 /* ZGShareButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGShareButton.m; sourceTree = "<group>"; };
+		3084B1DE1CB93ADE00ECE1F9 /* ShareTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareTool.h; sourceTree = "<group>"; };
+		3084B1DF1CB93ADE00ECE1F9 /* ShareTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareTool.m; sourceTree = "<group>"; };
 		30AECCE51CA78C4900A1A58F /* ZGPickImageListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPickImageListView.h; sourceTree = "<group>"; };
 		30AECCE61CA78C4900A1A58F /* ZGPickImageListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGPickImageListView.m; sourceTree = "<group>"; };
 		30AECCE91CA7BAEF00A1A58F /* ZGPickImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPickImageView.h; sourceTree = "<group>"; };
@@ -464,8 +476,21 @@
 				30BE4D681C8AD1D50077C8FB /* UploadImageTool.m */,
 				30BE4D881C8C53750077C8FB /* UserTool.h */,
 				30BE4D891C8C53750077C8FB /* UserTool.m */,
+				3084B1DE1CB93ADE00ECE1F9 /* ShareTool.h */,
+				3084B1DF1CB93ADE00ECE1F9 /* ShareTool.m */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		3084B1DA1CB91A2500ECE1F9 /* ShareView */ = {
+			isa = PBXGroup;
+			children = (
+				3084B1D71CB9173500ECE1F9 /* ZGShareView.h */,
+				3084B1D81CB9173500ECE1F9 /* ZGShareView.m */,
+				3084B1DB1CB91A4C00ECE1F9 /* ZGShareButton.h */,
+				3084B1DC1CB91A4C00ECE1F9 /* ZGShareButton.m */,
+			);
+			name = ShareView;
 			sourceTree = "<group>";
 		};
 		30AECCE81CA78FC700A1A58F /* PickImageView */ = {
@@ -657,6 +682,7 @@
 		30E5C1121C819C77000EF4E8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3084B1DA1CB91A2500ECE1F9 /* ShareView */,
 				30CAD7C01CB263DF00D98D51 /* CreateVoteView */,
 				30AECCE81CA78FC700A1A58F /* PickImageView */,
 				303FF6C11C999C02002B746F /* StatusCell */,
@@ -686,6 +712,8 @@
 				301323421C9E9A5900AB7011 /* ZGEditTextView.m */,
 				3013234D1C9EA8B700AB7011 /* ZGSwitchStatusTypeButton.h */,
 				3013234E1C9EA8B700AB7011 /* ZGSwitchStatusTypeButton.m */,
+				3084B1D41CB8CE4C00ECE1F9 /* ZGPostCommentView.h */,
+				3084B1D51CB8CE4C00ECE1F9 /* ZGPostCommentView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -896,6 +924,8 @@
 				302A2BEB1C87292600CF21CE /* ZGDiscoverViewController.m in Sources */,
 				30BE4D651C8ABA3C0077C8FB /* SMSTool.m in Sources */,
 				30BE4DA21C8F15630077C8FB /* StatusFrameModel.m in Sources */,
+				3084B1D61CB8CE4C00ECE1F9 /* ZGPostCommentView.m in Sources */,
+				3084B1E01CB93ADE00ECE1F9 /* ShareTool.m in Sources */,
 				30E5C1191C81A423000EF4E8 /* MainTabBarController.m in Sources */,
 				30BE4DAB1C8F167D0077C8FB /* ZGLabel.m in Sources */,
 				3013234C1C9E9F7600AB7011 /* SwitchStatusTypeViewController.m in Sources */,
@@ -918,6 +948,7 @@
 				30BE4D721C8AECCD0077C8FB /* PickUniversityViewController.m in Sources */,
 				30BE4D9F1C8F15090077C8FB /* ZGStatusCell.m in Sources */,
 				303FF6A81C946502002B746F /* ZGCellToolButton.m in Sources */,
+				3084B1D91CB9173500ECE1F9 /* ZGShareView.m in Sources */,
 				30BE4DB11C8F1D7F0077C8FB /* ZGStatusCellToolBar.m in Sources */,
 				30E5C11F1C81A4C0000EF4E8 /* ZGTabBar.m in Sources */,
 				302A2BF91C886DA200CF21CE /* ZGTextField.m in Sources */,
@@ -932,6 +963,7 @@
 				303FF6BA1C998869002B746F /* CommentModel.m in Sources */,
 				30BE4D7E1C8BFF120077C8FB /* ZGTagListView.m in Sources */,
 				3013234F1C9EA8B700AB7011 /* ZGSwitchStatusTypeButton.m in Sources */,
+				3084B1DD1CB91A4C00ECE1F9 /* ZGShareButton.m in Sources */,
 				302A2C051C89C2EC00CF21CE /* RegisterStepFourViewController.m in Sources */,
 				30BE4D781C8BEE210077C8FB /* PickTagsViewController.m in Sources */,
 				30BE4D8A1C8C53750077C8FB /* UserTool.m in Sources */,

@@ -44,27 +44,6 @@
 - (NSMutableArray *)commetFs {
     if (_commetFs == nil) {
         _commetFs = [NSMutableArray array];
-//        UserBaseInfoModel *user = [UserTool getCurrentUserInfo];
-//        for (NSInteger i = 0; i < 10; i++) {
-//            CommentModel *model = [[CommentModel alloc] init];
-//            model.create_user = user;
-//            model.create_time = @"2014-11-22 23:23:22";
-//            model.content = @"h";
-//            if (i % 3 == 0) {
-//                model.is_me = YES;
-//            } else {
-//                model.is_me = NO;
-//            }
-//            if (i % 4 == 0) {
-//                model.content = @"自定义UINavigationController 在viewDidLoad方法中将其背景色设置为白色即可";
-//            }
-//            if (i % 5 == 0) {
-//                model.content = @"该纪录片将向你展示一个壮观、不受重视但却充斥人类周遭的迷你宇宙，一个怪异、凶猛但出奇美丽的无脊椎昆虫世界！奇特的蝉、发出萤光的蠕虫、吐丝技巧复杂的蜘蛛，以及专吃蝙蝠的蜈蚣…这些生物或许渺小，但牠们的生活机制却惊人的庞";
-//            }
-//            CommentFrameModel *modelF = [[CommentFrameModel alloc] init];
-//            modelF.comment = model;
-//            [_commetFs addObject:modelF];
-//        }
     }
     return _commetFs;
 }
@@ -110,6 +89,33 @@
     self.maxOffsetY = self.statusView.frame.size.height - kToolBarH - 64;
     self.beginRefreshOffsetY = self.statusView.frame.size.height - maxH;
     self.scrollView.contentSize = CGSizeMake(0, maxScrollViewY);
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commentSuccess:) name:kUpdateStatusCountNotifi object:nil];
+    
+    [self scrollViewDidScroll:scrollView];
+}
+
+- (void)commentSuccess:(NSNotification *)noti {
+    NSInteger status_id = [[noti.userInfo objectForKey:@"status_id"] integerValue];
+    if (self.statusF.status.status_id != status_id) {
+        return;
+    }
+    if ([noti.object objectForKey:@"comment"]) {
+        CommentModel *model = [CommentModel mj_objectWithKeyValues:[noti.object objectForKey:@"comment"]];
+        CommentFrameModel *modelF = [[CommentFrameModel alloc] init];
+        modelF.comment = model;
+        [self.commetFs addObject:modelF];
+        [self.tableView reloadData];
+        [self scrollToFooter:YES];
+    }
+}
+
+/** tableView 滚动到最底部*/
+- (void)scrollToFooter:(BOOL)animated{
+    if (self.commetFs.count) {
+        NSIndexPath *indexPatn = [NSIndexPath indexPathForRow:self.commetFs.count - 1 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPatn atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -189,6 +195,10 @@
 
 - (void)tableViewDidPullUpRefresh:(ZGTableView *)tableView {
     
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

@@ -217,6 +217,8 @@
             [SVProgressHUD dismiss];
             [self dismissViewControllerAnimated:YES completion:nil];
             self.typeModels = nil;
+            self.tableViewConentOffsets = nil;
+            self.tableViewNoMoreDataStatus = nil;
             [self.tableView1 reloadData];
             [self.tableView2 reloadData];
             [self.tableView1 beginRefresh];

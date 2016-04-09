@@ -10,7 +10,8 @@
 #import "UserInfoModel.h"
 #import <MJExtension.h>
 
-#define kCurrentUserInfoPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"CurrentUserInfo.plist"]
+#define kCurrentUserInfoPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"CurrentUserInfo.plist"]
+
 #define ACCESS_TOKEN_KEY @"ACCESS_TOKEN_KEY"
 #define USER_SHA1_KEY @"USER_SHA1_KEY"
 #define Active_University_KEY @"Active_University_KEY"

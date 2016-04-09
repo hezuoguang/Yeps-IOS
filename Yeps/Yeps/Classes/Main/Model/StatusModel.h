@@ -31,6 +31,9 @@
 #define kVoteBtnW 100
 #define kVoteBtnH 30
 #define ktypeScrollViewH 44
+
+#define kUpdateStatusCountNotifi @"kUpdateStatusCountNotifi"
+
 @class UserBaseInfoModel, VoteModel;
 @interface StatusModel : NSObject
 
@@ -86,5 +89,8 @@
  *  列表中的内容
  */
 @property (nonatomic, strong) NSAttributedString *attrSubContent;
+
+//更新statusCount
+- (void)updateStatusCount:(NSDictionary *)statusCountDict;
 
 @end

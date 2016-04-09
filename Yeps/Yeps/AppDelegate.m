@@ -10,8 +10,18 @@
 #import "MainTabBarController.h"
 #import "MainNavigationController.h"
 #import "UnLoginViewController.h"
-#import <SMS_SDK/SMSSDK.h>
 #import "UserTool.h"
+
+#import <SMS_SDK/SMSSDK.h>
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+//腾讯开放平台（对应QQ和QQ空间）SDK头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+//微信SDK头文件
+#import "WXApi.h"
+//新浪微博SDK头文件
+#import "WeiboSDK.h"
 
 static NSString *appKey = @"fd4eeefc6a44";
 static NSString *appSecret = @"4f3872cc0e37ea40dbcbf23750985769";
@@ -28,6 +38,9 @@ static NSString *appSecret = @"4f3872cc0e37ea40dbcbf23750985769";
 //    注册短信验证
     [SMSSDK registerApp:appKey withSecret:appSecret];
     
+//    注册分享
+    [self registerShareSDK];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     if (![UserTool getAccessToken]) {
         MainNavigationController *nav = [[MainNavigationController alloc] init];
@@ -41,6 +54,56 @@ static NSString *appSecret = @"4f3872cc0e37ea40dbcbf23750985769";
     
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)registerShareSDK {
+    [ShareSDK registerApp:@"fd4e411c90db"
+          activePlatforms:@[
+                            @(SSDKPlatformTypeSinaWeibo),
+                            @(SSDKPlatformTypeWechat),
+                            @(SSDKPlatformTypeQQ)]
+                 onImport:^(SSDKPlatformType platformType)
+     {
+         switch (platformType)
+         {
+             case SSDKPlatformTypeWechat:
+                 [ShareSDKConnector connectWeChat:[WXApi class]];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                 break;
+             case SSDKPlatformTypeSinaWeibo:
+                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+                 break;
+             default:
+                 break;
+         }
+     }
+          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
+     {
+         
+         switch (platformType)
+         {
+             case SSDKPlatformTypeSinaWeibo:
+                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                 [appInfo SSDKSetupSinaWeiboByAppKey:@"2491574147"
+                                           appSecret:@"7a20dfaa40a737ecf8b40bef01540532"
+                                         redirectUri:@"http://baidu.com"
+                                            authType:SSDKAuthTypeBoth];
+                 break;
+             case SSDKPlatformTypeWechat:
+                 [appInfo SSDKSetupWeChatByAppId:@"wxa12e0e944003e21b"
+                                       appSecret:@"e80bca2ce0ac9078ee416cd9d96ecff6"];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [appInfo SSDKSetupQQByAppId:@"1105136435"
+                                      appKey:@"QIfXZTosGx4fpXmb"
+                                    authType:SSDKAuthTypeBoth];
+                 break;
+             default:
+                 break;
+         }
+     }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

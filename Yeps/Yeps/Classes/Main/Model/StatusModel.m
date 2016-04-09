@@ -69,4 +69,15 @@
     return [_create_time timeStringWithCurrentTime];
 }
 
+- (void)updateStatusCount:(NSDictionary *)statusCountDict {
+    [YepsSDK updateStatusCount:statusCountDict status_id:self.status_id];
+    NSInteger likeCount = [statusCountDict[@"like_count"] integerValue];
+    NSInteger shareCount = [statusCountDict[@"share_count"] integerValue];
+    NSInteger commentConut = [statusCountDict[@"comment_conut"] integerValue];
+    self.me_is_like = [statusCountDict[@"me_is_like"] boolValue];
+    self.like_count = likeCount;
+    self.share_count = shareCount;
+    self.comment_conut = commentConut;
+}
+
 @end

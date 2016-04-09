@@ -14,8 +14,8 @@
 
 - (void)setCreate_user:(UserBaseInfoModel *)create_user {
     _create_user = create_user;
-    UserInfoModel *user_info = [UserTool getCurrentUserInfo];
-    if ([create_user.user_sha1 isEqualToString:user_info.user_sha1]) {
+    NSString *user_sha1 = [UserTool getUserSha1];
+    if ([create_user.user_sha1 isEqualToString:user_sha1]) {
         self.is_me = YES;
     } else {
         self.is_me = NO;

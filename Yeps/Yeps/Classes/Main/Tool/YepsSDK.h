@@ -1,14 +1,16 @@
 //
 //  BSSDK.h
-//  百思不得姐
+//  Yeps
 //
-//  Created by weimi on 16/2/20.
+//  Created by weimi on 16/3/4.
 //  Copyright © 2016年 weimi. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 @interface YepsSDK : NSObject
+
++ (void)updateStatusCount:(NSDictionary *)statusCountDict status_id:(NSInteger)status_id;
 
 //获取系统标签
 + (void)tagList:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
@@ -59,4 +61,16 @@
 //end_time: "结束时间(0:6小时后, 1:12小时后, 2:1天后, 3:3天后, 4:7天后)"
 //}
 + (void)publishStatus:(NSString *)title content:(NSString *)content image_list:(NSArray *)image_list type:(NSInteger)type vote:(NSDictionary *)vote success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure ;
+
+//发布一条评论
+//content: "",
+//comment_sha1: "可选,如果回复别人的评论则需要",
+//status_sha1: "status_sha1"
++ (void)publishComment:(NSString *)content comment_sha1:(NSString *)comment_sha1 status_sha1:(NSString *)status_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure ;
+
+//点赞/取消点赞
++ (void)clickLike:(NSString *)status_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//分享成功
++ (void)shareSuccess:(NSString *)status_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
 @end

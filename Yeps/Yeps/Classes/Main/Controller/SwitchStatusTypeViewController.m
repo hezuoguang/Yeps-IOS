@@ -23,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor popBackGroundColor];
+    
     NSInteger count = kTypeStrs.count;
     CGFloat X = 0;
     CGFloat Y = 0;
@@ -38,7 +40,6 @@
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
-    self.view.backgroundColor = [UIColor popBackGroundColor];
     
     UIButton *closeBtn = [[UIButton alloc] init];
     self.closeBtn = closeBtn;

@@ -50,6 +50,24 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:ZGEditTextFieldFrameDidChangeNotification object:self userInfo:@{ZGEditTextFieldFrameDidChangeNotificationKey : [NSValue valueWithCGRect:frame]}];
 }
 
+- (void)setMinHeight:(CGFloat)minHeight {
+    if (minHeight < self.font.lineHeight) {
+        minHeight = self.font.lineHeight;
+    }
+    _minHeight = minHeight;
+    if (minHeight > self.frame.size.height) {
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, minHeight);
+    }
+    
+}
+
+- (void)setMaxHeight:(CGFloat)maxHeight {
+    if (maxHeight < self.minHeight) {
+        maxHeight = self.minHeight;
+    }
+    _maxHeight = maxHeight;
+}
+
 - (void)setBackground:(UIImage *)background {
     _background = background;
     self.backgroundView.image = background;

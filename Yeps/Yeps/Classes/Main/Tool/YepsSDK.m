@@ -1,8 +1,8 @@
 //
 //  BSSDK.m
-//  百思不得姐
+//  Yeps
 //
-//  Created by weimi on 16/2/20.
+//  Created by weimi on 16/3/4.
 //  Copyright © 2016年 weimi. All rights reserved.
 //
 
@@ -12,7 +12,7 @@
 #import <FMDB.h>
 #import "UserTool.h"
 #import "UploadImageTool.h"
-#define HOST  @"http://192.168.0.103:8000/yeps/api/"
+#define HOST  @"http://192.168.0.101:8000/yeps/api/"
 #define DBPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Yeps.sqlite"]
 
 static FMDatabase *_db;
@@ -31,6 +31,25 @@ static FMDatabase *_db;
         [_db executeUpdate:sql3];
     }
     return _db;
+}
+
++ (void)updateStatusCount:(NSDictionary *)statusCountDict status_id:(NSInteger)status_id{
+    NSInteger likeCount = [statusCountDict[@"like_count"] integerValue];
+    NSInteger shareCount = [statusCountDict[@"share_count"] integerValue];
+    NSInteger commentConut = [statusCountDict[@"comment_conut"] integerValue];
+    BOOL me_is_like = [statusCountDict[@"me_is_like"] boolValue];
+    NSString *sql = [NSString stringWithFormat:@"select status from status where status_id = %ld",(long)status_id];
+    FMResultSet *results = [[self db] executeQuery:sql];
+    if (results.next) {
+        NSData *data = [results dataForColumnIndex:0];
+        NSMutableDictionary *status = [NSMutableDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+        status[@"like_count"] = @(likeCount);
+        status[@"share_count"] = @(shareCount);
+        status[@"comment_conut"] = @(commentConut);
+        status[@"me_is_like"] = @(me_is_like);
+        NSData *statusData = [NSKeyedArchiver archivedDataWithRootObject:status];
+        [[self db] executeUpdate:@"update status set status = ? where status_id = ?",statusData, @(status_id)];
+    }
 }
 
 //获取系统标签
@@ -253,13 +272,24 @@ static FMDatabase *_db;
     if (is_follow) {
         type = -1;
     }
-    if (since_id != -1) {
-        sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %ld and user_sha1 = '%@' and status_id > %ld order by status_id limit 20",active_university ,is_follow, (long)type, user_sha1, (long)since_id];//小在前
-    } else if(max_id != -1) {
-        sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %ld and user_sha1 = '%@' and status_id < %ld order by status_id desc limit 20",active_university ,is_follow, (long)type, user_sha1, (long)max_id];//大在前
+    if (!is_follow) {
+        if (since_id != -1) {
+            sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %ld and user_sha1 = '%@' and status_id > %ld order by status_id limit 20",active_university ,is_follow, (long)type, user_sha1, (long)since_id];//小在前
+        } else if(max_id != -1) {
+            sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %ld and user_sha1 = '%@' and status_id < %ld order by status_id desc limit 20",active_university ,is_follow, (long)type, user_sha1, (long)max_id];//大在前
+        } else {
+            sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %ld and user_sha1 = '%@' order by status_id desc limit 20",active_university ,is_follow, (long)type, user_sha1];//大在前
+        }
     } else {
-        sql = [NSString stringWithFormat:@"select status from status where university = '%@' and is_follow = %d and type = %ld and user_sha1 = '%@' order by status_id desc limit 20",active_university ,is_follow, (long)type, user_sha1];//大在前
+        if (since_id != -1) {
+            sql = [NSString stringWithFormat:@"select status from status where is_follow = %d and type = %ld and user_sha1 = '%@' and status_id > %ld order by status_id limit 20",is_follow, (long)type, user_sha1, (long)since_id];//小在前
+        } else if(max_id != -1) {
+            sql = [NSString stringWithFormat:@"select status from status where is_follow = %d and type = %ld and user_sha1 = '%@' and status_id < %ld order by status_id desc limit 20",is_follow, (long)type, user_sha1, (long)max_id];//大在前
+        } else {
+            sql = [NSString stringWithFormat:@"select status from status where is_follow = %d and type = %ld and user_sha1 = '%@' order by status_id desc limit 20",is_follow, (long)type, user_sha1];//大在前
+        }
     }
+    
     FMResultSet *results = [[self db] executeQuery:sql];
     while (results.next) {
         NSData *data = [results dataForColumnIndex:0];
@@ -366,9 +396,9 @@ static FMDatabase *_db;
     } failure:failure];
 }
 
+//发布一条status
 + (void)publishStatus:(NSString *)title content:(NSString *)content image_list:(NSArray *)image_list type:(NSInteger)type vote:(NSDictionary *)vote success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
     [UploadImageTool uploadimages:image_list success:^(NSArray *urlArray) {
-        NSLog(@"%@", urlArray);
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"action"] = @"publish_status";
         NSMutableDictionary *data = [NSMutableDictionary dictionary];
@@ -395,6 +425,73 @@ static FMDatabase *_db;
             failure(nil);
         }
     }];
+}
+
+//发布一条评论
++ (void)publishComment:(NSString *)content comment_sha1:(NSString *)comment_sha1 status_sha1:(NSString *)status_sha1 success:(void (^)(id))success error:(void (^)(id))error failure:(void (^)(NSError *))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"publish_comment";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"content"] = content;
+    data[@"access_token"] = [UserTool getAccessToken];
+    data[@"status_sha1"] = status_sha1;
+    if (comment_sha1.length) {
+        data[@"comment_sha1"] = comment_sha1;
+    }
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//点赞/取消点赞
++ (void)clickLike:(NSString *)status_sha1 success:(void (^)(id))success error:(void (^)(id))error failure:(void (^)(NSError *))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"click_like";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"status_sha1"] = status_sha1;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//分享成功
++ (void)shareSuccess:(NSString *)status_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"share_count_add";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"status_sha1"] = status_sha1;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
 }
 
 @end
