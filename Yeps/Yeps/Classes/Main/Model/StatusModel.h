@@ -33,8 +33,9 @@
 #define ktypeScrollViewH 44
 
 #define kUpdateStatusCountNotifi @"kUpdateStatusCountNotifi"
+#define kUpdateStatusVoteNotifi @"kUpdateStatusVoteNotifi"
 
-@class UserBaseInfoModel, VoteModel;
+@class UserBaseInfoModel, VoteModel, StatusModel;
 @interface StatusModel : NSObject
 
 //create_user: {
@@ -79,6 +80,7 @@
 @property (nonatomic, assign) BOOL me_is_like;
 @property (nonatomic, copy) NSString *university;
 @property (nonatomic, strong) VoteModel *vote;
+@property (nonatomic, assign) BOOL isDetail;
 
 @property (nonatomic, strong) NSAttributedString *attrTitle;
 /**
@@ -92,5 +94,9 @@
 
 //更新statusCount
 - (void)updateStatusCount:(NSDictionary *)statusCountDict;
+
+- (NSString *)createTimeStr;
+
++ (StatusModel *)initWithStatusModel:(StatusModel *)status;
 
 @end

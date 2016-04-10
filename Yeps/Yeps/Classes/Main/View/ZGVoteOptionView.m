@@ -26,6 +26,8 @@
         self.backView = view;
         self.backView.backgroundColor = [UIColor popMaskColor];
         self.titleLabel.font = [UIFont systemFontOfSize:14];
+        [self setImage:[UIImage imageNamed:@"vote_icon"] forState:UIControlStateNormal];
+        [self setImage:[UIImage imageNamed:@"vote_icon_s"] forState:UIControlStateSelected];
         [self setTitleColor:[UIColor popFontColor] forState:UIControlStateNormal];
         [self insertSubview:view atIndex:0];
     }
@@ -58,9 +60,10 @@
     [super layoutSubviews];
     CGFloat maxW = self.frame.size.width;
     CGFloat maxH = self.frame.size.height;
+    CGFloat imageWH = maxH;
     self.titleLabel.frame = CGRectMake(5, 0, maxW, maxH);
-    self.imageView.frame = CGRectMake(maxW - 40, 0, 40, maxH);
-    self.backView.frame = CGRectMake(0, 0, (maxW - 40) * self.pe, maxH);
+    self.imageView.frame = CGRectMake(maxW - imageWH, (maxH - imageWH) * 0.5, imageWH, imageWH);
+    self.backView.frame = CGRectMake(0, 0, maxW * self.pe, maxH);
 }
 
 @end

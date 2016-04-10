@@ -69,6 +69,10 @@
     return [_create_time timeStringWithCurrentTime];
 }
 
+- (NSString *)createTimeStr {
+    return _create_time;
+}
+
 - (void)updateStatusCount:(NSDictionary *)statusCountDict {
     [YepsSDK updateStatusCount:statusCountDict status_id:self.status_id];
     NSInteger likeCount = [statusCountDict[@"like_count"] integerValue];
@@ -78,6 +82,29 @@
     self.like_count = likeCount;
     self.share_count = shareCount;
     self.comment_conut = commentConut;
+}
+
++ (StatusModel *)initWithStatusModel:(StatusModel *)status {
+
+    StatusModel *newStatus = [[StatusModel alloc] init];
+    
+    newStatus.create_user = status.create_user;
+    newStatus.status_id = status.status_id;
+    newStatus.status_sha1 = status.status_sha1;
+    newStatus.title = status.title;
+    newStatus.content = status.content;
+    newStatus.image_list = status.image_list;
+    newStatus.type = status.type;
+    newStatus.create_time = status.createTimeStr;
+    newStatus.like_count = status.like_count;
+    newStatus.share_count = status.share_count;
+    newStatus.comment_conut = status.comment_conut;
+    newStatus.me_is_like = status.me_is_like;
+    newStatus.university = status.university;
+    newStatus.vote = status.vote;
+    newStatus.isDetail = status.isDetail;
+    
+    return newStatus;
 }
 
 @end

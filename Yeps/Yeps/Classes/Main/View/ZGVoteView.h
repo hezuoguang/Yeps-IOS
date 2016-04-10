@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) StatusModel *status;
 
-+ (CGSize)sizeWithStatus:(StatusModel *)status;
++ (CGSize)sizeWithStatus:(StatusModel *)status style:(NSInteger)style;
+
 @end

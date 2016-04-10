@@ -267,7 +267,8 @@
     StatusFrameModel *statusF = models[indexPath.row];
     StatusFrameModel *detailF = [[StatusFrameModel alloc] init];
     detailF.style = StatusCellFrameStyleDetail;
-    detailF.status = statusF.status;
+    detailF.status = [StatusModel initWithStatusModel:statusF.status];
+    detailF.status.isDetail = YES;
     vc.statusF = detailF;
     [self.navigationController pushViewController:vc animated:YES];
 }

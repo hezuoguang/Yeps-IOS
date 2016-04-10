@@ -37,6 +37,7 @@
 - (void)setFrames {
     if(self.status == nil) return;
     StatusModel *status = self.status;
+    status.isDetail = (self.style == StatusCellFrameStyleDetail);
     UserBaseInfoModel *user = status.create_user;
     
 //    //大图
@@ -105,7 +106,7 @@
     if (status.type == 1) {//投票
         CGFloat voteX = 0;
         CGFloat voteY = toolBarY + kCellPadding;
-        CGSize voteSize = [ZGVoteView sizeWithStatus:status];
+        CGSize voteSize = [ZGVoteView sizeWithStatus:status style:self.style];
         self.voteViewF = CGRectMake(voteX, voteY, voteSize.width, voteSize.height);
         toolBarY = CGRectGetMaxY(self.voteViewF) + kCellPadding;
         

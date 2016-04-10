@@ -52,6 +52,18 @@ static FMDatabase *_db;
     }
 }
 
++ (void)updateStatusVote:(NSDictionary *)voteDict status_id:(NSInteger)status_id {
+    NSString *sql = [NSString stringWithFormat:@"select status from status where status_id = %ld",(long)status_id];
+    FMResultSet *results = [[self db] executeQuery:sql];
+    if (results.next) {
+        NSData *data = [results dataForColumnIndex:0];
+        NSMutableDictionary *status = [NSMutableDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+        status[@"vote"] = voteDict;
+        NSData *statusData = [NSKeyedArchiver archivedDataWithRootObject:status];
+        [[self db] executeUpdate:@"update status set status = ? where status_id = ?",statusData, @(status_id)];
+    }
+}
+
 //获取系统标签
 + (void)tagList:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
@@ -493,5 +505,32 @@ static FMDatabase *_db;
         }
     } failure:failure];
 }
+
+//参与投票
++ (void)joinVote:(NSInteger)select content:(NSString *)content vote_sha1:(NSString *)vote_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"join_vote";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"vote_sha1"] = vote_sha1;
+    data[@"vote_option_index"] = @(select);
+    data[@"access_token"] = [UserTool getAccessToken];
+    if (content) {
+        data[@"content"] = content;
+    }
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+
 
 @end

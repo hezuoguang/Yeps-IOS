@@ -11,7 +11,7 @@
 @interface YepsSDK : NSObject
 
 + (void)updateStatusCount:(NSDictionary *)statusCountDict status_id:(NSInteger)status_id;
-
++ (void)updateStatusVote:(NSDictionary *)voteDict status_id:(NSInteger)status_id;
 //获取系统标签
 + (void)tagList:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
 
@@ -73,4 +73,7 @@
 
 //分享成功
 + (void)shareSuccess:(NSString *)status_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//参与投票
++ (void)joinVote:(NSInteger)select content:(NSString *)content vote_sha1:(NSString *)vote_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
 @end
