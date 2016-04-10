@@ -146,7 +146,6 @@
     anim.springBounciness = 15;
     anim.fromValue = @(-self.commentView.frame.size.height);
     anim.toValue = @(self.showY);
-    NSLog(@"%@", anim.toValue);
     anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         if (finished) {
             self.canClose = YES;
@@ -157,18 +156,27 @@
 }
 
 - (void)send {
+    __weak typeof(self) weak = self;
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
-    [YepsSDK publishComment:self.textView.text comment_sha1:self.comment_sha1 status_sha1:self.status_sha1 success:^(id data) {
-        if (self.commentSuccessBlock) {
-            self.commentSuccessBlock(data);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [weak close];
+    });
+    [YepsSDK publishComment:weak.textView.text comment_sha1:weak.comment_sha1 status_sha1:weak.status_sha1 success:^(id data) {
+        if (weak.commentSuccessBlock) {
+            weak.commentSuccessBlock(data);
         }
         [SVProgressHUD dismiss];
-        self.textView.text = @"";
-        [self close];
+        weak.textView.text = @"";
     } error:^(id data) {
-        [SVProgressHUD showErrorWithStatus:data[@"info"]];
+        [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weak show];
+        });
     } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
+        [SVProgressHUD showErrorWithStatus:@"评论失败" maskType:SVProgressHUDMaskTypeGradient];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weak show];
+        });
     }];
 }
 

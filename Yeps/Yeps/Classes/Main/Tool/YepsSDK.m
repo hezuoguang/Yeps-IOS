@@ -268,7 +268,6 @@ static FMDatabase *_db;
     NSString *active_university = [UserTool getActiveUniversity];
     NSMutableArray *statuses = [NSMutableArray array];
     NSString *sql = nil;
-    NSLog(@"%ld --- %ld", (long)since_id, (long)type);
     if (is_follow) {
         type = -1;
     }
@@ -341,6 +340,7 @@ static FMDatabase *_db;
             @finally {
                 if (!isRollBack) {
                     [[self db] commit];
+                    [[self db] executeUpdate:@"delete from status where user_sha1= ? and type= ? and is_follow = ? and university = ? order by status_id desc limit 40, -1", user_sha1, @(type), @(is_follow), active_university];
                 }
             }
             if (success) {

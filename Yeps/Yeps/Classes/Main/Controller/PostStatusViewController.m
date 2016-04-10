@@ -103,11 +103,12 @@
     
     ZGEditTextView *contentTextView = [[ZGEditTextView alloc] init];
     self.contentTextView = contentTextView;
-    contentTextView.returnKeyType = UIReturnKeyDefault;
+    contentTextView.returnKeyType = UIReturnKeyDone;
     contentTextView.minHeight = contentTextView.font.lineHeight * 9;
     contentTextView.maxHeight = contentTextView.font.lineHeight * 9;
     contentTextView.placeholder = [NSString stringWithFormat:@"填写%@的内容", self.typeStr];
     contentTextView.frame = CGRectMake(0, CGRectGetMaxY(titleTextView.frame) + 1, maxW, contentTextView.minHeight);
+    contentTextView.delegate = self;
     [scrollView addSubview:contentTextView];
     
     ZGCreateVoteView *voteView = [[ZGCreateVoteView alloc] init];
@@ -135,11 +136,15 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if (textView == self.titleTexiView) {
-        if ([text isEqualToString:@"\n"]) {
-            return NO;
+    if ([text isEqualToString:@"\n"]) {
+        if (textView == self.titleTexiView) {
+            [self.contentTextView becomeFirstResponder];
+        } else if (textView == self.contentTextView) {
+            [textView resignFirstResponder];
         }
+        return NO;
     }
+    
     return YES;
 }
 

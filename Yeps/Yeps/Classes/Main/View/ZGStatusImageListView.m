@@ -10,10 +10,11 @@
 #import "StatusModel.h"
 #import "ZGImageView.h"
 #import <UIImageView+WebCache.h>
+#import "SDPhotoBrowser.h"
 
-@interface ZGStatusImageListView()
+@interface ZGStatusImageListView()<SDPhotoBrowserDelegate>
 
-
+@property (nonatomic, strong) NSMutableArray *imageViewList;
 
 @end
 
@@ -22,6 +23,13 @@
 - (void)setStatus:(StatusModel *)status {
     _status = status;
     [self setNeedsLayout];
+}
+
+- (NSMutableArray *)imageViewList {
+    if (_imageViewList == nil) {
+        _imageViewList = [NSMutableArray array];
+    }
+    return _imageViewList;
 }
 
 + (CGSize)sizeWithStatus:(StatusModel *)status {
@@ -156,16 +164,47 @@
     return CGRectMake(X, Y, imageWH, imageWH);
 }
 
+- (NSURL *)imageUrlWithUrlStr:(NSString *)urlStr {
+    SDWebImageManager *mgr = [SDWebImageManager sharedManager];
+    NSURL *url = [NSURL URLWithString:urlStr];
+    if ([mgr diskImageExistsForURL:url]) {
+        return url;
+    }
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@?imageMogr2/quality/30",urlStr]];
+}
+
+- (void)imageViewClick:(UITapGestureRecognizer *)tap{
+    NSInteger index = tap.view.tag;
+    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+    browser.sourceImagesContainerView = self;
+    browser.imageCount = self.status.image_list.count;
+    browser.currentImageIndex = index;
+    browser.delegate = self;
+    [browser show];
+}
+
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index {
+    ZGImageView *imageView = [self.imageViewList objectAtIndex:index];
+    return imageView.image;
+}
+
+
+- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index {
+    NSString *url = [self.status.image_list objectAtIndex:index];
+    return [NSURL URLWithString:url];
+}
+
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     if (self.status) {
         NSInteger count = self.status.image_list.count;
         NSInteger index = 0;
-        for (ZGImageView *imageView in self.subviews) {
+        for (ZGImageView *imageView in self.imageViewList) {
             if (index < count) {
                 imageView.hidden = NO;
-                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?imageMogr2/quality/30",self.status.image_list[index]]];
-                [imageView sd_setImageWithURL:url];
+                NSURL *url = [self imageUrlWithUrlStr:self.status.image_list[index]];
+                [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"]];
                 imageView.frame = [self frameWithCount:count index:index];
             } else {
                 imageView.hidden = YES;
@@ -173,9 +212,16 @@
             index++;
         }
         while (index < count) {
+            
             ZGImageView *imageView = [[ZGImageView alloc] init];
-            NSURL *url = [NSURL URLWithString:self.status.image_list[index]];
-            [imageView sd_setImageWithURL:url];
+            [self.imageViewList addObject:imageView];
+            imageView.tag = index;
+            imageView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewClick:)];
+            [imageView addGestureRecognizer:tap];
+            
+            NSURL *url = [self imageUrlWithUrlStr:self.status.image_list[index]];
+            [imageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"placeholder"]];
             imageView.frame = [self frameWithCount:count index:index];
             [self addSubview:imageView];
             index++;

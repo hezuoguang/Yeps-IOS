@@ -23,6 +23,8 @@
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
 
+#import <SDWebImage/SDWebImageManager.h>
+
 static NSString *appKey = @"fd4eeefc6a44";
 static NSString *appSecret = @"4f3872cc0e37ea40dbcbf23750985769";
 @interface AppDelegate ()
@@ -126,6 +128,10 @@ static NSString *appSecret = @"4f3872cc0e37ea40dbcbf23750985769";
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    [[[SDWebImageManager sharedManager] imageCache] clearMemory];
 }
 
 @end

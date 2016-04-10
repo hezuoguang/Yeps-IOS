@@ -226,7 +226,7 @@
     self.nickLabel.text = user.nick;
     
     self.photoView.frame = statusF.photoViewF;
-    [self.photoView sd_setImageWithURL:[NSURL URLWithString:user.photo]];
+    [self.photoView sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     self.timeLabel.frame = statusF.timeLabelF;
     self.timeLabel.text = status.create_time;

@@ -44,6 +44,9 @@
 		3084B1D91CB9173500ECE1F9 /* ZGShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1D81CB9173500ECE1F9 /* ZGShareView.m */; };
 		3084B1DD1CB91A4C00ECE1F9 /* ZGShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1DC1CB91A4C00ECE1F9 /* ZGShareButton.m */; };
 		3084B1E01CB93ADE00ECE1F9 /* ShareTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1DF1CB93ADE00ECE1F9 /* ShareTool.m */; };
+		3084B1E91CBA1FB400ECE1F9 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1E31CBA1FB400ECE1F9 /* SDBrowserImageView.m */; };
+		3084B1EA1CBA1FB400ECE1F9 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1E51CBA1FB400ECE1F9 /* SDPhotoBrowser.m */; };
+		3084B1EB1CBA1FB400ECE1F9 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1E81CBA1FB400ECE1F9 /* SDWaitingView.m */; };
 		30AECCE71CA78C4900A1A58F /* ZGPickImageListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AECCE61CA78C4900A1A58F /* ZGPickImageListView.m */; };
 		30AECCEB1CA7BAEF00A1A58F /* ZGPickImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AECCEA1CA7BAEF00A1A58F /* ZGPickImageView.m */; };
 		30BE4D651C8ABA3C0077C8FB /* SMSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BE4D641C8ABA3C0077C8FB /* SMSTool.m */; };
@@ -178,6 +181,13 @@
 		3084B1DC1CB91A4C00ECE1F9 /* ZGShareButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGShareButton.m; sourceTree = "<group>"; };
 		3084B1DE1CB93ADE00ECE1F9 /* ShareTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareTool.h; sourceTree = "<group>"; };
 		3084B1DF1CB93ADE00ECE1F9 /* ShareTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareTool.m; sourceTree = "<group>"; };
+		3084B1E21CBA1FB400ECE1F9 /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
+		3084B1E31CBA1FB400ECE1F9 /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
+		3084B1E41CBA1FB400ECE1F9 /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
+		3084B1E51CBA1FB400ECE1F9 /* SDPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotoBrowser.m; sourceTree = "<group>"; };
+		3084B1E61CBA1FB400ECE1F9 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		3084B1E71CBA1FB400ECE1F9 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
+		3084B1E81CBA1FB400ECE1F9 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
 		30AECCE51CA78C4900A1A58F /* ZGPickImageListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPickImageListView.h; sourceTree = "<group>"; };
 		30AECCE61CA78C4900A1A58F /* ZGPickImageListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGPickImageListView.m; sourceTree = "<group>"; };
 		30AECCE91CA7BAEF00A1A58F /* ZGPickImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPickImageView.h; sourceTree = "<group>"; };
@@ -493,6 +503,20 @@
 			name = ShareView;
 			sourceTree = "<group>";
 		};
+		3084B1E11CBA1FB400ECE1F9 /* SDPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				3084B1E21CBA1FB400ECE1F9 /* SDBrowserImageView.h */,
+				3084B1E31CBA1FB400ECE1F9 /* SDBrowserImageView.m */,
+				3084B1E41CBA1FB400ECE1F9 /* SDPhotoBrowser.h */,
+				3084B1E51CBA1FB400ECE1F9 /* SDPhotoBrowser.m */,
+				3084B1E61CBA1FB400ECE1F9 /* SDPhotoBrowserConfig.h */,
+				3084B1E71CBA1FB400ECE1F9 /* SDWaitingView.h */,
+				3084B1E81CBA1FB400ECE1F9 /* SDWaitingView.m */,
+			);
+			path = SDPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		30AECCE81CA78FC700A1A58F /* PickImageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -675,6 +699,7 @@
 		30E5C1111C819C77000EF4E8 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				3084B1E11CBA1FB400ECE1F9 /* SDPhotoBrowser */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -918,6 +943,7 @@
 			files = (
 				30BE4DAE1C8F16970077C8FB /* ZGTextView.m in Sources */,
 				30BE4D9C1C8DB5FB0077C8FB /* VoteModel.m in Sources */,
+				3084B1EB1CBA1FB400ECE1F9 /* SDWaitingView.m in Sources */,
 				30AECCE71CA78C4900A1A58F /* ZGPickImageListView.m in Sources */,
 				303FF6BD1C99887F002B746F /* CommentFrameModel.m in Sources */,
 				301323491C9E9C4700AB7011 /* EmotionTextAttachment.m in Sources */,
@@ -940,8 +966,10 @@
 				30BE4DA51C8F15F60077C8FB /* ZGPhotoView.m in Sources */,
 				30BE4D811C8C12550077C8FB /* ZGTagCollectionViewCell.m in Sources */,
 				302A2C091C89D49000CF21CE /* RegisterStepEndViewController.m in Sources */,
+				3084B1EA1CBA1FB400ECE1F9 /* SDPhotoBrowser.m in Sources */,
 				30BE4D911C8C5BBC0077C8FB /* LoginViewStepOneController.m in Sources */,
 				303FF6B41C957F02002B746F /* ZGStatusTypeButton.m in Sources */,
+				3084B1E91CBA1FB400ECE1F9 /* SDBrowserImageView.m in Sources */,
 				302A2BEE1C87293C00CF21CE /* ZGProfileViewController.m in Sources */,
 				30CAD7BC1CB2624000D98D51 /* ZGCreateVoteView.m in Sources */,
 				30550C561C8A7A4800EAB8D7 /* YepsSDK.m in Sources */,
