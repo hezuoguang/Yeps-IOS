@@ -29,7 +29,6 @@
 
 @implementation PostStatusViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor popBackGroundColor];
@@ -44,6 +43,12 @@
     [self setupUI];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardFrameDidChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.titleTexiView becomeFirstResponder];
 }
 
 - (void)keyBoardFrameDidChange:(NSNotification *)notifi {
@@ -131,8 +136,12 @@
     imageListView.delegate = self;
     [scrollView addSubview:imageListView];
     
+    CGFloat maxH = CGRectGetMaxY(self.imageListView.frame);
+    if (maxH < self.view.frame.size.height) {
+        maxH = self.view.frame.size.height + 1;
+    }
     
-    scrollView.contentSize = CGSizeMake(0, CGRectGetMaxY(self.imageListView.frame));
+    scrollView.contentSize = CGSizeMake(0,  maxH);
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -156,7 +165,7 @@
             length = kTitleMaxLength;
         }
         length = kTitleMaxLength - length;
-        self.titleTipLabel.text = [NSString stringWithFormat:@"%d", length];
+        self.titleTipLabel.text = [NSString stringWithFormat:@"%ld", (long)length];
     }
     
 }
@@ -168,15 +177,15 @@
 - (void)updateSubViewsFrame {
     CGRect imageListViewFrame = self.imageListView.frame;
     if (self.type != 1) {
-        imageListViewFrame.origin.y = CGRectGetMinY(self.voteView.frame) + 1;
+        imageListViewFrame.origin.y = CGRectGetMaxY(self.contentTextView.frame) + 1;
     } else {
         imageListViewFrame.origin.y = CGRectGetMaxY(self.voteView.frame) + 1;
     }
     self.imageListView.frame = imageListViewFrame;
     CGFloat maxH = CGRectGetMaxY(self.imageListView.frame);
-//    if (maxH < CGRectGetMaxY(self.imageListView.frame)) {
-//        maxH = CGRectGetMaxY(self.imageListView.frame);
-//    }
+    if (maxH < CGRectGetMaxY(self.view.frame)) {
+        maxH = CGRectGetMaxY(self.view.frame) + 1;
+    }
     self.scrollView.contentSize = CGSizeMake(0,  maxH);
 }
 
@@ -196,7 +205,6 @@
 }
 
 - (void)uzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker {
-    NSLog(@"222222");
 }
 
 - (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets {

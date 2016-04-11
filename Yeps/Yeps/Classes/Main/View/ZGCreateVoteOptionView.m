@@ -72,6 +72,10 @@
     self.deleteBtn.enabled = enable;
 }
 
+- (void)zg_becomeFirstResponder {
+    [self.textField becomeFirstResponder];
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGFloat maxW = self.bounds.size.width;

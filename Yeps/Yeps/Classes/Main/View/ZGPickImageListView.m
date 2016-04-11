@@ -106,7 +106,8 @@
         imageView.frame = CGRectMake(X, Y, imageViewWH, imageViewWH);
         index++;
     }
-    CGFloat maxH = Y + kPickImageListViewTopBottomPadding;
+//    CGFloat maxH = Y + kPickImageListViewTopBottomPadding;
+    CGFloat maxH = 0;
     X = kPickImageListViewLeftRightPadding + (imageViewWH + kPickImageViewMargin) * (index % kPickImageViewLineCount);
     Y = kPickImageListViewTopBottomPadding + (index / kPickImageViewLineCount) * (imageViewWH + kPickImageViewMargin);
     self.addButton.frame = CGRectMake(X, Y, imageViewWH, imageViewWH);

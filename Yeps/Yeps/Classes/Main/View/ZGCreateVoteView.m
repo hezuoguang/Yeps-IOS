@@ -113,10 +113,17 @@
         Y = (H + 2) * index + 2;
         self.addButton.frame = CGRectMake(X, Y, W, H);
     }
-    if (self.frame.size.height != Y + 2 + H) {
+    CGFloat oH = self.frame.size.height;
+    if (oH != Y + 2 + H) {
         self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, maxW, Y + 2 + H);
         if (self.frameDidChange) {
             self.frameDidChange();
+        }
+    }
+    if (oH < Y + 2 + H) {//添加了选项
+        if (self.options.count > 2) {
+            ZGCreateVoteOptionView *option = self.options.lastObject;
+            [option zg_becomeFirstResponder];
         }
     }
     

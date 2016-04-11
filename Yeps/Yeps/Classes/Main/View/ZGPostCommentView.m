@@ -40,8 +40,8 @@
     if (self = [super initWithFrame:frame]) {
         self.frame = [UIScreen mainScreen].bounds;
         self.backgroundColor = [UIColor clearColor];
-        UITapGestureRecognizer *tap0 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close)];
-        [self addGestureRecognizer:tap0];
+//        UITapGestureRecognizer *tap0 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close)];
+//        [self addGestureRecognizer:tap0];
         
         UIView *commentView = [[UIView alloc] init];
         commentView.backgroundColor = [UIColor whiteColor];
@@ -77,7 +77,8 @@
         [headView addSubview:sendBtn];
         
         ZGEditTextView *textView = [[ZGEditTextView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(headView.frame), headW, 45)];
-        textView.minHeight = textView.font.lineHeight * 8;
+        NSInteger lineCount = (int)((self.frame.size.height - kMarginY - 320) / textView.font.lineHeight);
+        textView.minHeight = textView.font.lineHeight * lineCount;
         textView.maxHeight = textView.minHeight;
         self.textView = textView;
         textView.delegate = self;
@@ -146,12 +147,14 @@
     anim.springBounciness = 15;
     anim.fromValue = @(-self.commentView.frame.size.height);
     anim.toValue = @(self.showY);
+    
     anim.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         if (finished) {
             self.canClose = YES;
             [self.textView becomeFirstResponder];
         }
     };
+    
     [self.commentView.layer pop_addAnimation:anim forKey:kPOPLayerPositionY];
 }
 

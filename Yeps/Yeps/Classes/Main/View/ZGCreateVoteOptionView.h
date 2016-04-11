@@ -16,4 +16,5 @@
 - (void)setDeleteButtonEnable:(BOOL)enable;
 - (BOOL)isFirstResponse;
 - (NSString *)option;
+- (void)zg_becomeFirstResponder;
 @end

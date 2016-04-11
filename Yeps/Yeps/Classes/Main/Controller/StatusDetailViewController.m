@@ -132,6 +132,11 @@
         } else {
             self.tableView.userInteractionEnabled = NO;
         }
+        if (scrollView.contentOffset.y < 10) {
+            scrollView.bounces = YES;
+        } else {
+            scrollView.bounces = NO;
+        }
     }
 }
 

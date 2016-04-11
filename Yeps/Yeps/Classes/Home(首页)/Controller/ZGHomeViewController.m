@@ -211,18 +211,19 @@
 
 - (void)switchActiveUniversity {
     PickUniversityViewController *pick = [[PickUniversityViewController alloc] init];
+    __weak typeof(self) weak = self;
     pick.didPickUniversityBlock = ^(NSString *text){
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
         [YepsSDK switchActiveUniversity:text success:^(id data) {
             [SVProgressHUD dismiss];
-            [self dismissViewControllerAnimated:YES completion:nil];
-            self.typeModels = nil;
-            self.tableViewConentOffsets = nil;
-            self.tableViewNoMoreDataStatus = nil;
-            [self.tableView1 reloadData];
-            [self.tableView2 reloadData];
-            [self.tableView1 beginRefresh];
-            [self.tableView2 beginRefresh];
+            [weak dismissViewControllerAnimated:YES completion:nil];
+            weak.typeModels = nil;
+            weak.tableViewConentOffsets = nil;
+            weak.tableViewNoMoreDataStatus = nil;
+            [weak.tableView1 reloadData];
+            [weak.tableView2 reloadData];
+            [weak.tableView1 beginRefresh];
+            [weak.tableView2 beginRefresh];
         } error:^(id data) {
             [SVProgressHUD showErrorWithStatus:data[@"info"]];
         } failure:^(NSError *error) {
