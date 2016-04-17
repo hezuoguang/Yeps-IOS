@@ -10,10 +10,20 @@
 
 @implementation ZGPhotoView
 
+
+- (void)setup {
+    self.contentMode = UIViewContentModeScaleAspectFill;
+    self.clipsToBounds = YES;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self setup];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.contentMode = UIViewContentModeScaleAspectFill;
-        self.clipsToBounds = YES;
+        [self setup];
     }
     return self;
 }

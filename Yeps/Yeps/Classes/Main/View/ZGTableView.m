@@ -20,7 +20,7 @@
     tableView.backgroundColor = [UIColor clearColor];
     tableView.separatorColor = [UIColor clearColor];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.contentInset = UIEdgeInsetsMake(64-kCellMargin + padding, 0, 6, 0);
+    tableView.contentInset = UIEdgeInsetsMake(64-kCellMargin + padding, 0, 5, 0);
     tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:tableView refreshingAction:@selector(refresh)];
     MJRefreshNormalHeader *header = (MJRefreshNormalHeader *)tableView.mj_header;
     header.lastUpdatedTimeLabel.hidden = YES;
@@ -30,6 +30,13 @@
     tableView.mj_header.automaticallyChangeAlpha = YES;
     tableView.mj_footer.automaticallyChangeAlpha = YES;
     return tableView;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
+    if (self = [super initWithFrame:frame style:style]) {
+        
+    }
+    return self;
 }
 
 - (void)refresh {
@@ -59,6 +66,10 @@
 - (void)stopAllRefresh {
     [self.mj_footer endRefreshing];
     [self.mj_header endRefreshing];
+}
+
+- (void)removeRefresh {
+    self.mj_header = nil;
 }
 
 - (void)removePullUpRefresh {

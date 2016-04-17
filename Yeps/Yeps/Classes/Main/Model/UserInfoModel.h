@@ -24,6 +24,9 @@
 //last_active_time: "最后活动时间(2016-02-27 18:25:30)",
 //is_follow"我是否关注了他(0:未关注, 1:关注了)"
 //active_university: "当前活动学校",
+//follow_count : "关注数"
+//fans_count : "粉丝数"
+//status_count : "状态数"
 
 @property (nonatomic, copy) NSString *phone;
 @property (nonatomic, copy) NSString *email;
@@ -37,6 +40,9 @@
 @property (nonatomic, copy) NSString *last_active_time;
 @property (nonatomic, assign) BOOL is_follow;
 @property (nonatomic, copy) NSString *active_university;
+@property (nonatomic, assign) NSInteger follow_count;
+@property (nonatomic, assign) NSInteger fans_count;
+@property (nonatomic, assign) NSInteger status_count;
 
 
 @end

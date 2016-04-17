@@ -18,6 +18,10 @@
     return [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:alpha];
 }
 
++ (instancetype)popBackImageColor {
+    return [UIColor colorWithPatternImage:[UIImage imageNamed:@"backImage"]];
+}
+
 + (instancetype)popTabBarColor {
     return [self colorWithR:236 g:240 b:241 alpha:0.96];
 }
@@ -27,8 +31,14 @@
     return [self colorWithR:142 g:68 b:173 alpha:0.96];
 }
 
++ (instancetype)popShadowColor {
+    //    return [self colorWithR:236 g:240 b:241 alpha:0.98];
+    return [self colorWithR:142 g:68 b:173 alpha:0.96];
+}
+
 + (instancetype)popBackGroundColor {
     return [UIColor colorWithR:225 g:232 b:235 alpha:1.0];
+//    return [self popColor];
 }
 
 //主颜色

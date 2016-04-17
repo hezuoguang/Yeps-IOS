@@ -37,6 +37,8 @@
     [tableView beginRefresh];
     [self.view addSubview:tableView];
     
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yepsTitle"]];
+    
 }
 
 - (NSMutableArray *)models {

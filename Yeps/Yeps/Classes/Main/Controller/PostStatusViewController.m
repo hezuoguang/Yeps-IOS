@@ -11,6 +11,8 @@
 #import "ZGPickImageListView.h"
 #import "ZGCreateVoteView.h"
 
+
+#import <objc/runtime.h>
 #import <UzysAssetsPickerController.h>
 
 #define kTitleMaxLength 45
@@ -47,8 +49,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    [self.titleTexiView becomeFirstResponder];
+    if (!objc_getAssociatedObject(self, _cmd)) {
+        objc_setAssociatedObject(self, _cmd, @"POSTSTATUS", OBJC_ASSOCIATION_RETAIN);
+        [self.titleTexiView becomeFirstResponder];
+    }
 }
 
 - (void)keyBoardFrameDidChange:(NSNotification *)notifi {

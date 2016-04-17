@@ -11,7 +11,7 @@
 @class ZGTableView;
 
 @protocol ZGTableViewDelegate <UITableViewDelegate>
-
+@optional
 /**
  *  下拉刷新
  *
@@ -44,6 +44,8 @@
 - (void)stopPullUpRefresh;
 
 - (void)stopAllRefresh;
+
+- (void)removeRefresh;
 
 - (void)removePullUpRefresh;
 

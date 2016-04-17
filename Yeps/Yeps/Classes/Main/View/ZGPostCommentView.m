@@ -45,21 +45,24 @@
         
         UIView *commentView = [[UIView alloc] init];
         commentView.backgroundColor = [UIColor whiteColor];
-        commentView.layer.shadowColor = [UIColor popBorderColor].CGColor;
-        commentView.layer.shadowOpacity = 0.9;
+        commentView.layer.shadowColor = [UIColor popShadowColor].CGColor;
+        commentView.layer.shadowOpacity = 0.5;
         commentView.layer.shadowOffset = CGSizeMake(0, 0);
         self.commentView = commentView;
         [self addSubview:commentView];
         CGFloat headW = CGRectGetWidth(self.frame) - 2 * kLeftRightPadding;
         CGFloat headH = 44;
         UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, headW, headH)];
-        headView.backgroundColor = [UIColor popBackGroundColor];
+        headView.backgroundColor = [UIColor popNavBackColor];
+        headView.alpha = 0.98;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nothing)];
         [headView addGestureRecognizer:tap];
         [commentView addSubview:headView];
         
         UIButton *closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, headH)];
-        closeBtn.backgroundColor = [UIColor redColor];
+        [closeBtn setImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateNormal];
+        [closeBtn setImage:[UIImage imageNamed:@"close_icon_h"] forState:UIControlStateHighlighted];
+        closeBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
         [closeBtn addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
         [headView addSubview:closeBtn];
         
@@ -67,10 +70,14 @@
         titleLabel.text = @"添加评论";
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = [UIFont systemFontOfSize:16];
+        titleLabel.textColor = [UIColor popNavFontColor];
         [headView addSubview:titleLabel];
         
         UIButton *sendBtn = [[UIButton alloc] initWithFrame:CGRectMake(headW - 60, 0, 60, headH)];
-        sendBtn.backgroundColor = [UIColor redColor];
+//        sendBtn.backgroundColor = [UIColor redColor];
+        [sendBtn setImage:[UIImage imageNamed:@"send_icon"] forState:UIControlStateNormal];
+        [sendBtn setImage:[UIImage imageNamed:@"send_icon_h"] forState:UIControlStateHighlighted];
+        sendBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -15);
         sendBtn.enabled = NO;
         self.sendBtn = sendBtn;
         [sendBtn addTarget:self action:@selector(send) forControlEvents:UIControlEventTouchUpInside];
@@ -136,6 +143,7 @@
 
 - (void)show {
     self.canClose = NO;
+    self.sendBtn.enabled = self.textView.text.length > 0;
     [self.commentView.layer pop_removeAllAnimations];
     POPBasicAnimation *anim0 = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerRotation];
     anim0.duration = 0.1;

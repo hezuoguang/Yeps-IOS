@@ -12,6 +12,9 @@
 
 + (instancetype)colorWithR:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha;
 
++ (instancetype)popBackImageColor;
+
++ (instancetype)popShadowColor;
 //tabbar背景颜色
 + (instancetype)popTabBarColor;
 

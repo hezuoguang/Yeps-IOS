@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MainNavigationController : UINavigationController
+/** 设置透明导航*/
+- (void)setTransparent;
+/** 恢复透明导航*/
+- (void)resetTransparent;
 
 @end

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backImage" translatesAutoresizingMaskIntoConstraints="NO" id="pNk-ze-4vg">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firstLogo" translatesAutoresizingMaskIntoConstraints="NO" id="hLR-2P-RyZ">
+                    <rect key="frame" x="245" y="145" width="110" height="110"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="110" id="3SS-YP-JtG"/>
+                        <constraint firstAttribute="width" constant="110" id="KoB-4D-Vuv"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一见倾心" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQR-2w-eRe">
+                    <rect key="frame" x="0.0" y="255" width="600" height="328"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
+                    <color key="textColor" red="0.27058823529411763" green="0.75294117647058822" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by weimi. © dev4app.com." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sev-9P-i3S">
+                    <rect key="frame" x="0.0" y="583" width="600" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="AHt-wa-Mgz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.63704202586206893" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="fQR-2w-eRe" secondAttribute="trailing" id="0hM-kX-mmX"/>
+                <constraint firstAttribute="trailing" secondItem="sev-9P-i3S" secondAttribute="trailing" id="5eO-gg-wG6"/>
+                <constraint firstItem="sev-9P-i3S" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BxW-Zt-Cmg"/>
+                <constraint firstItem="pNk-ze-4vg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JSd-QS-KHa"/>
+                <constraint firstItem="sev-9P-i3S" firstAttribute="top" secondItem="fQR-2w-eRe" secondAttribute="bottom" id="NW5-Sb-eaI"/>
+                <constraint firstItem="pNk-ze-4vg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ofg-YB-mUI"/>
+                <constraint firstItem="fQR-2w-eRe" firstAttribute="top" secondItem="hLR-2P-RyZ" secondAttribute="bottom" id="RKu-aD-Bi3"/>
+                <constraint firstItem="fQR-2w-eRe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XZa-2n-HKi"/>
+                <constraint firstItem="pNk-ze-4vg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dh7-Tm-7Ef"/>
+                <constraint firstAttribute="bottom" secondItem="pNk-ze-4vg" secondAttribute="bottom" id="dxi-Ff-ZmI"/>
+                <constraint firstItem="hLR-2P-RyZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="145" id="esm-i4-KJU"/>
+                <constraint firstAttribute="bottom" secondItem="sev-9P-i3S" secondAttribute="bottom" constant="2" id="fhn-qs-ScP"/>
+                <constraint firstAttribute="trailing" secondItem="pNk-ze-4vg" secondAttribute="trailing" id="kUl-Zs-cil"/>
+                <constraint firstItem="hLR-2P-RyZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yzb-wJ-xir"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="backImage" width="1242" height="2208"/>
+        <image name="firstLogo" width="110" height="110"/>
+    </resources>
+</document>

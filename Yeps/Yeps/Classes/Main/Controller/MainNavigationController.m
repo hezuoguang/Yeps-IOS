@@ -40,6 +40,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    [self resetTransparent];
+}
+
+- (void)setTransparent {
+    [self.navigationBar setBackgroundImage:[UIColor imageWithColor:[UIColor clearColor] size:CGSizeMake(5, 5)] forBarMetrics:UIBarMetricsDefault];
+    self.navigationBar.shadowImage = [[UIImage alloc] init];
+    self.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationBar.translucent = YES;
+}
+
+- (void)resetTransparent {
     [self.navigationBar setBackgroundImage:[UIColor imageWithColor:[UIColor popNavBackColor] size:CGSizeMake(5, 5)] forBarMetrics:UIBarMetricsDefault];
     self.navigationBar.shadowImage = [[UIImage alloc] init];
     self.navigationBar.barStyle = UIBarStyleBlackTranslucent;

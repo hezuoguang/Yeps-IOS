@@ -167,7 +167,7 @@
 - (NSURL *)imageUrlWithUrlStr:(NSString *)urlStr {
     SDWebImageManager *mgr = [SDWebImageManager sharedManager];
     NSURL *url = [NSURL URLWithString:urlStr];
-    if ([mgr diskImageExistsForURL:url]) {
+    if ([mgr cachedImageExistsForURL:url]) {
         return url;
     }
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@?imageMogr2/quality/30",urlStr]];

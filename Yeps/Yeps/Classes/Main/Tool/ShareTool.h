@@ -19,4 +19,9 @@
 + (void)shareToQQ:(NSString *)text title:(NSString *)title image:(id)image url:(NSString *)url success:(void(^)())success error:(void(^)())error cancel:(void(^)())cancel;
 
 + (void)shareToQzone:(NSString *)text title:(NSString *)title image:(id)image url:(NSString *)url success:(void(^)())success error:(void(^)())error cancel:(void(^)())cancel;
+
++ (BOOL)canShareToQQ;
+
++ (BOOL)canShareToWeChat;
+
 @end

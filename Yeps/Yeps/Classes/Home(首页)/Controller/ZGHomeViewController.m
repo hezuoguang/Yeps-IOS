@@ -195,7 +195,7 @@
 //    [self.view addSubview:typeScrollView];
     self.navigationItem.titleView = self.typeScrollView;
     
-    self.navigationItem.rightBarButtonItem = [ZGBarButtonItem rightBarButtonItemWithImage:@"u_group" highlightImage:@"u_group_h" addTarget:self action:@selector(universityGroup) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.rightBarButtonItem = [ZGBarButtonItem rightBarButtonItemWithImage:@"u_group" highlightImage:@"u_group_h" addTarget:self action:@selector(universityGroup) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.leftBarButtonItem = [ZGBarButtonItem leftBarButtonItemWithImage:@"dingwei" highlightImage:@"dingwei_h" addTarget:self action:@selector(switchActiveUniversity) forControlEvents:UIControlEventTouchUpInside];
 }

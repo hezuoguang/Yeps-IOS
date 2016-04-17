@@ -7,14 +7,14 @@
 //
 
 #import "ZGSwitchStatusTypeButton.h"
-
+#define kTypeIcons @[@"typeIcon6", @"typeIcon1", @"typeIcon2", @"typeIcon3", @"typeIcon4", @"typeIcon5"]
 @implementation ZGSwitchStatusTypeButton
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.titleLabel.font = [UIFont systemFontOfSize:14];
         self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [self setTitleColor:[UIColor popHighlightColor] forState:UIControlStateNormal];
+        [self setTitleColor:[UIColor popFontColor] forState:UIControlStateNormal];
         [self setTitleColor:[UIColor popColor] forState:UIControlStateHighlighted];
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     }
@@ -27,7 +27,8 @@
     }
     _type = type;
     [self setTitle:kTypeStrs[type] forState:UIControlStateNormal];
-    [self setImage:[UIImage imageNamed:@"LaunchImage"] forState:UIControlStateNormal];
+    [self setImage:[UIImage imageNamed:@"typeIcon0"] forState:UIControlStateNormal];
+    [self setImage:[UIImage imageNamed:kTypeIcons[type]] forState:UIControlStateHighlighted];
 }
 
 - (void)layoutSubviews {
@@ -44,7 +45,7 @@
 }
 
 - (void)setHighlighted:(BOOL)highlighted{
-    
+    [super setHighlighted:highlighted];
 }
 
 @end

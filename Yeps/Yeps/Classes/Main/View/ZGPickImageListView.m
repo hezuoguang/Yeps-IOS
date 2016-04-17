@@ -49,7 +49,8 @@
 - (UIButton *)addButton {
     if (_addButton == nil) {
         UIButton *addButton = [[UIButton alloc] init];
-        addButton.backgroundColor = [UIColor redColor];
+        [addButton setBackgroundImage:[UIImage imageNamed:@"pickImageAdd"] forState:UIControlStateNormal];
+        [addButton setBackgroundImage:[UIImage imageNamed:@"pickImageAdd_h"] forState:UIControlStateHighlighted];
         [addButton addTarget:self action:@selector(addButtonClick) forControlEvents:UIControlEventTouchUpInside];
         _addButton = addButton;
         [self addSubview:addButton];

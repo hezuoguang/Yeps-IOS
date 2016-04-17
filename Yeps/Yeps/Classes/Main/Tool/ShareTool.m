@@ -8,6 +8,9 @@
 
 #import "ShareTool.h"
 #import <ShareSDK/ShareSDK.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+//微信SDK头文件
+#import "WXApi.h"
 
 @implementation ShareTool
 
@@ -39,12 +42,20 @@
 }
 
 + (void)shareToWeChat:(NSString *)text title:(NSString *)title image:(id)image url:(NSString *)url success:(void(^)())success error:(void(^)())error cancel:(void(^)())cancel{
+    if (![self canShareToWeChat]) {
+        [SVProgressHUD showErrorWithStatus:@"未安装微信或微信版本过低"];
+        return;
+    }
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters SSDKSetupWeChatParamsByText:text title:title url:[NSURL URLWithString:url] thumbImage:image image:image musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeWechatSession];
     [self shareWithType:SSDKPlatformSubTypeWechatSession parameters:parameters success:success error:error cancel:cancel];
 }
 
 + (void)shareToWeChatTimeline:(NSString *)text title:(NSString *)title image:(id)image url:(NSString *)url success:(void(^)())success error:(void(^)())error cancel:(void(^)())cancel{
+    if (![self canShareToWeChat]) {
+        [SVProgressHUD showErrorWithStatus:@"未安装微信或微信版本过低"];
+        return;
+    }
     text = [NSString stringWithFormat:@"%@ -- %@", title, text];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters SSDKSetupWeChatParamsByText:text title:text url:[NSURL URLWithString:url] thumbImage:image image:image musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeWechatTimeline];
@@ -52,15 +63,32 @@
 }
 
 + (void)shareToQQ:(NSString *)text title:(NSString *)title image:(id)image url:(NSString *)url success:(void(^)())success error:(void(^)())error cancel:(void(^)())cancel{
+    if (![self canShareToQQ]) {
+        [SVProgressHUD showErrorWithStatus:@"未安装QQ或QQ版本过低"];
+        return;
+    }
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters SSDKSetupQQParamsByText:text title:title url:[NSURL URLWithString:url] thumbImage:image image:image type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeQQFriend];
     [self shareWithType:SSDKPlatformSubTypeQQFriend parameters:parameters success:success error:error cancel:cancel];
 }
 
 + (void)shareToQzone:(NSString *)text title:(NSString *)title image:(id)image url:(NSString *)url success:(void(^)())success error:(void(^)())error cancel:(void(^)())cancel{
+    if (![self canShareToQQ]) {
+        [SVProgressHUD showErrorWithStatus:@"未安装QQ或QQ版本过低"];
+        return;
+    }
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters SSDKSetupQQParamsByText:text title:title url:[NSURL URLWithString:url] thumbImage:image image:image type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeQZone];
     [self shareWithType:SSDKPlatformSubTypeQZone parameters:parameters success:success error:error cancel:cancel];
 }
+
++ (BOOL)canShareToQQ {
+    return [QQApiInterface isQQInstalled] && [QQApiInterface isQQSupportApi];
+}
+
++ (BOOL)canShareToWeChat {
+    return [WXApi isWXAppInstalled] && [WXApi isWXAppSupportApi];
+}
+
 
 @end

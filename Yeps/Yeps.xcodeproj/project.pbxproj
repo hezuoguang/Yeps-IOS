@@ -40,6 +40,7 @@
 		30550C561C8A7A4800EAB8D7 /* YepsSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C531C8A7A4800EAB8D7 /* YepsSDK.m */; };
 		30550C571C8A7A4800EAB8D7 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C551C8A7A4800EAB8D7 /* HttpTool.m */; };
 		30550C5A1C8A870700EAB8D7 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C591C8A870700EAB8D7 /* NSString+Extension.m */; };
+		305977531CC12397003FD1C2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 305977521CC12397003FD1C2 /* LaunchScreen.xib */; };
 		3084B1D61CB8CE4C00ECE1F9 /* ZGPostCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1D51CB8CE4C00ECE1F9 /* ZGPostCommentView.m */; };
 		3084B1D91CB9173500ECE1F9 /* ZGShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1D81CB9173500ECE1F9 /* ZGShareView.m */; };
 		3084B1DD1CB91A4C00ECE1F9 /* ZGShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1DC1CB91A4C00ECE1F9 /* ZGShareButton.m */; };
@@ -47,6 +48,9 @@
 		3084B1E91CBA1FB400ECE1F9 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1E31CBA1FB400ECE1F9 /* SDBrowserImageView.m */; };
 		3084B1EA1CBA1FB400ECE1F9 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1E51CBA1FB400ECE1F9 /* SDPhotoBrowser.m */; };
 		3084B1EB1CBA1FB400ECE1F9 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3084B1E81CBA1FB400ECE1F9 /* SDWaitingView.m */; };
+		309843D71CC208BB002F4889 /* ZGProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 309843D61CC208BB002F4889 /* ZGProfileHeaderView.m */; };
+		309843D91CC2091E002F4889 /* ZGProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 309843D81CC2091E002F4889 /* ZGProfileHeaderView.xib */; };
+		309843DC1CC20F92002F4889 /* ZGProfileHeaderViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 309843DB1CC20F92002F4889 /* ZGProfileHeaderViewButton.m */; };
 		30AECCE71CA78C4900A1A58F /* ZGPickImageListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AECCE61CA78C4900A1A58F /* ZGPickImageListView.m */; };
 		30AECCEB1CA7BAEF00A1A58F /* ZGPickImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AECCEA1CA7BAEF00A1A58F /* ZGPickImageView.m */; };
 		30BE4D651C8ABA3C0077C8FB /* SMSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30BE4D641C8ABA3C0077C8FB /* SMSTool.m */; };
@@ -79,7 +83,6 @@
 		30E5C0E41C8182B4000EF4E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30E5C0E31C8182B4000EF4E8 /* Assets.xcassets */; };
 		30E5C0F21C8182B4000EF4E8 /* YepsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C0F11C8182B4000EF4E8 /* YepsTests.m */; };
 		30E5C0FD1C8182B4000EF4E8 /* YepsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C0FC1C8182B4000EF4E8 /* YepsUITests.m */; };
-		30E5C10C1C819810000EF4E8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30E5C10A1C819810000EF4E8 /* LaunchScreen.xib */; };
 		30E5C1151C819CA2000EF4E8 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C1141C819CA2000EF4E8 /* UIColor+Extension.m */; };
 		30E5C1191C81A423000EF4E8 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C1181C81A423000EF4E8 /* MainTabBarController.m */; };
 		30E5C11C1C81A44B000EF4E8 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E5C11B1C81A44B000EF4E8 /* MainNavigationController.m */; };
@@ -173,6 +176,7 @@
 		30550C551C8A7A4800EAB8D7 /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		30550C581C8A870700EAB8D7 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		30550C591C8A870700EAB8D7 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		305977521CC12397003FD1C2 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		3084B1D41CB8CE4C00ECE1F9 /* ZGPostCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPostCommentView.h; sourceTree = "<group>"; };
 		3084B1D51CB8CE4C00ECE1F9 /* ZGPostCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGPostCommentView.m; sourceTree = "<group>"; };
 		3084B1D71CB9173500ECE1F9 /* ZGShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGShareView.h; sourceTree = "<group>"; };
@@ -188,6 +192,11 @@
 		3084B1E61CBA1FB400ECE1F9 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		3084B1E71CBA1FB400ECE1F9 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
 		3084B1E81CBA1FB400ECE1F9 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
+		309843D51CC208BB002F4889 /* ZGProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProfileHeaderView.h; sourceTree = "<group>"; };
+		309843D61CC208BB002F4889 /* ZGProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProfileHeaderView.m; sourceTree = "<group>"; };
+		309843D81CC2091E002F4889 /* ZGProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZGProfileHeaderView.xib; sourceTree = "<group>"; };
+		309843DA1CC20F92002F4889 /* ZGProfileHeaderViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProfileHeaderViewButton.h; sourceTree = "<group>"; };
+		309843DB1CC20F92002F4889 /* ZGProfileHeaderViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProfileHeaderViewButton.m; sourceTree = "<group>"; };
 		30AECCE51CA78C4900A1A58F /* ZGPickImageListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPickImageListView.h; sourceTree = "<group>"; };
 		30AECCE61CA78C4900A1A58F /* ZGPickImageListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGPickImageListView.m; sourceTree = "<group>"; };
 		30AECCE91CA7BAEF00A1A58F /* ZGPickImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPickImageView.h; sourceTree = "<group>"; };
@@ -254,7 +263,6 @@
 		30E5C0F81C8182B4000EF4E8 /* YepsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YepsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E5C0FC1C8182B4000EF4E8 /* YepsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YepsUITests.m; sourceTree = "<group>"; };
 		30E5C0FE1C8182B4000EF4E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		30E5C10B1C819810000EF4E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		30E5C1131C819CA2000EF4E8 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
 		30E5C1141C819CA2000EF4E8 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
 		30E5C1161C819FE8000EF4E8 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -429,6 +437,11 @@
 		302A2BE21C87283F00CF21CE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				309843D51CC208BB002F4889 /* ZGProfileHeaderView.h */,
+				309843D61CC208BB002F4889 /* ZGProfileHeaderView.m */,
+				309843D81CC2091E002F4889 /* ZGProfileHeaderView.xib */,
+				309843DA1CC20F92002F4889 /* ZGProfileHeaderViewButton.h */,
+				309843DB1CC20F92002F4889 /* ZGProfileHeaderViewButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -582,9 +595,9 @@
 				30E5C10D1C819C77000EF4E8 /* Main */,
 				30E5C0DA1C8182B3000EF4E8 /* AppDelegate.h */,
 				30E5C0DB1C8182B3000EF4E8 /* AppDelegate.m */,
+				305977521CC12397003FD1C2 /* LaunchScreen.xib */,
 				30E5C0E31C8182B4000EF4E8 /* Assets.xcassets */,
 				30E5C0E81C8182B4000EF4E8 /* Info.plist */,
-				30E5C10A1C819810000EF4E8 /* LaunchScreen.xib */,
 				30E5C0D71C8182B3000EF4E8 /* Supporting Files */,
 				30E5C1161C819FE8000EF4E8 /* PrefixHeader.pch */,
 			);
@@ -867,7 +880,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30E5C10C1C819810000EF4E8 /* LaunchScreen.xib in Resources */,
+				309843D91CC2091E002F4889 /* ZGProfileHeaderView.xib in Resources */,
+				305977531CC12397003FD1C2 /* LaunchScreen.xib in Resources */,
 				30E5C0E41C8182B4000EF4E8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -971,10 +985,12 @@
 				303FF6B41C957F02002B746F /* ZGStatusTypeButton.m in Sources */,
 				3084B1E91CBA1FB400ECE1F9 /* SDBrowserImageView.m in Sources */,
 				302A2BEE1C87293C00CF21CE /* ZGProfileViewController.m in Sources */,
+				309843DC1CC20F92002F4889 /* ZGProfileHeaderViewButton.m in Sources */,
 				30CAD7BC1CB2624000D98D51 /* ZGCreateVoteView.m in Sources */,
 				30550C561C8A7A4800EAB8D7 /* YepsSDK.m in Sources */,
 				30BE4D721C8AECCD0077C8FB /* PickUniversityViewController.m in Sources */,
 				30BE4D9F1C8F15090077C8FB /* ZGStatusCell.m in Sources */,
+				309843D71CC208BB002F4889 /* ZGProfileHeaderView.m in Sources */,
 				303FF6A81C946502002B746F /* ZGCellToolButton.m in Sources */,
 				3084B1D91CB9173500ECE1F9 /* ZGShareView.m in Sources */,
 				30BE4DB11C8F1D7F0077C8FB /* ZGStatusCellToolBar.m in Sources */,
@@ -1047,17 +1063,6 @@
 			targetProxy = 30E5C0F91C8182B4000EF4E8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		30E5C10A1C819810000EF4E8 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				30E5C10B1C819810000EF4E8 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		30E5C0FF1C8182B4000EF4E8 /* Debug */ = {
@@ -1151,7 +1156,7 @@
 				INFOPLIST_FILE = Yeps/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dev4app.Yeps;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dev4app3.Yeps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1168,7 +1173,7 @@
 				INFOPLIST_FILE = Yeps/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dev4app.Yeps;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dev4app3.Yeps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
