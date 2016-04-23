@@ -7,7 +7,7 @@
 //
 
 #import "ZGSwitchStatusTypeButton.h"
-#define kTypeIcons @[@"typeIcon6", @"typeIcon1", @"typeIcon2", @"typeIcon3", @"typeIcon4", @"typeIcon5"]
+#define kTypeIcons @[@"typeIcon0", @"typeIcon1", @"typeIcon2", @"typeIcon6", @"typeIcon4", @"typeIcon5"]
 @implementation ZGSwitchStatusTypeButton
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -27,7 +27,7 @@
     }
     _type = type;
     [self setTitle:kTypeStrs[type] forState:UIControlStateNormal];
-    [self setImage:[UIImage imageNamed:@"typeIcon0"] forState:UIControlStateNormal];
+    [self setImage:[UIImage imageNamed:@"typeIcon3"] forState:UIControlStateNormal];
     [self setImage:[UIImage imageNamed:kTypeIcons[type]] forState:UIControlStateHighlighted];
 }
 

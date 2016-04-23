@@ -10,13 +10,35 @@
 #import "HttpTool.h"
 #import "NSString+Extension.h"
 #import <FMDB.h>
+#import <SDWebImage/SDWebImageManager.h>
 #import "UserTool.h"
 #import "UploadImageTool.h"
-#define HOST  @"http://120.27.117.222/yeps/api/"
+#define HOST  @"http://169.254.118.43:8000/yeps/api/"
 #define DBPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Yeps.sqlite"]
 
 static FMDatabase *_db;
 @implementation YepsSDK
+
++ (CGFloat)cacheSize {
+    CGFloat size = 0;
+    size += [[SDImageCache sharedImageCache] getSize];
+//    NSFileManager *mgr = [NSFileManager defaultManager];
+//    if ([mgr fileExistsAtPath:DBPath]) {
+//        size += [[mgr attributesOfItemAtPath:DBPath error:nil] fileSize];
+//    }
+    size = size / (1024.0 * 1024.0);
+    return size;
+}
+
++ (void)clearCache {
+    [[SDImageCache sharedImageCache] clearDisk];
+    NSString *sql1 = @"delete from university";
+    NSString *sql2 = @"delete from status";
+    NSString *sql3 = @"delete from comment";
+    [[self db] executeQuery:sql1];
+    [[self db] executeQuery:sql2];
+    [[self db] executeQuery:sql3];
+}
 
 + (FMDatabase *)db {
     if (_db == nil) {
@@ -249,6 +271,10 @@ static FMDatabase *_db;
             }
         }
     } failure:failure];
+}
+
++ (void)logout {
+    [UserTool logout];
 }
 
 //切换学校
@@ -531,6 +557,122 @@ static FMDatabase *_db;
     } failure:failure];
 }
 
+//修改密码
++ (void)updatePassword:(NSString *)oldPwd pwd:(NSString *)pwd success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"update_pwd";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"old_pwd"] = [oldPwd md5String];
+    data[@"new_pwd"] = [pwd md5String];
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//修改头像
++ (void)updatePhoto:(UIImage *)image success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    [UploadImageTool uploadimage:image success:^(NSString *url) {
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"action"] = @"update_photo";
+        NSMutableDictionary *data = [NSMutableDictionary dictionary];
+        data[@"photo"] = url;
+        data[@"access_token"] = [UserTool getAccessToken];
+        params[@"data"] = [NSString jsonStringWithObj:data];
+        [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+            if ([data[@"ret"] isEqualToString:@"0001"]) {
+                if (success) {
+                    [UserTool saveUserPhoto:url];
+                    success(data[@"data"]);
+                }
+            } else {
+                if (error) {
+                    error(data);
+                }
+            }
+        } failure:failure];
+    } failure:failure];
+}
+
+//修改个人页面背景图片
++ (void)updateProfileBackImage:(UIImage *)image success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    [UploadImageTool uploadimage:image success:^(NSString *url) {
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"action"] = @"update_profile_back";
+        NSMutableDictionary *data = [NSMutableDictionary dictionary];
+        data[@"photo"] = url;
+        data[@"access_token"] = [UserTool getAccessToken];
+        params[@"data"] = [NSString jsonStringWithObj:data];
+        [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+            if ([data[@"ret"] isEqualToString:@"0001"]) {
+                if (success) {
+                    [UserTool saveUserProfileBack:url];
+                    success(data[@"data"]);
+                }
+            } else {
+                if (error) {
+                    error(data);
+                }
+            }
+        } failure:failure];
+    } failure:failure];
+}
+
+//修改个人资料
++ (void)updateInfo:(NSString *)nick email:(NSString *)email birthday:(NSString *)birthday sex:(NSInteger)sex success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"update_info";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"nick"] = nick;
+    data[@"email"] = email;
+    data[@"birthday"] = birthday;
+    data[@"sex"] = @(sex);
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            [UserTool saveCurrentUserInfo:data[@"data"]];
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//更新用户标签
++ (void)updateTagList:(NSArray *)tag_list success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"update_tag_list";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"tag_list"] = tag_list;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            [UserTool saveCurrentUserInfo:data[@"data"]];
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
 
 
 @end

@@ -19,7 +19,11 @@
     [mgr POST:url parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         @try {
             if (success) {
-                success(responseObject);
+                if ([responseObject[@"ret"] isEqualToString:@"1114"]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kACCESSTOKENERRORNOTIFI object:nil];
+                } else {
+                    success(responseObject);
+                }
                 
             }
         }
@@ -52,9 +56,10 @@
     
     [mgr GET:url parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         @try {
-            if (success) {
+            if ([responseObject[@"ret"] isEqualToString:@"1114"]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kACCESSTOKENERRORNOTIFI object:nil];
+            } else {
                 success(responseObject);
-                
             }
         }
         @catch (NSException *exception) {

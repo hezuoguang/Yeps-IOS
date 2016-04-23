@@ -10,6 +10,7 @@
 #import "ZGSwitchStatusTypeButton.h"
 #import <pop/POP.h>
 #import "PostStatusViewController.h"
+#import "ZGProfileTool.h"
 
 @interface SwitchStatusTypeViewController()
 
@@ -23,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"switchBack"]];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"profileBack5"]];
     self.view.backgroundColor = [UIColor popBackGroundColor];
     
     NSInteger count = kTypeStrs.count;
@@ -52,7 +55,7 @@
     
     CGFloat baseY = self.view.center.y - kZGSwitchStatusTypeButtonH * 0.7;
     UILabel *label = [[UILabel alloc] init];
-    label.text = @"Yeps 一见倾心";
+    label.text = @"Yeps 分享校园生活";
     label.alpha = 1.0;
     label.textColor = [UIColor clearColor];
     label.textAlignment = NSTextAlignmentCenter;

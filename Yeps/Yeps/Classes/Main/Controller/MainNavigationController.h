@@ -14,4 +14,7 @@
 /** 恢复透明导航*/
 - (void)resetTransparent;
 
++ (void)setTransparent:(UINavigationController *)nav;
+
++ (void)resetTransparent:(UINavigationController *)nav;
 @end

@@ -61,7 +61,7 @@
         [self updateCloseBtnStatus];
     };
     
-    selectTagListView.backgroundColor = [UIColor popBorderColor];
+    selectTagListView.backgroundColor = [UIColor popBackGroundColor];
     self.selectTagListView = selectTagListView;
     [self.view addSubview:selectTagListView];
     
@@ -74,18 +74,20 @@
         [self updateCloseBtnStatus];
     };
     tagListView.cellStyle = ZGTagCollectionViewCellStyleHighlight;
-    tagListView.backgroundColor = [UIColor popBorderColor];
+    tagListView.backgroundColor = [UIColor popBackGroundColor];
     self.tagListView = tagListView;
     [self.view addSubview:tagListView];
     
     
     UILabel *label = [[UILabel alloc] init];
     label.text = @"设置标签";
+    label.font = [UIFont systemFontOfSize:17];
+    label.textColor = [UIColor popNavFontColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.frame = CGRectMake(0, 20, screenW, 44);
     UIView *navgationBar = [[UIView alloc] init];
     navgationBar.frame = CGRectMake(0, 0, screenW, 64);
-    navgationBar.backgroundColor = [UIColor popFontGrayColor];
+    navgationBar.backgroundColor = [UIColor popNavBackColor];
     navgationBar.alpha = 0.95;
     [navgationBar addSubview:label];
     [self.view addSubview:navgationBar];
@@ -128,8 +130,10 @@
 - (void)closeBtnClick {
     if (self.didSelectTagsBlock) {
         self.didSelectTagsBlock(self.selectTagListView.tags);
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 

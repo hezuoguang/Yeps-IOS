@@ -25,6 +25,7 @@
         self.backgroundColor = [UIColor popBorderColor];
         self.backView = view;
         self.backView.backgroundColor = [UIColor popMaskColor];
+        self.backView.userInteractionEnabled = NO;
         self.titleLabel.font = [UIFont systemFontOfSize:14];
         [self setImage:[UIImage imageNamed:@"vote_icon"] forState:UIControlStateNormal];
         [self setImage:[UIImage imageNamed:@"vote_icon_s"] forState:UIControlStateSelected];

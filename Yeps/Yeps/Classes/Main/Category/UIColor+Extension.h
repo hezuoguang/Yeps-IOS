@@ -21,6 +21,8 @@
 //导航背景颜色
 + (instancetype)popNavBackColor;
 
++ (UIImage *)popNavBackImage;
+
 //导航字体颜色
 + (instancetype)popNavFontColor;
 

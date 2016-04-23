@@ -10,6 +10,9 @@
 
 @interface YepsSDK : NSObject
 
++ (CGFloat)cacheSize;
++ (void)clearCache;
+
 + (void)updateStatusCount:(NSDictionary *)statusCountDict status_id:(NSInteger)status_id;
 + (void)updateStatusVote:(NSDictionary *)voteDict status_id:(NSInteger)status_id;
 //获取系统标签
@@ -32,6 +35,9 @@
 
 //登录
 + (void)loginWithPhone:(NSString *)phone pwd:(NSString *)pwd success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//退出登录
++ (void)logout;
 
 //切换活动学校
 + (void)switchActiveUniversity:(NSString *)university success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
@@ -76,4 +82,20 @@
 
 //参与投票
 + (void)joinVote:(NSInteger)select content:(NSString *)content vote_sha1:(NSString *)vote_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//修改密码
++ (void)updatePassword:(NSString *)oldPwd pwd:(NSString *)pwd success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//修改头像
++ (void)updatePhoto:(UIImage *)image success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//修改个人页面背景图片
++ (void)updateProfileBackImage:(UIImage *)image success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//修改个人资料
++ (void)updateInfo:(NSString *)nick email:(NSString *)email birthday:(NSString *)birthday sex:(NSInteger)sex success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//更新用户标签
++ (void)updateTagList:(NSArray *)tag_list success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
 @end

@@ -231,6 +231,21 @@
 }
 
 - (BOOL)validate {
+    if (self.titleTexiView.text.length <= 0) {
+        [SVProgressHUD showErrorWithStatus:@"请填写标题" maskType:SVProgressHUDMaskTypeGradient];
+        return NO;
+    }
+    if (self.contentTextView.text.length <= 0) {
+        [SVProgressHUD showErrorWithStatus:@"请填写内容" maskType:SVProgressHUDMaskTypeGradient];
+        return NO;
+    }
+    if (self.type == 1) {//投票
+        BOOL flag = [self.voteView validate];
+        if (!flag) {
+           [SVProgressHUD showErrorWithStatus:@"投票选项填写不完整" maskType:SVProgressHUDMaskTypeGradient];
+        }
+        return flag;
+    }
     return YES;
 }
 
@@ -238,6 +253,7 @@
     if (![self validate]) {
         return;
     }
+    [self.view endEditing:YES];
     NSMutableDictionary *vote = [NSMutableDictionary dictionary];
     if (self.type == 1) {
         vote[@"vote_option"] = [self.voteView voteOptions];

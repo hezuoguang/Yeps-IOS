@@ -16,14 +16,14 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="typeIcon3" translatesAutoresizingMaskIntoConstraints="NO" id="lwW-cF-BLD" customClass="ZGPhotoView">
-                    <rect key="frame" x="250" y="30" width="100" height="100"/>
+                    <rect key="frame" x="255" y="35" width="90" height="90"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="PN0-Mh-4iH"/>
-                        <constraint firstAttribute="height" constant="100" id="sEb-2a-1tQ"/>
+                        <constraint firstAttribute="width" constant="90" id="PN0-Mh-4iH"/>
+                        <constraint firstAttribute="height" constant="90" id="sEb-2a-1tQ"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微米" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6X-J9-7UR">
-                    <rect key="frame" x="0.0" y="142" width="600" height="21"/>
+                    <rect key="frame" x="0.0" y="137" width="600" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="cxs-bg-GUm"/>
                     </constraints>
@@ -32,7 +32,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在路上..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pUT-mN-4JE">
-                    <rect key="frame" x="40" y="175" width="520" height="42"/>
+                    <rect key="frame" x="40" y="163" width="520" height="42"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="rk9-lS-Wm2"/>
                     </constraints>
@@ -79,13 +79,13 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="pUT-mN-4JE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="40" id="12w-rJ-hRS"/>
                 <constraint firstItem="lwW-cF-BLD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-55" id="8gI-7B-wf5"/>
                 <constraint firstItem="PUi-i1-PNY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Atn-de-cWu"/>
                 <constraint firstAttribute="bottom" secondItem="hcq-cE-Sa1" secondAttribute="bottom" constant="10" id="Gb2-Po-XT8"/>
-                <constraint firstItem="pUT-mN-4JE" firstAttribute="top" secondItem="r6X-J9-7UR" secondAttribute="bottom" constant="12" id="Hlt-Cl-iiX"/>
+                <constraint firstItem="pUT-mN-4JE" firstAttribute="top" secondItem="r6X-J9-7UR" secondAttribute="bottom" constant="5" id="Hlt-Cl-iiX"/>
                 <constraint firstAttribute="bottom" secondItem="PUi-i1-PNY" secondAttribute="bottom" id="K2A-hx-uT2"/>
                 <constraint firstAttribute="trailing" secondItem="pUT-mN-4JE" secondAttribute="trailing" constant="40" id="M5X-ei-rwq"/>
                 <constraint firstAttribute="trailing" secondItem="r6X-J9-7UR" secondAttribute="trailing" id="PpC-BC-PD0"/>

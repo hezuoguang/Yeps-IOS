@@ -16,6 +16,8 @@
 #import "StatusDetailViewController.h"
 #import "ZGBarButtonItem.h"
 #import "PickUniversityViewController.h"
+#import "UnLoginViewController.h"
+#import "MainNavigationController.h"
 
 @interface ZGHomeViewController ()<ZGTableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
@@ -80,6 +82,8 @@
     UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipe)];
     rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     [self.view addGestureRecognizer:rightSwipe];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(accessTokenErrorNotifi) name:kACCESSTOKENERRORNOTIFI object:nil];
 }
 
 - (void)leftSwipe {
@@ -349,6 +353,23 @@
         [SVProgressHUD showErrorWithStatus:@"网络故障"];
         
     }];
+}
+
+- (void)accessTokenErrorNotifi {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录已失效" message:@"请重新登录" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [YepsSDK logout];
+        MainNavigationController *nav = [[MainNavigationController alloc] init];
+        UnLoginViewController *unLoginVC = [[UnLoginViewController alloc] init];
+        [nav pushViewController:unLoginVC animated:NO];
+        [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+    }];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

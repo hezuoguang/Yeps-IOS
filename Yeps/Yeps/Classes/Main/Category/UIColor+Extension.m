@@ -19,7 +19,8 @@
 }
 
 + (instancetype)popBackImageColor {
-    return [UIColor colorWithPatternImage:[UIImage imageNamed:@"backImage"]];
+//    return [UIColor colorWithPatternImage:[UIImage imageNamed:@"backImage"]];
+    return [UIColor colorWithPatternImage:[self popNavBackImage]];
 }
 
 + (instancetype)popTabBarColor {
@@ -28,7 +29,12 @@
 
 + (instancetype)popNavBackColor {
 //    return [self colorWithR:236 g:240 b:241 alpha:0.98];
-    return [self colorWithR:142 g:68 b:173 alpha:0.96];
+//    return [self colorWithR:142 g:68 b:173 alpha:0.96];
+    return [UIColor colorWithPatternImage:[self popNavBackImage]];
+}
+
++ (UIImage *)popNavBackImage {
+    return [UIImage imageNamed:@"navBackImage"];
 }
 
 + (instancetype)popShadowColor {

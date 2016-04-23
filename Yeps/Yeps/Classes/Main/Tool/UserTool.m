@@ -15,6 +15,9 @@
 #define ACCESS_TOKEN_KEY @"ACCESS_TOKEN_KEY"
 #define USER_SHA1_KEY @"USER_SHA1_KEY"
 #define Active_University_KEY @"Active_University_KEY"
+#define USER_NICK_KEY @"USER_NICK_KEY"
+#define USER_PHOTO_KEY @"USER_PHOTO_KEY"
+#define USER_PROFILE_BACK_KEY @"USER_PROFILE_BACK_KEY"
 
 @implementation UserTool
 
@@ -22,6 +25,10 @@
     [self saveAccessToken:infoDict[@"access_token"]];
     [self saveUserSha1:infoDict[@"user_sha1"]];
     [self saveActiveUniversity:infoDict[@"active_university"]];
+    [self saveUserNick:infoDict[@"nick"]];
+    [self saveUserPhoto:infoDict[@"photo"]];
+    NSArray *images = infoDict[@"image_list"];
+    [self saveUserProfileBack:images.firstObject];
     [infoDict writeToFile:kCurrentUserInfoPath atomically:YES];
 }
 
@@ -48,6 +55,27 @@
     [userDefault synchronize];
 }
 
++ (void)saveUserPhoto:(NSString *)photo {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setValue:photo forKey:USER_PHOTO_KEY];
+    [userDefault synchronize];
+}
+
++ (void)saveUserProfileBack:(NSString *)photo {
+    if (photo == nil) {
+        photo = @"";
+    }
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setValue:photo forKey:USER_PROFILE_BACK_KEY];
+    [userDefault synchronize];
+}
+
++ (void)saveUserNick:(NSString *)nick {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setValue:nick forKey:USER_NICK_KEY];
+    [userDefault synchronize];
+}
+
 + (NSString *)getAccessToken {
     return [[NSUserDefaults standardUserDefaults] valueForKey:ACCESS_TOKEN_KEY];
 }
@@ -58,6 +86,24 @@
 
 + (NSString *)getActiveUniversity {
     return [[NSUserDefaults standardUserDefaults] valueForKey:Active_University_KEY];
+}
+
++ (NSString *)getUserNick {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:USER_NICK_KEY];
+}
+
++ (NSString *)getUserPhoto {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:USER_PHOTO_KEY];
+}
+
++ (NSString *)getUserProfileBack {
+    return [[NSUserDefaults standardUserDefaults] valueForKey:USER_PROFILE_BACK_KEY];
+}
+
++ (void)logout {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:ACCESS_TOKEN_KEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_SHA1_KEY];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:Active_University_KEY];
 }
 
 @end

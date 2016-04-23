@@ -91,14 +91,15 @@
 }
 
 - (void)likeClick:(ZGCellToolButton *)btn {
-    btn.userInteractionEnabled = NO;
+    btn.selected = !btn.selected;
+//    btn.userInteractionEnabled = NO;
     [YepsSDK clickLike:self.status.status_sha1 success:^(id data) {
         [self postNotifi:data];
-        btn.userInteractionEnabled = YES;
+//        btn.userInteractionEnabled = YES;
     } error:^(id data) {
-        btn.userInteractionEnabled = YES;
+//        btn.userInteractionEnabled = YES;
     } failure:^(NSError *error) {
-        btn.userInteractionEnabled = YES;
+//        btn.userInteractionEnabled = YES;
     }];
 }
 

@@ -16,6 +16,12 @@
 
 + (void)saveUserSha1:(NSString *)user_sha1;
 
++ (void)saveUserNick:(NSString *)nick;
+
++ (void)saveUserPhoto:(NSString *)photo;
+
++ (void)saveUserProfileBack:(NSString *)photo;
+
 + (void)saveAccessToken:(NSString *)access_token;
 
 + (void)saveActiveUniversity:(NSString *)active_university;
@@ -25,5 +31,13 @@
 + (NSString *)getAccessToken;
 
 + (NSString *)getActiveUniversity;
+
++ (NSString *)getUserNick;
+
++ (NSString *)getUserPhoto;
+
++ (NSString *)getUserProfileBack;
+
++ (void)logout;
 
 @end

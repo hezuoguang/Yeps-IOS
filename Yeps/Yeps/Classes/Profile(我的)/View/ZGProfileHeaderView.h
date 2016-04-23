@@ -25,4 +25,7 @@
 
 - (BOOL)nickLabelStatus;
 
+/** 更新*/
+- (void)update;
+
 @end

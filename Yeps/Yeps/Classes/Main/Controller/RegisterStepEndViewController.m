@@ -16,6 +16,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UserTool.h"
+#import "MainNavigationController.h"
 
 @interface RegisterStepEndViewController ()<UITextFieldDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -137,6 +138,7 @@
         [self.tagListView setTags:tags];
         self.status |= (1 << 3);
         [self updateNextBtnStatus];
+        [self dismissViewControllerAnimated:YES completion:nil];
     };
     [self presentViewController:pick animated:YES completion:nil];
 }
@@ -190,6 +192,7 @@
         }
         pick.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
+    [MainNavigationController resetTransparent:pick];
     [self presentViewController:pick animated:YES completion:nil];
 }
 

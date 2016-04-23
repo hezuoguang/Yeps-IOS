@@ -19,7 +19,8 @@
 - (UIButton *)deleteBtn {
     if (_deleteBtn == nil) {
         UIButton *deleteBtn = [[UIButton alloc] init];
-        deleteBtn.backgroundColor = [UIColor redColor];
+        [deleteBtn setImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateNormal];
+        [deleteBtn setImage:[UIImage imageNamed:@"close_icon_h"] forState:UIControlStateHighlighted];
         [self addSubview:deleteBtn];
         _deleteBtn = deleteBtn;
         [deleteBtn addTarget:self action:@selector(deleteBtnClick) forControlEvents:UIControlEventTouchUpInside];

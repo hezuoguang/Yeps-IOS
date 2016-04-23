@@ -37,6 +37,16 @@
 		303FF6BA1C998869002B746F /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 303FF6B91C998869002B746F /* CommentModel.m */; };
 		303FF6BD1C99887F002B746F /* CommentFrameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 303FF6BC1C99887F002B746F /* CommentFrameModel.m */; };
 		303FF6C01C9988A0002B746F /* ZGCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 303FF6BF1C9988A0002B746F /* ZGCommentCell.m */; };
+		304BFFDE1CC88D2D00156B43 /* ZGProfileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 304BFFDD1CC88D2D00156B43 /* ZGProfileTool.m */; };
+		304BFFE11CC88DED00156B43 /* ZGProfileSettingItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 304BFFE01CC88DED00156B43 /* ZGProfileSettingItemModel.m */; };
+		304BFFE41CC8AFC600156B43 /* ZGProfileSettingItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304BFFE31CC8AFC600156B43 /* ZGProfileSettingItemCell.m */; };
+		304BFFE71CC8EC3F00156B43 /* ZGProfileSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304BFFE61CC8EC3F00156B43 /* ZGProfileSettingViewController.m */; };
+		304BFFEF1CC90CDC00156B43 /* ZGModifyPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304BFFEE1CC90CDC00156B43 /* ZGModifyPwdViewController.m */; };
+		304BFFF11CC90CEA00156B43 /* ZGModifyPwdViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 304BFFF01CC90CEA00156B43 /* ZGModifyPwdViewController.storyboard */; };
+		304BFFF41CCA32DF00156B43 /* ZGEditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 304BFFF31CCA32DF00156B43 /* ZGEditProfileViewController.m */; };
+		304BFFF61CCA32E700156B43 /* ZGEditProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 304BFFF51CCA32E700156B43 /* ZGEditProfileViewController.storyboard */; };
+		304BFFF91CCA3E9E00156B43 /* ZGPrefileTipLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 304BFFF81CCA3E9E00156B43 /* ZGPrefileTipLabel.m */; };
+		304BFFFC1CCA3F8400156B43 /* ZGProfileTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 304BFFFB1CCA3F8400156B43 /* ZGProfileTextField.m */; };
 		30550C561C8A7A4800EAB8D7 /* YepsSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C531C8A7A4800EAB8D7 /* YepsSDK.m */; };
 		30550C571C8A7A4800EAB8D7 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C551C8A7A4800EAB8D7 /* HttpTool.m */; };
 		30550C5A1C8A870700EAB8D7 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 30550C591C8A870700EAB8D7 /* NSString+Extension.m */; };
@@ -170,6 +180,24 @@
 		303FF6BC1C99887F002B746F /* CommentFrameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentFrameModel.m; sourceTree = "<group>"; };
 		303FF6BE1C9988A0002B746F /* ZGCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGCommentCell.h; sourceTree = "<group>"; };
 		303FF6BF1C9988A0002B746F /* ZGCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGCommentCell.m; sourceTree = "<group>"; };
+		304BFFDC1CC88D2D00156B43 /* ZGProfileTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProfileTool.h; sourceTree = "<group>"; };
+		304BFFDD1CC88D2D00156B43 /* ZGProfileTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProfileTool.m; sourceTree = "<group>"; };
+		304BFFDF1CC88DED00156B43 /* ZGProfileSettingItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProfileSettingItemModel.h; sourceTree = "<group>"; };
+		304BFFE01CC88DED00156B43 /* ZGProfileSettingItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProfileSettingItemModel.m; sourceTree = "<group>"; };
+		304BFFE21CC8AFC600156B43 /* ZGProfileSettingItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProfileSettingItemCell.h; sourceTree = "<group>"; };
+		304BFFE31CC8AFC600156B43 /* ZGProfileSettingItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProfileSettingItemCell.m; sourceTree = "<group>"; };
+		304BFFE51CC8EC3F00156B43 /* ZGProfileSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProfileSettingViewController.h; sourceTree = "<group>"; };
+		304BFFE61CC8EC3F00156B43 /* ZGProfileSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProfileSettingViewController.m; sourceTree = "<group>"; };
+		304BFFED1CC90CDC00156B43 /* ZGModifyPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGModifyPwdViewController.h; sourceTree = "<group>"; };
+		304BFFEE1CC90CDC00156B43 /* ZGModifyPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGModifyPwdViewController.m; sourceTree = "<group>"; };
+		304BFFF01CC90CEA00156B43 /* ZGModifyPwdViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ZGModifyPwdViewController.storyboard; sourceTree = "<group>"; };
+		304BFFF21CCA32DF00156B43 /* ZGEditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGEditProfileViewController.h; sourceTree = "<group>"; };
+		304BFFF31CCA32DF00156B43 /* ZGEditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGEditProfileViewController.m; sourceTree = "<group>"; };
+		304BFFF51CCA32E700156B43 /* ZGEditProfileViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ZGEditProfileViewController.storyboard; sourceTree = "<group>"; };
+		304BFFF71CCA3E9E00156B43 /* ZGPrefileTipLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGPrefileTipLabel.h; sourceTree = "<group>"; };
+		304BFFF81CCA3E9E00156B43 /* ZGPrefileTipLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGPrefileTipLabel.m; sourceTree = "<group>"; };
+		304BFFFA1CCA3F8400156B43 /* ZGProfileTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProfileTextField.h; sourceTree = "<group>"; };
+		304BFFFB1CCA3F8400156B43 /* ZGProfileTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProfileTextField.m; sourceTree = "<group>"; };
 		30550C521C8A7A4800EAB8D7 /* YepsSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YepsSDK.h; sourceTree = "<group>"; };
 		30550C531C8A7A4800EAB8D7 /* YepsSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YepsSDK.m; sourceTree = "<group>"; };
 		30550C541C8A7A4800EAB8D7 /* HttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
@@ -410,6 +438,7 @@
 		302A2BDF1C87283F00CF21CE /* Profile(我的) */ = {
 			isa = PBXGroup;
 			children = (
+				304BFFDB1CC88D1700156B43 /* Tool */,
 				302A2BE01C87283F00CF21CE /* Controller */,
 				302A2BE11C87283F00CF21CE /* Model */,
 				302A2BE21C87283F00CF21CE /* View */,
@@ -423,6 +452,14 @@
 			children = (
 				302A2BEC1C87293C00CF21CE /* ZGProfileViewController.h */,
 				302A2BED1C87293C00CF21CE /* ZGProfileViewController.m */,
+				304BFFE51CC8EC3F00156B43 /* ZGProfileSettingViewController.h */,
+				304BFFE61CC8EC3F00156B43 /* ZGProfileSettingViewController.m */,
+				304BFFED1CC90CDC00156B43 /* ZGModifyPwdViewController.h */,
+				304BFFEE1CC90CDC00156B43 /* ZGModifyPwdViewController.m */,
+				304BFFF01CC90CEA00156B43 /* ZGModifyPwdViewController.storyboard */,
+				304BFFF21CCA32DF00156B43 /* ZGEditProfileViewController.h */,
+				304BFFF31CCA32DF00156B43 /* ZGEditProfileViewController.m */,
+				304BFFF51CCA32E700156B43 /* ZGEditProfileViewController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -430,6 +467,8 @@
 		302A2BE11C87283F00CF21CE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				304BFFDF1CC88DED00156B43 /* ZGProfileSettingItemModel.h */,
+				304BFFE01CC88DED00156B43 /* ZGProfileSettingItemModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -442,6 +481,12 @@
 				309843D81CC2091E002F4889 /* ZGProfileHeaderView.xib */,
 				309843DA1CC20F92002F4889 /* ZGProfileHeaderViewButton.h */,
 				309843DB1CC20F92002F4889 /* ZGProfileHeaderViewButton.m */,
+				304BFFE21CC8AFC600156B43 /* ZGProfileSettingItemCell.h */,
+				304BFFE31CC8AFC600156B43 /* ZGProfileSettingItemCell.m */,
+				304BFFF71CCA3E9E00156B43 /* ZGPrefileTipLabel.h */,
+				304BFFF81CCA3E9E00156B43 /* ZGPrefileTipLabel.m */,
+				304BFFFA1CCA3F8400156B43 /* ZGProfileTextField.h */,
+				304BFFFB1CCA3F8400156B43 /* ZGProfileTextField.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -484,6 +529,15 @@
 				303FF6A71C946502002B746F /* ZGCellToolButton.m */,
 			);
 			name = StatusCell;
+			sourceTree = "<group>";
+		};
+		304BFFDB1CC88D1700156B43 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				304BFFDC1CC88D2D00156B43 /* ZGProfileTool.h */,
+				304BFFDD1CC88D2D00156B43 /* ZGProfileTool.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		30550C511C8A7A4800EAB8D7 /* Tool */ = {
@@ -881,7 +935,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				309843D91CC2091E002F4889 /* ZGProfileHeaderView.xib in Resources */,
+				304BFFF61CCA32E700156B43 /* ZGEditProfileViewController.storyboard in Resources */,
 				305977531CC12397003FD1C2 /* LaunchScreen.xib in Resources */,
+				304BFFF11CC90CEA00156B43 /* ZGModifyPwdViewController.storyboard in Resources */,
 				30E5C0E41C8182B4000EF4E8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -958,6 +1014,7 @@
 				30BE4DAE1C8F16970077C8FB /* ZGTextView.m in Sources */,
 				30BE4D9C1C8DB5FB0077C8FB /* VoteModel.m in Sources */,
 				3084B1EB1CBA1FB400ECE1F9 /* SDWaitingView.m in Sources */,
+				304BFFF91CCA3E9E00156B43 /* ZGPrefileTipLabel.m in Sources */,
 				30AECCE71CA78C4900A1A58F /* ZGPickImageListView.m in Sources */,
 				303FF6BD1C99887F002B746F /* CommentFrameModel.m in Sources */,
 				301323491C9E9C4700AB7011 /* EmotionTextAttachment.m in Sources */,
@@ -974,15 +1031,19 @@
 				30BE4D951C8C622E0077C8FB /* LoginStepTwoViewController.m in Sources */,
 				302A2BFC1C887D8300CF21CE /* RegisterStepTwoViewController.m in Sources */,
 				302A2BE51C87287500CF21CE /* ZGHomeViewController.m in Sources */,
+				304BFFF41CCA32DF00156B43 /* ZGEditProfileViewController.m in Sources */,
 				30E5C11C1C81A44B000EF4E8 /* MainNavigationController.m in Sources */,
 				30BE4D991C8DB5030077C8FB /* StatusModel.m in Sources */,
 				30AECCEB1CA7BAEF00A1A58F /* ZGPickImageView.m in Sources */,
 				30BE4DA51C8F15F60077C8FB /* ZGPhotoView.m in Sources */,
+				304BFFFC1CCA3F8400156B43 /* ZGProfileTextField.m in Sources */,
 				30BE4D811C8C12550077C8FB /* ZGTagCollectionViewCell.m in Sources */,
 				302A2C091C89D49000CF21CE /* RegisterStepEndViewController.m in Sources */,
 				3084B1EA1CBA1FB400ECE1F9 /* SDPhotoBrowser.m in Sources */,
+				304BFFDE1CC88D2D00156B43 /* ZGProfileTool.m in Sources */,
 				30BE4D911C8C5BBC0077C8FB /* LoginViewStepOneController.m in Sources */,
 				303FF6B41C957F02002B746F /* ZGStatusTypeButton.m in Sources */,
+				304BFFE11CC88DED00156B43 /* ZGProfileSettingItemModel.m in Sources */,
 				3084B1E91CBA1FB400ECE1F9 /* SDBrowserImageView.m in Sources */,
 				302A2BEE1C87293C00CF21CE /* ZGProfileViewController.m in Sources */,
 				309843DC1CC20F92002F4889 /* ZGProfileHeaderViewButton.m in Sources */,
@@ -994,10 +1055,13 @@
 				303FF6A81C946502002B746F /* ZGCellToolButton.m in Sources */,
 				3084B1D91CB9173500ECE1F9 /* ZGShareView.m in Sources */,
 				30BE4DB11C8F1D7F0077C8FB /* ZGStatusCellToolBar.m in Sources */,
+				304BFFEF1CC90CDC00156B43 /* ZGModifyPwdViewController.m in Sources */,
 				30E5C11F1C81A4C0000EF4E8 /* ZGTabBar.m in Sources */,
 				302A2BF91C886DA200CF21CE /* ZGTextField.m in Sources */,
 				303FF6A31C9322D9002B746F /* UIFont+Extension.m in Sources */,
+				304BFFE41CC8AFC600156B43 /* ZGProfileSettingItemCell.m in Sources */,
 				30E5C0DC1C8182B3000EF4E8 /* AppDelegate.m in Sources */,
+				304BFFE71CC8EC3F00156B43 /* ZGProfileSettingViewController.m in Sources */,
 				30E5C0D91C8182B3000EF4E8 /* main.m in Sources */,
 				302A2BF51C87368200CF21CE /* RegisterStepOneViewController.m in Sources */,
 				303FF6AE1C955996002B746F /* ZGTableView.m in Sources */,

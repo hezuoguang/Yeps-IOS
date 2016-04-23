@@ -211,10 +211,12 @@
                 } else {
                     [self.voteBtn setTitle:@"已结束" forState:UIControlStateNormal];
                 }
+                self.userInteractionEnabled = NO;
                 
             } else {
                 self.voteBtn.hidden = NO;
                 [self.voteBtn setTitle:@"投票" forState:UIControlStateNormal];
+                self.userInteractionEnabled = YES;
             }
         }
     }

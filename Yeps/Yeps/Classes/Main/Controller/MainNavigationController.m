@@ -44,17 +44,34 @@
 }
 
 - (void)setTransparent {
-    [self.navigationBar setBackgroundImage:[UIColor imageWithColor:[UIColor clearColor] size:CGSizeMake(5, 5)] forBarMetrics:UIBarMetricsDefault];
-    self.navigationBar.shadowImage = [[UIImage alloc] init];
-    self.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    self.navigationBar.translucent = YES;
+//    [self.navigationBar setBackgroundImage:[UIColor imageWithColor:[UIColor clearColor] size:CGSizeMake(5, 5)] forBarMetrics:UIBarMetricsDefault];
+//    self.navigationBar.shadowImage = [[UIImage alloc] init];
+//    self.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+//    self.navigationBar.translucent = YES;
+    [MainNavigationController setTransparent:self];
 }
 
 - (void)resetTransparent {
-    [self.navigationBar setBackgroundImage:[UIColor imageWithColor:[UIColor popNavBackColor] size:CGSizeMake(5, 5)] forBarMetrics:UIBarMetricsDefault];
-    self.navigationBar.shadowImage = [[UIImage alloc] init];
-    self.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    self.navigationBar.translucent = YES;
+//    [self.navigationBar setBackgroundImage:[UIColor imageWithColor:[UIColor popNavBackColor] size:CGSizeMake(5, 5)] forBarMetrics:UIBarMetricsDefault];
+//    self.navigationBar.shadowImage = [[UIImage alloc] init];
+//    self.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+//    self.navigationBar.translucent = YES;
+    [MainNavigationController resetTransparent:self];
+}
+
++ (void)setTransparent:(UINavigationController *)nav {
+    [nav.navigationBar setBackgroundImage:[UIColor imageWithColor:[UIColor clearColor] size:CGSizeMake(5, 5)] forBarMetrics:UIBarMetricsDefault];
+    nav.navigationBar.shadowImage = [[UIImage alloc] init];
+    nav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    nav.navigationBar.translucent = YES;
+}
+
++ (void)resetTransparent:(UINavigationController *)nav {
+//    [nav.navigationBar setBackgroundImage:[UIColor imageWithColor:[UIColor popNavBackColor] size:CGSizeMake(5, 5)] forBarMetrics:UIBarMetricsDefault];
+    [nav.navigationBar setBackgroundImage:[UIColor popNavBackImage] forBarMetrics:UIBarMetricsDefault];
+    nav.navigationBar.shadowImage = [[UIImage alloc] init];
+    nav.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    nav.navigationBar.translucent = YES;
 }
 
 - (void)didReceiveMemoryWarning {
