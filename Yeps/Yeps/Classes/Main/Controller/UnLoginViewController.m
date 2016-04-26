@@ -23,6 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"yepsTitle"]];
     
     self.view.backgroundColor = [UIColor popBackGroundColor];
     
@@ -65,7 +66,7 @@
 - (void)registerBtnClick {
     RegisterStepOneViewController *oneVC = [[RegisterStepOneViewController alloc] init];
     oneVC.infoText = @"您的昵称?";
-    oneVC.textFieldTextMaxLength = 20;
+    oneVC.textFieldTextMaxLength = 12;
     [self.navigationController pushViewController:oneVC animated:YES];
 }
 

@@ -22,8 +22,9 @@
 #import "ZGProfileSettingViewController.h"
 #import "ZGEditProfileViewController.h"
 #import "PickTagsViewController.h"
+#import "ZGEditIntroViewController.h"
 
-@interface ZGProfileViewController ()<UIScrollViewDelegate, ZGProfileSettingItemCellDelegate, UIAlertViewDelegate, UzysAssetsPickerControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ZGProfileViewController ()<UIScrollViewDelegate, ZGProfileSettingItemCellDelegate, UIAlertViewDelegate, UzysAssetsPickerControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, ZGProfileHeaderViewDelegate>
 
 @property (nonatomic, weak) ZGProfileHeaderView *headerView;
 @property (nonatomic, weak) UIScrollView *scrollView;
@@ -57,7 +58,17 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateHeaderView:self.scrollView];
-    [self.headerView update];
+    [self update];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.scrollView.contentOffset = CGPointMake(0, 0);
+    } completion:^(BOOL finished) {
+        [self updateHeaderView:self.scrollView];
+    }];
+    
 }
 
 //- (void)viewWillDisappear:(BOOL)animated {
@@ -78,12 +89,20 @@
         _headerView = headerView;
         self.headerH = headerView.frame.size.height;
         headerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.headerH);
+        headerView.delegate = self;
         [self.scrollView addSubview:_headerView];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headViweDidClick)];
         [headerView addGestureRecognizer:tap];
     }
     return _headerView;
+}
+
+/** 更新headerView 信息 以及 navgationTitleView 标题*/
+- (void)update {
+    self.userInfo = nil;
+    self.headerView.userInfo = self.userInfo;
+    self.navTitleLabel.text = self.userInfo.nick;
 }
 
 - (UserInfoModel *)userInfo {
@@ -194,11 +213,12 @@
     self.navigationItem.rightBarButtonItem = [ZGBarButtonItem rightBarButtonItemWithImage:@"setting" highlightImage:@"setting_h" addTarget:self action:@selector(rightBarButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self setupSettingItems];
     [self updateUI];
-    
+    [self getSelfInfo];
 }
 
 /** push 之前做一些事情*/
 - (void)didPush:(void(^)())complete {
+    [self getSelfInfo];
     [UIView animateWithDuration:0.25 animations:^{
         if (self.scrollView.contentOffset.y < self.headerH - 64) {
             self.scrollView.contentOffset = CGPointMake(0, self.headerH - 64);
@@ -265,9 +285,9 @@
 
 - (void)shareAction {
     ZGShareView *shareView = [ZGShareView shareInstance];
-    shareView.shareUrl = @"http://baidu.com";
-    shareView.shareTitle = @"Yeps";
-    shareView.shareContent = @"Yeps";
+    shareView.shareUrl = @"http://yeps.dev4app.com";
+    shareView.shareTitle = @"Yeps 分享校园生活";
+    shareView.shareContent = @"小伙伴们,来Yeps分享你们的校园生活吧!";
     shareView.shareImage = [UIImage imageNamed:@"share_image"];
     [shareView show];
 }
@@ -397,7 +417,7 @@
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     [YepsSDK updatePhoto:image success:^(id data) {
         [SVProgressHUD dismiss];
-        [self.headerView update];
+        [self update];
     } error:^(id data) {
         [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
     } failure:^(NSError *error) {
@@ -414,7 +434,7 @@
         [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
         [YepsSDK updateProfileBackImage:image success:^(id data) {
             [SVProgressHUD dismiss];
-            [self.headerView update];
+            [self update];
         } error:^(id data) {
             [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
         } failure:^(NSError *error) {
@@ -425,12 +445,48 @@
 }
 
 - (void)editIntro {
-    
+    ZGEditIntroViewController *vc = [[ZGEditIntroViewController alloc] init];
+    vc.editSuccess = ^(NSString *intro) {
+        [self update];
+    };
+    vc.intro = self.headerView.userInfo.intro;
+    MainNavigationController *nav = [[MainNavigationController alloc] init];
+    [nav pushViewController:vc animated:NO];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)getSelfInfo {
+    [YepsSDK getUserInfo:^(id data) {
+        [self update];
+    } error:^(id data) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)profileHeaderViewHeaderViewButtonDidClick:(ZGProfileHeaderView *)headerView type:(ZGProfileHeaderViewButtonType)type {
+    switch (type) {
+        case ZGProfileHeaderViewButtonTypeFans:
+            
+            break;
+        case ZGProfileHeaderViewButtonTypeFollow:
+            
+            break;
+        case ZGProfileHeaderViewButtonTypeStatus:{
+            [self didPush:^{
+                [ZGProfileTool popToUserStatusListViewController:headerView.userInfo nav:self.navigationController];
+            }];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 

@@ -35,7 +35,8 @@
 @property (nonatomic, copy) NSString *intro;
 @property (nonatomic, copy) NSString *birthday;
 @property (nonatomic, copy) NSString *university;
-@property (nonatomic, copy) NSMutableArray *tag_list;
+@property (nonatomic, strong) NSMutableArray *tag_list;
+@property (nonatomic, strong) NSMutableArray *image_list;
 @property (nonatomic, copy) NSString *create_time;
 @property (nonatomic, copy) NSString *last_active_time;
 @property (nonatomic, assign) BOOL is_follow;
@@ -43,6 +44,8 @@
 @property (nonatomic, assign) NSInteger follow_count;
 @property (nonatomic, assign) NSInteger fans_count;
 @property (nonatomic, assign) NSInteger status_count;
+@property (nonatomic, assign) NSInteger status_image_count;
 
++ (instancetype)initWithBaseModel:(UserBaseInfoModel *)baseInfo;
 
 @end

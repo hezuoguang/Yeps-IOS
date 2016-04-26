@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
+    
+    self.title = @"设置手机号";
 }
 
 
@@ -39,14 +41,14 @@
             threeVC.phone = self.textFieldText;
             [self.navigationController pushViewController:threeVC animated:YES];
         } error:^(NSError *error) {
-            [SVProgressHUD showErrorWithStatus:@"获取验证码失败"];
+            [SVProgressHUD showErrorWithStatus:@"获取验证码失败" maskType:SVProgressHUDMaskTypeGradient];
         }];
         
     } error:^(id data) {
-        [SVProgressHUD showErrorWithStatus:data[@"info"]];
+        [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
         [self.textField becomeFirstResponder];
     } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"网络故障"];
+        [SVProgressHUD showErrorWithStatus:@"网络故障" maskType:SVProgressHUDMaskTypeGradient];
     }];
     
     

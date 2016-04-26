@@ -7,17 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UserInfoModel;
 
-//@protocol  <NSObject>
-//
-//<#methods#>
-//
-//@end
+typedef enum {
+    ZGProfileHeaderViewButtonTypeFollow,
+    ZGProfileHeaderViewButtonTypeFans,
+    ZGProfileHeaderViewButtonTypeStatus
+}ZGProfileHeaderViewButtonType;
+
+@class UserInfoModel, ZGProfileHeaderView, ZGProfileHeaderViewButton;
+
+@protocol ZGProfileHeaderViewDelegate <NSObject>
+
+@optional
+
+- (void)profileHeaderViewHeaderViewButtonDidClick:(ZGProfileHeaderView *)headerView type:(ZGProfileHeaderViewButtonType)type;
+
+@end
 
 @interface ZGProfileHeaderView : UIView
 
 @property (nonatomic, strong) UserInfoModel *userInfo;
+
+@property (nonatomic, weak) id<ZGProfileHeaderViewDelegate> delegate;
 
 + (instancetype)profileHeaderView;
 

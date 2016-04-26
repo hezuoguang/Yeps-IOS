@@ -29,6 +29,8 @@
     tableView.mj_footer.automaticallyHidden = YES;
     tableView.mj_header.automaticallyChangeAlpha = YES;
     tableView.mj_footer.automaticallyChangeAlpha = YES;
+    tableView.showsVerticalScrollIndicator = NO;
+    tableView.showsHorizontalScrollIndicator = NO;
     return tableView;
 }
 

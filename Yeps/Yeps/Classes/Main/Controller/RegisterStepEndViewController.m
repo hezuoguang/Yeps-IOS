@@ -121,6 +121,8 @@
     self.nextBtn = nextBtn;
     self.nextBtn.enabled = NO;
     self.navigationItem.rightBarButtonItem = nextBtn;
+    
+    self.title = @"设置基本信息";
 }
 
 - (NSArray *)tagList {
@@ -212,7 +214,7 @@
         self.cameraButton.hidden = YES;
         [self updateNextBtnStatus];
     } failure:^{
-        [SVProgressHUD showErrorWithStatus:@"上传头像失败"];
+        [SVProgressHUD showErrorWithStatus:@"上传头像失败" maskType:SVProgressHUDMaskTypeGradient];
         self.photoView.image = nil;
         self.phone = nil;
         self.cameraButton.hidden = NO;
@@ -260,9 +262,9 @@
         window.rootViewController = [[MainTabBarController alloc] init];
         [SVProgressHUD dismiss];
     } error:^(id data) {
-        [SVProgressHUD showErrorWithStatus:data[@"info"]];
+        [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
     } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"网络故障"];
+        [SVProgressHUD showErrorWithStatus:@"网络故障" maskType:SVProgressHUDMaskTypeGradient];
     }];
 }
 

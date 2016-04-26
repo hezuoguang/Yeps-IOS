@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ZGOtherProfileHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="458"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mYa-7X-x59">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="458"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3R-GO-xds" customClass="ZGMaskView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="458"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kz8-dR-Jdj" customClass="ZGOtherProfileScrollView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="458"/>
+                </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6OS-9e-ZE5">
+                    <rect key="frame" x="0.0" y="404" width="600" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twS-ld-b85" customClass="ZGProfileHeaderViewButton">
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="照片"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Icv-Su-OyH" customClass="ZGProfileHeaderViewButton">
+                            <rect key="frame" x="300" y="0.0" width="150" height="44"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="粉丝"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RLJ-2V-MfK" customClass="ZGProfileHeaderViewButton">
+                            <rect key="frame" x="450" y="0.0" width="150" height="44"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="状态"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBA-Wn-ZsY" customClass="ZGProfileHeaderViewButton">
+                            <rect key="frame" x="150" y="0.0" width="150" height="44"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="关注"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="twS-ld-b85" firstAttribute="width" secondItem="6OS-9e-ZE5" secondAttribute="width" multiplier="0.25" id="1bX-Xx-Ns0"/>
+                        <constraint firstItem="XBA-Wn-ZsY" firstAttribute="leading" secondItem="twS-ld-b85" secondAttribute="trailing" id="1mK-Y0-6Es"/>
+                        <constraint firstAttribute="bottom" secondItem="XBA-Wn-ZsY" secondAttribute="bottom" id="85V-Vh-bgu"/>
+                        <constraint firstAttribute="bottom" secondItem="twS-ld-b85" secondAttribute="bottom" id="A7T-rc-YWv"/>
+                        <constraint firstItem="Icv-Su-OyH" firstAttribute="leading" secondItem="XBA-Wn-ZsY" secondAttribute="trailing" id="Byb-EX-NrD"/>
+                        <constraint firstItem="XBA-Wn-ZsY" firstAttribute="width" secondItem="twS-ld-b85" secondAttribute="width" id="IhF-mb-MKm"/>
+                        <constraint firstItem="Icv-Su-OyH" firstAttribute="width" secondItem="twS-ld-b85" secondAttribute="width" id="M09-7K-vJd"/>
+                        <constraint firstAttribute="height" constant="44" id="MS1-Uw-3IK"/>
+                        <constraint firstItem="RLJ-2V-MfK" firstAttribute="leading" secondItem="Icv-Su-OyH" secondAttribute="trailing" id="S4X-wv-8Qa"/>
+                        <constraint firstAttribute="trailing" secondItem="RLJ-2V-MfK" secondAttribute="trailing" id="XJy-3M-N7k"/>
+                        <constraint firstItem="Icv-Su-OyH" firstAttribute="leading" secondItem="XBA-Wn-ZsY" secondAttribute="trailing" id="YfN-yS-ixV"/>
+                        <constraint firstItem="twS-ld-b85" firstAttribute="top" secondItem="6OS-9e-ZE5" secondAttribute="top" id="c0e-1z-XjR"/>
+                        <constraint firstItem="Icv-Su-OyH" firstAttribute="top" secondItem="6OS-9e-ZE5" secondAttribute="top" id="d4M-sD-9YC"/>
+                        <constraint firstItem="twS-ld-b85" firstAttribute="leading" secondItem="6OS-9e-ZE5" secondAttribute="leading" id="fep-5h-ccT"/>
+                        <constraint firstItem="XBA-Wn-ZsY" firstAttribute="top" secondItem="6OS-9e-ZE5" secondAttribute="top" id="kBY-CI-WPU"/>
+                        <constraint firstAttribute="bottom" secondItem="RLJ-2V-MfK" secondAttribute="bottom" id="kQE-Pq-FRy"/>
+                        <constraint firstItem="RLJ-2V-MfK" firstAttribute="leading" secondItem="Icv-Su-OyH" secondAttribute="trailing" id="qod-Dt-5Sj"/>
+                        <constraint firstItem="RLJ-2V-MfK" firstAttribute="top" secondItem="6OS-9e-ZE5" secondAttribute="top" id="rTV-4n-fl5"/>
+                        <constraint firstItem="XBA-Wn-ZsY" firstAttribute="leading" secondItem="twS-ld-b85" secondAttribute="trailing" id="tIN-ca-gb3"/>
+                        <constraint firstAttribute="bottom" secondItem="Icv-Su-OyH" secondAttribute="bottom" id="tOQ-tn-BDz"/>
+                        <constraint firstItem="RLJ-2V-MfK" firstAttribute="width" secondItem="twS-ld-b85" secondAttribute="width" id="yHi-Wj-8XV"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="kz8-dR-Jdj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2fi-0a-cF0"/>
+                <constraint firstAttribute="bottom" secondItem="M3R-GO-xds" secondAttribute="bottom" id="6Xa-Wz-dkX"/>
+                <constraint firstItem="6OS-9e-ZE5" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="-10" id="Ebd-KO-ry1"/>
+                <constraint firstItem="kz8-dR-Jdj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Io3-ht-laB"/>
+                <constraint firstItem="6OS-9e-ZE5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KY7-FC-w2I"/>
+                <constraint firstItem="mYa-7X-x59" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MVW-Of-4Qu"/>
+                <constraint firstItem="mYa-7X-x59" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="TZw-cN-9wx"/>
+                <constraint firstItem="M3R-GO-xds" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dJ2-Kf-QSn"/>
+                <constraint firstItem="kz8-dR-Jdj" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="jVn-NP-fSe"/>
+                <constraint firstItem="6OS-9e-ZE5" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="m2E-IH-6Gj"/>
+                <constraint firstItem="M3R-GO-xds" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="o4A-i3-3O9"/>
+                <constraint firstItem="kz8-dR-Jdj" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="quY-f1-hiG"/>
+                <constraint firstAttribute="trailing" secondItem="M3R-GO-xds" secondAttribute="trailing" id="uld-xc-4Bs"/>
+                <constraint firstItem="mYa-7X-x59" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="wOE-kJ-OQM"/>
+                <constraint firstItem="mYa-7X-x59" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xQD-h7-Ju8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btnView" destination="6OS-9e-ZE5" id="zvT-yb-kvx"/>
+                <outlet property="fansBtn" destination="Icv-Su-OyH" id="utO-MK-eWu"/>
+                <outlet property="followBtn" destination="XBA-Wn-ZsY" id="eSQ-iG-LKd"/>
+                <outlet property="imageView" destination="mYa-7X-x59" id="8MU-Fo-p7g"/>
+                <outlet property="photoBtn" destination="twS-ld-b85" id="qOV-pw-fod"/>
+                <outlet property="scrollView" destination="kz8-dR-Jdj" id="1JH-0r-M16"/>
+                <outlet property="statusBtn" destination="RLJ-2V-MfK" id="I2H-K1-Vuv"/>
+            </connections>
+            <point key="canvasLocation" x="155" y="138"/>
+        </view>
+    </objects>
+</document>

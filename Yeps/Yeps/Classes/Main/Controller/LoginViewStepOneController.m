@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
-    
+    self.title = @"填写手机号";
 }
 
 - (void)next {

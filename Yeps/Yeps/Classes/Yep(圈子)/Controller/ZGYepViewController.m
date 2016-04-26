@@ -108,11 +108,11 @@
         
     } error:^(id data) {
         [tableView stopRefresh];
-        [SVProgressHUD showErrorWithStatus:data[@"info"]];
+        [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
         
     } failure:^(NSError *error) {
         [tableView stopRefresh];
-        [SVProgressHUD showErrorWithStatus:@"网络故障"];
+        [SVProgressHUD showErrorWithStatus:@"网络故障" maskType:SVProgressHUDMaskTypeGradient];
         
     }];
 }
@@ -146,11 +146,11 @@
         
     } error:^(id data) {
         [tableView stopPullUpRefresh];
-        [SVProgressHUD showErrorWithStatus:data[@"info"]];
+        [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
         
     } failure:^(NSError *error) {
         [tableView stopPullUpRefresh];
-        [SVProgressHUD showErrorWithStatus:@"网络故障"];
+        [SVProgressHUD showErrorWithStatus:@"网络故障" maskType:SVProgressHUDMaskTypeGradient];
         
     }];
 }

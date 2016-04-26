@@ -18,12 +18,15 @@
 #define USER_NICK_KEY @"USER_NICK_KEY"
 #define USER_PHOTO_KEY @"USER_PHOTO_KEY"
 #define USER_PROFILE_BACK_KEY @"USER_PROFILE_BACK_KEY"
+#define USER_LAST_LANUCH_TIME_KEY @"USER_LAST_LANUCH_TIME_KEY"
 
 @implementation UserTool
 
 + (void)saveCurrentUserInfo:(NSDictionary *)infoDict {
-    [self saveAccessToken:infoDict[@"access_token"]];
-    [self saveUserSha1:infoDict[@"user_sha1"]];
+    if ([infoDict objectForKey:@"access_token"]) {
+        [self saveAccessToken:infoDict[@"access_token"]];
+        [self saveUserSha1:infoDict[@"user_sha1"]];
+    }
     [self saveActiveUniversity:infoDict[@"active_university"]];
     [self saveUserNick:infoDict[@"nick"]];
     [self saveUserPhoto:infoDict[@"photo"]];
@@ -77,7 +80,8 @@
 }
 
 + (NSString *)getAccessToken {
-    return [[NSUserDefaults standardUserDefaults] valueForKey:ACCESS_TOKEN_KEY];
+    NSString *access_token = [[NSUserDefaults standardUserDefaults] valueForKey:ACCESS_TOKEN_KEY];
+    return access_token;
 }
 
 + (NSString *)getUserSha1 {
@@ -104,6 +108,38 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:ACCESS_TOKEN_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_SHA1_KEY];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:Active_University_KEY];
+}
+
++ (NSInteger)date:(NSDate *)date sub:(NSDate *)subDate{
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [gregorian setFirstWeekday:2];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *fromDate;
+    NSDate *toDate;
+    [gregorian rangeOfUnit:NSCalendarUnitDay startDate:&fromDate interval:NULL forDate:subDate];
+    [gregorian rangeOfUnit:NSCalendarUnitDay startDate:&toDate interval:NULL forDate:[NSDate date]];
+    NSDateComponents *dayComponents = [gregorian components:NSCalendarUnitDay fromDate:fromDate toDate:toDate options:0];
+    NSInteger day = dayComponents.day;
+    NSLog(@"-------%zd", day);
+    if (day < 0) {
+        day = -day;
+    }
+    return day;
+}
+
++ (void)updateLastLanuchTime {
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSDate *last = [userDefault valueForKey:USER_LAST_LANUCH_TIME_KEY];
+    NSDate *now = [NSDate date];
+    if (last) {
+        if ([self date:last sub:now] > 3) {
+            [YepsSDK clearDataBase];
+        }
+    }
+    [userDefault setValue:now forKey:USER_LAST_LANUCH_TIME_KEY];
+    [userDefault synchronize];
 }
 
 @end

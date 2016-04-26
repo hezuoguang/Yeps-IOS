@@ -49,4 +49,11 @@
     return _photo;
 }
 
+- (NSString *)smallPhoto {
+    if (_smallPhoto == nil) {
+        _smallPhoto = [NSString stringWithFormat:@"%@%@", self.photo, kIMAGESMALLURLENDFIX];
+    }
+    return _smallPhoto;
+}
+
 @end

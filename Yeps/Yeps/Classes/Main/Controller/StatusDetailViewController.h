@@ -12,5 +12,6 @@
 @interface StatusDetailViewController : UIViewController
 
 @property (nonatomic, strong) StatusFrameModel *statusF;
+@property (nonatomic, copy) NSString *status_sha1;
 
 @end

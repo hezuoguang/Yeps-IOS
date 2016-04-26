@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class UserBaseInfoModel;
 @interface ZGPhotoView : UIImageView
+
+@property (nonatomic, strong) UserBaseInfoModel *userBaseInfo;
 
 @end

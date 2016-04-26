@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backImage" translatesAutoresizingMaskIntoConstraints="NO" id="pNk-ze-4vg">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileBack1" translatesAutoresizingMaskIntoConstraints="NO" id="pNk-ze-4vg">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="firstLogo" translatesAutoresizingMaskIntoConstraints="NO" id="hLR-2P-RyZ">
@@ -24,7 +24,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享校园生活" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQR-2w-eRe">
                     <rect key="frame" x="0.0" y="255" width="600" height="328"/>
                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
-                    <color key="textColor" red="0.27058823529411763" green="0.75294117647058822" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by weimi. © dev4app.com." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sev-9P-i3S">
@@ -58,7 +58,7 @@
         </view>
     </objects>
     <resources>
-        <image name="backImage" width="1242" height="2208"/>
         <image name="firstLogo" width="110" height="110"/>
+        <image name="profileBack1" width="1334" height="751"/>
     </resources>
 </document>

@@ -13,5 +13,7 @@
 @property (nonatomic, copy) NSString *user_sha1;
 @property (nonatomic, copy) NSString *nick;
 @property (nonatomic, copy) NSString *photo;
+@property (nonatomic, copy) NSString *smallPhoto;
+@property (nonatomic, assign) NSInteger recommend_id;
 
 @end

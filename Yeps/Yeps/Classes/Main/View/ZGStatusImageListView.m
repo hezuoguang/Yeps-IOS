@@ -170,7 +170,7 @@
     if ([mgr cachedImageExistsForURL:url]) {
         return url;
     }
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@?imageMogr2/quality/30",urlStr]];
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr, kIMAGESMALLURLENDFIX]];
 }
 
 - (void)imageViewClick:(UITapGestureRecognizer *)tap{

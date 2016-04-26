@@ -48,19 +48,15 @@
     return _commetFs;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    self.view.backgroundColor = [UIColor popBackGroundColor];
-    
+- (void)setupSubviews {
     CGFloat maxH = self.view.bounds.size.height;
     
     UIScrollView *scrollView = [[UIScrollView alloc] init];
     self.scrollView = scrollView;
     scrollView.delegate = self;
     scrollView.frame = self.view.bounds;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     [self.view addSubview:scrollView];
     
@@ -93,6 +89,56 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commentSuccess:) name:kUpdateStatusCountNotifi object:nil];
     
     [self scrollViewDidScroll:scrollView];
+}
+
+- (void)getStatusDetail {
+    [YepsSDK getStatusDetail:self.status_sha1 success:^(id data) {
+        [SVProgressHUD dismiss];
+        StatusFrameModel *statusF = [[StatusFrameModel alloc] init];
+        statusF.style = StatusCellFrameStyleDetail;
+        StatusModel *status = [StatusModel mj_objectWithKeyValues:data];
+        statusF.status = status;
+        self.statusF = statusF;
+        [self setupSubviews];
+    } error:^(id data) {
+        [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"数据拉取失败" maskType:SVProgressHUDMaskTypeGradient];
+    }];
+}
+
+- (void)getStatusCount {
+    [YepsSDK getStatusCount:self.statusF.status.status_sha1 success:^(id data) {
+        [YepsSDK updateStatusCount:data status_id:self.statusF.status.status_id];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUpdateStatusCountNotifi object:data userInfo:@{@"status_id":@(self.statusF.status.status_id)}];
+    } error:^(id data) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.view.backgroundColor = [UIColor popBackGroundColor];
+    
+    if (self.statusF) {
+        [self setupSubviews];
+        [self getStatusCount];
+    } else {
+        [SVProgressHUD show];
+        [self getStatusDetail];
+    }
+    
+    self.title = @"详情";
 }
 
 - (void)commentSuccess:(NSNotification *)noti {
@@ -191,10 +237,10 @@
         [tableView reloadData];
     } error:^(id data) {
         [tableView stopRefresh];
-        [SVProgressHUD showErrorWithStatus:data[@"info"]];
+        [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
     } failure:^(NSError *error) {
         [tableView stopRefresh];
-        [SVProgressHUD showErrorWithStatus:@"网络故障"];
+        [SVProgressHUD showErrorWithStatus:@"网络故障" maskType:SVProgressHUDMaskTypeGradient];
     }];
 }
 

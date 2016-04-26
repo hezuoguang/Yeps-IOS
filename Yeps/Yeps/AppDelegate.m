@@ -33,15 +33,21 @@ static NSString *appSecret = @"4f3872cc0e37ea40dbcbf23750985769";
 
 @implementation AppDelegate
 
+//初始 一些设置
+- (void)setup {
+    //    注册短信验证
+    [SMSSDK registerApp:appKey withSecret:appSecret];
+    
+    //    注册分享
+    [self registerShareSDK];
+    
+    [UserTool updateLastLanuchTime];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    注册短信验证
-    [SMSSDK registerApp:appKey withSecret:appSecret];
-    
-//    注册分享
-    [self registerShareSDK];
+    [self setup];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     if (![UserTool getAccessToken]) {

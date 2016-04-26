@@ -121,9 +121,9 @@
         [self.tagListView addTags:arrayM];
         [SVProgressHUD dismiss];
     } error:^(id data) {
-        [SVProgressHUD showErrorWithStatus:@"获取系统标签失败"];
+        [SVProgressHUD showErrorWithStatus:@"获取系统标签失败" maskType:SVProgressHUDMaskTypeGradient];
     } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"网络故障"];
+        [SVProgressHUD showErrorWithStatus:@"网络故障" maskType:SVProgressHUDMaskTypeGradient];
     }];
 }
 

@@ -13,7 +13,7 @@
 #import <SDWebImage/SDWebImageManager.h>
 #import "UserTool.h"
 #import "UploadImageTool.h"
-#define HOST  @"http://169.254.118.43:8000/yeps/api/"
+#define HOST  @"http://172.28.132.102:8000/yeps/api/"
 #define DBPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Yeps.sqlite"]
 
 static FMDatabase *_db;
@@ -32,12 +32,16 @@ static FMDatabase *_db;
 
 + (void)clearCache {
     [[SDImageCache sharedImageCache] clearDisk];
-    NSString *sql1 = @"delete from university";
-    NSString *sql2 = @"delete from status";
-    NSString *sql3 = @"delete from comment";
-    [[self db] executeQuery:sql1];
-    [[self db] executeQuery:sql2];
-    [[self db] executeQuery:sql3];
+    [self clearDataBase];
+}
+
++ (void)clearDataBase {
+//    NSString *sql1 = @"delete from university";
+    NSString *sql2 = @"DELETE FROM status;";
+    NSString *sql3 = @"DELETE FROM comment;";
+//    [[self db] executeUpdate:sql1];
+    [[self db] executeUpdate:sql2];
+    [[self db] executeUpdate:sql3];
 }
 
 + (FMDatabase *)db {
@@ -402,6 +406,48 @@ static FMDatabase *_db;
     [self getStatus:-1 max_id:max_id type:type is_follow:NO success:success error:error failure:failure];
 }
 
+//获取Status详情
++ (void)getStatusDetail:(NSString *)status_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"status_detail";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"status_sha1"] = status_sha1;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//获取Status 评论数 点赞数...
++ (void)getStatusCount:(NSString *)status_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"status_count";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"status_sha1"] = status_sha1;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
 //获取关注的好友新的Status
 + (void)getFollowNewStatus:(NSInteger)since_id type:(NSInteger)type success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
     [self getStatus:since_id max_id:-1 type:type is_follow:YES success:success error:error failure:failure];
@@ -410,6 +456,41 @@ static FMDatabase *_db;
 //获取关注的好友旧的Status
 + (void)getFollowOldStatus:(NSInteger)max_id type:(NSInteger)type success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
     [self getStatus:-1 max_id:max_id type:type is_follow:YES success:success error:error failure:failure];
+}
+
+
+//获取某个用户的status 内部调用
++ (void)getUserStatus:(NSInteger)since_id max_id:(NSInteger)max_id user_sha1:(NSString *)user_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"user_status_list";
+    NSString *access_token = [UserTool getAccessToken];
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"since_id"] = @(since_id);
+    data[@"max_id"] = @(max_id);
+    data[@"user_sha1"] = user_sha1;
+    data[@"access_token"] = access_token;
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"][@"status_list"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//获取某个用户新的Status
++ (void)getUserNewStatus:(NSInteger)since_id user_sha1:(NSString *)user_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    [self getUserStatus:since_id max_id:-1 user_sha1:user_sha1 success:success error:error failure:failure];
+}
+
+//获取某个用户旧的Status
++ (void)getUserOldStatus:(NSInteger)max_id user_sha1:(NSString *)user_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    [self getUserStatus:-1 max_id:max_id user_sha1:user_sha1 success:success error:error failure:failure];
 }
 
 //获取评论
@@ -674,5 +755,176 @@ static FMDatabase *_db;
     } failure:failure];
 }
 
+//更新个性签名
++ (void)updateIntro:(NSString *)intro success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"update_intro";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"intro"] = intro;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            [UserTool saveCurrentUserInfo:data[@"data"]];
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//获取自己的信息
++ (void)getUserInfo:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"get_user_info";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            [UserTool saveCurrentUserInfo:data[@"data"]];
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//获取其他用户的信息
++ (void)getOtherUserInfo:(NSString *)user_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"get_other_user_info";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"user_sha1"] = user_sha1;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//获取用户所有 status 图片
++ (void)getUserStatusImages:(NSString *)user_sha1 max_id:(NSInteger)max_id success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"status_image_list";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"user_sha1"] = user_sha1;
+    data[@"max_id"] = @(max_id);
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//关注
++ (void)follow:(NSString *)user_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"follow";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"user_sha1"] = user_sha1;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//取消关注
++ (void)removeFollow:(NSString *)user_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"remove_follow";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"user_sha1"] = user_sha1;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//获取系统推荐列表
++ (void)recommendUserList:(NSInteger)max_id count:(NSInteger)count success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"recommend_user_list";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"max_id"] = @(max_id);
+    data[@"count"] = @(count);
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//匹配操作
++ (void)matchOption:(NSString *)user_sha1 is_match:(NSInteger)is_match success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"match_option";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"is_match"] = @(is_match);
+    data[@"user_sha1"] = user_sha1;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
 
 @end

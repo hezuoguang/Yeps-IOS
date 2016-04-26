@@ -20,6 +20,7 @@
     // Do any additional setup after loading the view.
 //    self.textField.secureTextEntry = YES;
     self.textField.keyboardType = UIKeyboardTypeASCIICapable;
+    self.title = @"填写验证码";
 }
 
 - (void)didReceiveMemoryWarning {

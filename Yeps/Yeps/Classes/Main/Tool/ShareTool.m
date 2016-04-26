@@ -43,7 +43,7 @@
 
 + (void)shareToWeChat:(NSString *)text title:(NSString *)title image:(id)image url:(NSString *)url success:(void(^)())success error:(void(^)())error cancel:(void(^)())cancel{
     if (![self canShareToWeChat]) {
-        [SVProgressHUD showErrorWithStatus:@"未安装微信或微信版本过低"];
+        [SVProgressHUD showErrorWithStatus:@"未安装微信或微信版本过低" maskType:SVProgressHUDMaskTypeGradient];
         return;
     }
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -53,7 +53,7 @@
 
 + (void)shareToWeChatTimeline:(NSString *)text title:(NSString *)title image:(id)image url:(NSString *)url success:(void(^)())success error:(void(^)())error cancel:(void(^)())cancel{
     if (![self canShareToWeChat]) {
-        [SVProgressHUD showErrorWithStatus:@"未安装微信或微信版本过低"];
+        [SVProgressHUD showErrorWithStatus:@"未安装微信或微信版本过低" maskType:SVProgressHUDMaskTypeGradient];
         return;
     }
     text = [NSString stringWithFormat:@"%@ -- %@", title, text];
@@ -64,7 +64,7 @@
 
 + (void)shareToQQ:(NSString *)text title:(NSString *)title image:(id)image url:(NSString *)url success:(void(^)())success error:(void(^)())error cancel:(void(^)())cancel{
     if (![self canShareToQQ]) {
-        [SVProgressHUD showErrorWithStatus:@"未安装QQ或QQ版本过低"];
+        [SVProgressHUD showErrorWithStatus:@"未安装QQ或QQ版本过低" maskType:SVProgressHUDMaskTypeGradient];
         return;
     }
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
@@ -74,7 +74,7 @@
 
 + (void)shareToQzone:(NSString *)text title:(NSString *)title image:(id)image url:(NSString *)url success:(void(^)())success error:(void(^)())error cancel:(void(^)())cancel{
     if (![self canShareToQQ]) {
-        [SVProgressHUD showErrorWithStatus:@"未安装QQ或QQ版本过低"];
+        [SVProgressHUD showErrorWithStatus:@"未安装QQ或QQ版本过低" maskType:SVProgressHUDMaskTypeGradient];
         return;
     }
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];

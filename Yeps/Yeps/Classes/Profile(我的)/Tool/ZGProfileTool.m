@@ -8,10 +8,13 @@
 
 #import "ZGProfileTool.h"
 #import "ZGProfileSettingItemModel.h"
+#import "StatusListViewContriller.h"
 
 static NSArray *_items = nil;
 
 static NSArray *_settingItems = nil;
+
+static NSArray *_profileBackImages = nil;
 
 @implementation ZGProfileTool
 
@@ -67,12 +70,9 @@ static NSArray *_settingItems = nil;
     return [self items];
 }
 
-+ (NSArray *)profileSettingItems {
-    return [self settingItems];
-}
-
-+ (UIImage *)profileBackImage {
-    NSArray *images = @[@"profileBack",
++ (NSArray *)profileBackImages {
+    if (_profileBackImages == nil) {
+        _profileBackImages = @[@"profileBack",
                                @"profileBack1",
                                @"profileBack2",
                                @"profileBack3",
@@ -88,8 +88,33 @@ static NSArray *_settingItems = nil;
                                @"profileBack13",
                                @"profileBack14",
                                ];
-    NSInteger index = random() % images.count;
-    return [UIImage imageNamed:images[index]];
+    }
+    return _profileBackImages;
+}
+
++ (NSArray *)profileSettingItems {
+    return [self settingItems];
+}
+
++ (UIImage *)profileBackImage {
+    static NSInteger index = -1;
+    index = (index + 1) % [self profileBackImages].count;
+    return [UIImage imageNamed:[self profileBackImages][index]];
+}
+
++ (UIImage *)profileBackImageWithPhone:(NSString *)phone {
+    NSInteger len = phone.length - 5;
+    if (len < 0) {
+        len = 0;
+    }
+    NSInteger index = [[phone substringFromIndex:len] integerValue] % [self profileBackImages].count;
+    return [UIImage imageNamed:[self profileBackImages][index]];
+}
+
++ (void)popToUserStatusListViewController:(id)userInfo nav:(UINavigationController *)nav {
+    StatusListViewContriller *vc = [[StatusListViewContriller alloc] init];
+    vc.userInfo = userInfo;
+    [nav pushViewController:vc animated:YES];
 }
 
 @end

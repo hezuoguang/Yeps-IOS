@@ -13,6 +13,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #define kTypeStrs @[@"微交流", @"微评选", @"随手拍", @"一起玩", @"发现", @"二手"]
 #define kACCESSTOKENERRORNOTIFI @"kACCESSTOKENERRORNOTIFI"
+#define kIMAGESMALLURLENDFIX @"?imageMogr2/quality/25"
 #import "UIColor+Extension.h"
 #import "YepsSDK.h"
 #import "NSObject+Runtime.h"

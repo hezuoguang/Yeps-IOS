@@ -56,6 +56,8 @@
     self.nextBtn = nextBtn;
     self.nextBtn.enabled = NO;
     self.navigationItem.rightBarButtonItem = nextBtn;
+    
+    self.title = @"填写密码";
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -90,9 +92,9 @@
         window.rootViewController = [[MainTabBarController alloc] init];
         [SVProgressHUD dismiss];
     } error:^(id data) {
-        [SVProgressHUD showErrorWithStatus:data[@"info"]];
+        [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
     } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"网络故障"];
+        [SVProgressHUD showErrorWithStatus:@"网络故障" maskType:SVProgressHUDMaskTypeGradient];
     }];
 }
 

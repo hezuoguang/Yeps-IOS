@@ -28,7 +28,7 @@
     NSDateComponents *comPre = [calendar components:unit fromDate:date];
     NSDateComponents *comNow = [calendar components:unit fromDate:now];
     if (comPre.year != comNow.year) {//不是同一年
-        dateFormatter.dateFormat = @"yyyy年MM月dd日 HH点mm";
+        dateFormatter.dateFormat = @"yyyy年MM月dd日 HH点mm分";
         return [dateFormatter stringFromDate:date];
     } else if(comPre.month == comNow.month) {//同一月
         if (comPre.day == comNow.day) {//同一天
@@ -40,18 +40,18 @@
             } else if(comSub.hour <= 5) {//相差不足5小时
                 return [NSString stringWithFormat:@"%ld小时前",(long)comSub.hour];
             } else {
-                dateFormatter.dateFormat = @"HH点mm";
+                dateFormatter.dateFormat = @"HH点mm分";
                 return [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:date]];
             }
         } else if(comSub.day <= 1){//昨天
-            dateFormatter.dateFormat = dateFormatter.dateFormat = @"HH点mm";
+            dateFormatter.dateFormat = dateFormatter.dateFormat = @"HH点mm分";
             return [NSString stringWithFormat:@"昨天 %@", [dateFormatter stringFromDate:date]];
         } else {//本月
-            dateFormatter.dateFormat = @"dd日 HH点mm";
+            dateFormatter.dateFormat = @"dd日 HH点mm分";
             return [dateFormatter stringFromDate:date];
         }
     } else {//本年
-        dateFormatter.dateFormat = @"MM月dd日 HH点mm";
+        dateFormatter.dateFormat = @"MM月dd日 HH点mm分";
         return [dateFormatter stringFromDate:date];
     }
 }

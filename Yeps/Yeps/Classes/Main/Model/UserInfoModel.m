@@ -17,4 +17,13 @@
     _intro = [intro copy];
 }
 
++ (instancetype)initWithBaseModel:(UserBaseInfoModel *)baseInfo {
+    UserInfoModel *userInfo = [[UserInfoModel alloc] init];
+    userInfo.nick = baseInfo.nick;
+    userInfo.user_sha1 = baseInfo.user_sha1;
+    userInfo.photo = baseInfo.photo;
+    userInfo.recommend_id = baseInfo.recommend_id;
+    return userInfo;
+}
+
 @end

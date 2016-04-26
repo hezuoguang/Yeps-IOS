@@ -43,8 +43,16 @@
         picker.datePickerMode = UIDatePickerModeDate;
         [picker addTarget:self action:@selector(datePickerDateDidChange:) forControlEvents:UIControlEventValueChanged];
         NSDate *cur = [NSDate date];
-//        picker.minimumDate =
-        picker.maximumDate = cur;
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        NSDateComponents *addCom = [[NSDateComponents alloc] init];
+        [addCom setYear:-18];
+        [addCom setMonth:0];
+        [addCom setMonth:0];
+        NSDate *maxDate = [calendar dateByAddingComponents:addCom toDate:cur options:0];
+        [addCom setYear:-100];
+        NSDate *minDate = [calendar dateByAddingComponents:addCom toDate:cur options:0];
+        picker.minimumDate = minDate;
+        picker.maximumDate = maxDate;
     }
     return _datePicker;
 }
@@ -53,6 +61,7 @@
     if (_hideBirthdayTextField == nil) {
         UITextField *tf = [[UITextField alloc] init];
         _hideBirthdayTextField = tf;
+        _hideBirthdayTextField.delegate = self;
         [self.view addSubview:_hideBirthdayTextField];
     }
     return _hideBirthdayTextField;
@@ -68,9 +77,11 @@
 - (void)setup {
     [self.manBUtton setTitleColor:[UIColor popColor] forState:UIControlStateSelected];
     [self.manBUtton setTitleColor:[UIColor popFontColor] forState:UIControlStateNormal];
+    self.manBUtton.titleLabel.font = [UIFont systemFontOfSize:15];
     
     [self.womanButton setTitleColor:[UIColor popColor] forState:UIControlStateSelected];
     [self.womanButton setTitleColor:[UIColor popFontColor] forState:UIControlStateNormal];
+    self.womanButton.titleLabel.font = [UIFont systemFontOfSize:15];
     
     [self.manBUtton addTarget:self action:@selector(sexBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.womanButton addTarget:self action:@selector(sexBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -125,27 +136,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"编辑资料";
+    self.view.backgroundColor = [UIColor popBackGroundColor];
     [self setup];
 }
 
 - (void)rightBtnClick {
+    [self.view endEditing:YES];
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeGradient];
     NSString *nick = self.nickTextField.text;
     if (nick == nil || nick.length <= 0) {
         [SVProgressHUD showErrorWithStatus:@"昵称未填写" maskType:SVProgressHUDMaskTypeGradient];
+        [self.nickTextField becomeFirstResponder];
+        return;
+    }
+    
+    if (nick.length > 12) {
+        [SVProgressHUD showErrorWithStatus:@"昵称不能超过12个字符" maskType:SVProgressHUDMaskTypeGradient];
+        [self.nickTextField becomeFirstResponder];
         return;
     }
     
     NSString *email = self.emailTextfield.text;
     if (email == nil || email.length <= 0) {
         [SVProgressHUD showErrorWithStatus:@"邮箱未填写" maskType:SVProgressHUDMaskTypeGradient];
+        [self.emailTextfield becomeFirstResponder];
         return;
     }
     
     NSString *birthday = self.birthdayTextfield.text;
     if (birthday == nil || birthday.length <= 0) {
         [SVProgressHUD showErrorWithStatus:@"生日未填写" maskType:SVProgressHUDMaskTypeGradient];
+        [self.birthdayTextfield becomeFirstResponder];
         return;
     }
     
@@ -155,6 +177,9 @@
     }
     [YepsSDK updateInfo:nick email:email birthday:birthday sex:sex success:^(id data) {
         [SVProgressHUD showSuccessWithStatus:@"保存成功" maskType:SVProgressHUDMaskTypeGradient];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
     } error:^(id data) {
         [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
     } failure:^(NSError *error) {
@@ -190,6 +215,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 3) {
         [self.hideBirthdayTextField becomeFirstResponder];
+    } else if (indexPath.row == 0) {
+        [self.nickTextField becomeFirstResponder];
+    } else if (indexPath.row == 1) {
+        [self.emailTextfield becomeFirstResponder];
     }
 }
 

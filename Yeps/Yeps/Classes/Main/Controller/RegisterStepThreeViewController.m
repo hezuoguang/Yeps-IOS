@@ -20,6 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.textField.keyboardType = UIKeyboardTypeASCIICapable;
+    self.title = @"填写验证码";
 }
 
 - (void)next {
@@ -35,7 +36,7 @@
         fourVC.infoText = @"设置您的登录密码?";
         [self.navigationController pushViewController:fourVC animated:YES];
     } error:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"验证码错误"];
+        [SVProgressHUD showErrorWithStatus:@"验证码错误" maskType:SVProgressHUDMaskTypeGradient];
     }];
     
 }

@@ -130,7 +130,7 @@
     self.nickLabel.text = user.nick;
     
     self.photoView.frame = commentF.photoViewF;
-    [self.photoView sd_setImageWithURL:[NSURL URLWithString:user.photo] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    self.photoView.userBaseInfo = user;
     
     self.timeLabel.frame = commentF.timeLabelF;
     self.timeLabel.text = comment.create_time;

@@ -40,4 +40,6 @@
 
 + (void)logout;
 
++ (void)updateLastLanuchTime;
+
 @end

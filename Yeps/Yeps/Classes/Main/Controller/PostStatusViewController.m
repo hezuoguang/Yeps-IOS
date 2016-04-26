@@ -222,7 +222,7 @@
 }
 
 - (void)uzysAssetsPickerControllerDidExceedMaximumNumberOfSelection:(UzysAssetsPickerController *)picker {
-    [SVProgressHUD showErrorWithStatus:@"图片数量已满上限"];
+    [SVProgressHUD showErrorWithStatus:@"图片数量已满上限" maskType:SVProgressHUDMaskTypeGradient];
 }
 
 - (void)dismiss {
@@ -264,9 +264,9 @@
         [SVProgressHUD dismiss];
         [self dismiss];
     } error:^(id data) {
-        [SVProgressHUD showErrorWithStatus:data[@"info"]];
+        [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
     } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:@"网络故障"];
+        [SVProgressHUD showErrorWithStatus:@"网络故障" maskType:SVProgressHUDMaskTypeGradient];
     }];
 }
 

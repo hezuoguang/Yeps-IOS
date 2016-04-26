@@ -35,7 +35,8 @@
     
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-    self.title = @"编辑资料";
+    self.title = @"修改密码";
+    self.view.backgroundColor = [UIColor popBackGroundColor];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

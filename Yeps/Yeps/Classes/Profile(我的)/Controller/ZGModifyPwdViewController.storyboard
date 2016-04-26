@@ -10,7 +10,7 @@
         <scene sceneID="BPA-gW-WAT">
             <objects>
                 <tableViewController id="1ZX-U2-aXH" customClass="ZGModifyPwdViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="LpU-8e-wcp">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="LpU-8e-wcp">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -21,11 +21,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="82S-2r-1ho" id="ovo-7a-5r1">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9X-YD-QqV" customClass="ZGPrefileTipLabel">
-                                                    <rect key="frame" x="18" y="8" width="65" height="27"/>
+                                                    <rect key="frame" x="18" y="8" width="65" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="weA-5P-OY0"/>
                                                     </constraints>
@@ -34,17 +34,29 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入当前密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ca4-bD-0rM" customClass="ZGProfileTextField">
-                                                    <rect key="frame" x="93" y="8" width="489" height="27"/>
+                                                    <rect key="frame" x="93" y="8" width="489" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" secureTextEntry="YES"/>
                                                 </textField>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rHm-GS-9fV" userLabel="line">
+                                                    <rect key="frame" x="0.0" y="43" width="600" height="1"/>
+                                                    <color key="backgroundColor" red="0.88235294119999996" green="0.90980392160000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="B5J-B9-7aU"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0.5" id="EFc-Bu-0re"/>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="0.5" id="ltJ-yw-gvY"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="rHm-GS-9fV" secondAttribute="trailing" constant="-8" id="47b-Yu-awS"/>
                                                 <constraint firstItem="Q9X-YD-QqV" firstAttribute="top" secondItem="ovo-7a-5r1" secondAttribute="topMargin" id="4s0-Bz-3oT"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="rHm-GS-9fV" secondAttribute="bottom" constant="-8" id="CKz-C8-5U7"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Q9X-YD-QqV" secondAttribute="bottom" id="FXM-s8-IXa"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ca4-bD-0rM" secondAttribute="trailing" constant="10" id="Pu2-gA-mlt"/>
                                                 <constraint firstItem="ca4-bD-0rM" firstAttribute="leading" secondItem="Q9X-YD-QqV" secondAttribute="trailing" constant="10" id="Yop-AM-NMS"/>
                                                 <constraint firstItem="ca4-bD-0rM" firstAttribute="top" secondItem="ovo-7a-5r1" secondAttribute="topMargin" id="Zxx-bG-dNV"/>
+                                                <constraint firstItem="rHm-GS-9fV" firstAttribute="leading" secondItem="ovo-7a-5r1" secondAttribute="leadingMargin" constant="-8" id="ZzS-O7-Adf"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="ca4-bD-0rM" secondAttribute="bottom" id="m5C-9q-on3"/>
                                                 <constraint firstItem="Q9X-YD-QqV" firstAttribute="leading" secondItem="ovo-7a-5r1" secondAttribute="leadingMargin" constant="10" id="zhE-nq-cKj"/>
                                             </constraints>
@@ -54,11 +66,11 @@
                                         <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LoB-Sq-xEm" id="N1J-dy-Aig">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新的密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBd-Gr-9dY" customClass="ZGPrefileTipLabel">
-                                                    <rect key="frame" x="18" y="8" width="65" height="27"/>
+                                                    <rect key="frame" x="18" y="8" width="65" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="Hoq-5S-Ffz"/>
                                                     </constraints>
@@ -67,18 +79,30 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入新的密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wV9-1b-VDQ" customClass="ZGProfileTextField">
-                                                    <rect key="frame" x="93" y="8" width="489" height="27"/>
+                                                    <rect key="frame" x="93" y="8" width="489" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="next" secureTextEntry="YES"/>
                                                 </textField>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VX8-0r-0MS" userLabel="line">
+                                                    <rect key="frame" x="0.0" y="43" width="600" height="1"/>
+                                                    <color key="backgroundColor" red="0.88235294119999996" green="0.90980392160000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="0.5" id="IlX-Od-doN"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0.5" id="L6Q-hw-5E6"/>
+                                                        <constraint firstAttribute="height" constant="0.5" id="f2K-Xq-e2Z"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="JBd-Gr-9dY" firstAttribute="leading" secondItem="N1J-dy-Aig" secondAttribute="leadingMargin" constant="10" id="44B-f5-Z5B"/>
                                                 <constraint firstItem="wV9-1b-VDQ" firstAttribute="top" secondItem="N1J-dy-Aig" secondAttribute="topMargin" id="DU2-xe-vg7"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="wV9-1b-VDQ" secondAttribute="trailing" constant="10" id="G25-4E-9jp"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="VX8-0r-0MS" secondAttribute="bottom" constant="-8" id="Jl5-QU-ZAp"/>
                                                 <constraint firstItem="wV9-1b-VDQ" firstAttribute="leading" secondItem="JBd-Gr-9dY" secondAttribute="trailing" constant="10" id="OKB-BF-Vk8"/>
                                                 <constraint firstItem="JBd-Gr-9dY" firstAttribute="top" secondItem="N1J-dy-Aig" secondAttribute="topMargin" id="il6-nG-lSI"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="VX8-0r-0MS" secondAttribute="trailing" constant="-8" id="m7e-x9-qph"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="JBd-Gr-9dY" secondAttribute="bottom" id="q3e-ca-po5"/>
+                                                <constraint firstItem="VX8-0r-0MS" firstAttribute="leading" secondItem="N1J-dy-Aig" secondAttribute="leadingMargin" constant="-8" id="sv0-X7-Z4u"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="wV9-1b-VDQ" secondAttribute="bottom" id="yhR-TR-zb6"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -87,11 +111,11 @@
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uhs-0o-j0r" id="H3Y-8m-kED">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0V-UM-UW7" customClass="ZGPrefileTipLabel">
-                                                    <rect key="frame" x="18" y="8" width="65" height="27"/>
+                                                    <rect key="frame" x="18" y="8" width="65" height="28"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="Dtz-6a-YW8"/>
                                                     </constraints>
@@ -100,7 +124,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认新的密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Q8-lZ-Lzx" customClass="ZGProfileTextField">
-                                                    <rect key="frame" x="93" y="8" width="489" height="27"/>
+                                                    <rect key="frame" x="93" y="8" width="489" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="done" secureTextEntry="YES"/>
                                                 </textField>

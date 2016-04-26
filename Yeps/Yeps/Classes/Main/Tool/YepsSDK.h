@@ -12,6 +12,7 @@
 
 + (CGFloat)cacheSize;
 + (void)clearCache;
++ (void)clearDataBase;
 
 + (void)updateStatusCount:(NSDictionary *)statusCountDict status_id:(NSInteger)status_id;
 + (void)updateStatusVote:(NSDictionary *)voteDict status_id:(NSInteger)status_id;
@@ -48,11 +49,23 @@
 //获取旧的Status
 + (void)getOldStatus:(NSInteger)max_id type:(NSInteger)type success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
 
+//获取Status详情
++ (void)getStatusDetail:(NSString *)status_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//获取Status 评论数 点赞数...
++ (void)getStatusCount:(NSString *)status_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
 //获取关注的好友新的Status
 + (void)getFollowNewStatus:(NSInteger)since_id type:(NSInteger)type success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
 
 //获取关注的好友旧的Status
 + (void)getFollowOldStatus:(NSInteger)max_id type:(NSInteger)type success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//获取某个用户新的Status
++ (void)getUserNewStatus:(NSInteger)since_id user_sha1:(NSString *)user_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//获取某个用户旧的Status
++ (void)getUserOldStatus:(NSInteger)max_id user_sha1:(NSString *)user_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
 
 //获取评论
 + (void)getOldComment:(NSInteger)max_id status_sha1:(NSString *)status_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
@@ -97,5 +110,29 @@
 
 //更新用户标签
 + (void)updateTagList:(NSArray *)tag_list success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//更新个性签名
++ (void)updateIntro:(NSString *)intro success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//获取自己的信息
++ (void)getUserInfo:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//获取其他用户的信息
++ (void)getOtherUserInfo:(NSString *)user_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//获取用户所有 status 图片
++ (void)getUserStatusImages:(NSString *)user_sha1 max_id:(NSInteger)max_id success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//关注
++ (void)follow:(NSString *)user_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//取消关注
++ (void)removeFollow:(NSString *)user_sha1 success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//获取系统推荐列表
++ (void)recommendUserList:(NSInteger)max_id count:(NSInteger)count success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//匹配操作
++ (void)matchOption:(NSString *)user_sha1 is_match:(NSInteger)is_match success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
 
 @end

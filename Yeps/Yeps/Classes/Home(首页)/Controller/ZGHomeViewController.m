@@ -118,12 +118,14 @@
     tableView1.type = 0;
     tableView1.frame = self.midFrame;
     [tableView1 beginRefresh];
+    tableView1.scrollsToTop = YES;
     [self.view addSubview:tableView1];
     
     
     ZGTableView *tableView2 = [ZGTableView initWithDelegate:self dataSource:self extraPadding:0];
     self.tableView2 = tableView2;
     tableView2.type = 1;
+    tableView2.scrollsToTop = NO;
     tableView2.frame = self.rightFrame;
     [self.view addSubview:tableView2];
     
@@ -131,9 +133,12 @@
     typeScrollView.frame = CGRectMake(0, 64, kMaxW, ktypeScrollViewH);
     typeScrollView.userInteractionEnabled = YES;
     typeScrollView.scrollEnabled = YES;
+    typeScrollView.scrollsToTop = NO;
     typeScrollView.didSelectType = ^(NSInteger type) {
         [self.tableView1 stopAllRefresh];
         [self.tableView2 stopAllRefresh];
+        self.tableView1.scrollsToTop = !self.tableView1.scrollsToTop;
+        self.tableView2.scrollsToTop = !self.tableView2.scrollsToTop;
         if (type > self.curType) {//往左
             if(self.tableView1.frame.origin.x == 0) {//当前屏幕的tableView
                 self.tableView2.frame = self.rightFrame;
@@ -229,9 +234,9 @@
             [weak.tableView1 beginRefresh];
             [weak.tableView2 beginRefresh];
         } error:^(id data) {
-            [SVProgressHUD showErrorWithStatus:data[@"info"]];
+            [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
         } failure:^(NSError *error) {
-            [SVProgressHUD showErrorWithStatus:@"网络故障"];
+            [SVProgressHUD showErrorWithStatus:@"网络故障" maskType:SVProgressHUDMaskTypeGradient];
         }];
     };
     [self presentViewController:pick animated:YES completion:nil];
@@ -306,11 +311,11 @@
         
     } error:^(id data) {
         [tableView stopRefresh];
-        [SVProgressHUD showErrorWithStatus:data[@"info"]];
+        [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
         
     } failure:^(NSError *error) {
         [tableView stopRefresh];
-        [SVProgressHUD showErrorWithStatus:@"网络故障"];
+        [SVProgressHUD showErrorWithStatus:@"网络故障" maskType:SVProgressHUDMaskTypeGradient];
         
     }];
 }
@@ -346,16 +351,17 @@
         
     } error:^(id data) {
         [tableView stopPullUpRefresh];
-        [SVProgressHUD showErrorWithStatus:data[@"info"]];
+        [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
         
     } failure:^(NSError *error) {
         [tableView stopPullUpRefresh];
-        [SVProgressHUD showErrorWithStatus:@"网络故障"];
+        [SVProgressHUD showErrorWithStatus:@"网络故障" maskType:SVProgressHUDMaskTypeGradient];
         
     }];
 }
 
 - (void)accessTokenErrorNotifi {
+    [SVProgressHUD dismiss];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"登录已失效" message:@"请重新登录" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [YepsSDK logout];

@@ -45,6 +45,7 @@
 + (instancetype)popBackGroundColor {
     return [UIColor colorWithR:225 g:232 b:235 alpha:1.0];
 //    return [self popColor];
+//    return [UIColor colorWithPatternImage:[UIImage imageNamed:@"switchBack"]];
 }
 
 //主颜色

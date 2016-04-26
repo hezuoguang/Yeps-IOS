@@ -26,7 +26,12 @@
     
 //    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"switchBack"]];
 //    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"profileBack5"]];
-    self.view.backgroundColor = [UIColor popBackGroundColor];
+//    self.view.backgroundColor = [UIColor popBackGroundColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"switchBack"]];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.frame = self.view.bounds;
+    [self.view insertSubview:imageView atIndex:0];
     
     NSInteger count = kTypeStrs.count;
     CGFloat X = 0;
@@ -55,9 +60,9 @@
     
     CGFloat baseY = self.view.center.y - kZGSwitchStatusTypeButtonH * 0.7;
     UILabel *label = [[UILabel alloc] init];
-    label.text = @"Yeps 分享校园生活";
+    label.text = @"分享校园生活";
     label.alpha = 1.0;
-    label.textColor = [UIColor clearColor];
+    label.textColor = [UIColor popColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:21];
     label.frame = CGRectMake(0, baseY - H * 0.5 - 30 * [UIScreen mainScreen].scale / 2, self.view.bounds.size.width, 60);
@@ -112,8 +117,9 @@
                 POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPLabelTextColor];
                 anim.beginTime = CACurrentMediaTime() + 0.25;
                 anim.duration = 1.0;
-                anim.fromValue = [UIColor clearColor];
-                anim.toValue = [UIColor popColor];
+                anim.fromValue = [UIColor popColor];
+//                anim.toValue = [UIColor popColor];
+                anim.toValue = [UIColor whiteColor];
                 [self.label pop_addAnimation:anim forKey:kPOPViewAlpha];
             }
             continue;
