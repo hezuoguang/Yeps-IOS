@@ -53,17 +53,15 @@
     [self.followBtn addTarget:self action:@selector(headerViewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.fansBtn addTarget:self action:@selector(headerViewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.statusBtn addTarget:self action:@selector(headerViewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.followBtn.type = ZGProfileHeaderViewButtonTypeFollow;
+    self.fansBtn.type = ZGProfileHeaderViewButtonTypeFans;
+    self.statusBtn.type = ZGProfileHeaderViewButtonTypeStatus;
 }
 
 - (void)headerViewBtnClick:(ZGProfileHeaderViewButton *)btn {
-    ZGProfileHeaderViewButtonType type = ZGProfileHeaderViewButtonTypeFollow;
-    if (btn == self.fansBtn) {
-        type = ZGProfileHeaderViewButtonTypeFans;
-    } else if(btn == self.statusBtn) {
-        type = ZGProfileHeaderViewButtonTypeStatus;
-    }
-    if ([self.delegate respondsToSelector:@selector(profileHeaderViewHeaderViewButtonDidClick:type:)]) {
-        [self.delegate profileHeaderViewHeaderViewButtonDidClick:self type:type];
+    if ([self.delegate respondsToSelector:@selector(profileHeaderViewHeaderViewButtonDidClick:btn:)]) {
+        [self.delegate profileHeaderViewHeaderViewButtonDidClick:self btn:btn];
     }
 }
 

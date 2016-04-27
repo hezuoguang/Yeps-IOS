@@ -41,6 +41,8 @@
 
 - (void)beginRefresh;
 
+- (void)beginPullUpRefresh;
+
 - (void)stopPullUpRefresh;
 
 - (void)stopAllRefresh;

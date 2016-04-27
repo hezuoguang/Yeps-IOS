@@ -9,6 +9,7 @@
 #import "ZGProfileTool.h"
 #import "ZGProfileSettingItemModel.h"
 #import "StatusListViewContriller.h"
+#import "ZGFollowListViewController.h"
 
 static NSArray *_items = nil;
 
@@ -114,6 +115,20 @@ static NSArray *_profileBackImages = nil;
 + (void)popToUserStatusListViewController:(id)userInfo nav:(UINavigationController *)nav {
     StatusListViewContriller *vc = [[StatusListViewContriller alloc] init];
     vc.userInfo = userInfo;
+    [nav pushViewController:vc animated:YES];
+}
+
++ (void)popToUserFollowListViewController:(UserBaseInfoModel *)userInfo nav:(UINavigationController *)nav {
+    ZGFollowListViewController *vc = [[ZGFollowListViewController alloc] init];
+    vc.userBaseInfo = userInfo;
+    vc.followMe = NO;
+    [nav pushViewController:vc animated:YES];
+}
+
++ (void)popToUserFansListViewController:(UserBaseInfoModel *)userInfo nav:(UINavigationController *)nav {
+    ZGFollowListViewController *vc = [[ZGFollowListViewController alloc] init];
+    vc.userBaseInfo = userInfo;
+    vc.followMe = YES;
     [nav pushViewController:vc animated:YES];
 }
 

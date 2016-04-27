@@ -61,6 +61,10 @@
     [self.mj_header endRefreshing];
 }
 
+- (void)beginPullUpRefresh {
+    [self.mj_footer beginRefreshing];
+}
+
 -(void)stopPullUpRefresh {
     [self.mj_footer endRefreshing];
 }
@@ -72,6 +76,7 @@
 
 - (void)removeRefresh {
     self.mj_header = nil;
+    self.mj_footer.automaticallyHidden = NO;
 }
 
 - (void)removePullUpRefresh {

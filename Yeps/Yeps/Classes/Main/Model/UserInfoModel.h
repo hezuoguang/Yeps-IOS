@@ -32,14 +32,12 @@
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, assign) NSInteger age;
 @property (nonatomic, copy) NSString *sex;
-@property (nonatomic, copy) NSString *intro;
 @property (nonatomic, copy) NSString *birthday;
 @property (nonatomic, copy) NSString *university;
 @property (nonatomic, strong) NSMutableArray *tag_list;
 @property (nonatomic, strong) NSMutableArray *image_list;
 @property (nonatomic, copy) NSString *create_time;
 @property (nonatomic, copy) NSString *last_active_time;
-@property (nonatomic, assign) BOOL is_follow;
 @property (nonatomic, copy) NSString *active_university;
 @property (nonatomic, assign) NSInteger follow_count;
 @property (nonatomic, assign) NSInteger fans_count;

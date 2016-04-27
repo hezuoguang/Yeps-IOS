@@ -927,4 +927,53 @@ static FMDatabase *_db;
     } failure:failure];
 }
 
+//搜索用户
++ (void)searchUsers:(NSString *)key max_id:(NSInteger)max_id count:(NSInteger)count success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"search_user_list";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"max_id"] = @(max_id);
+    data[@"count"] = @(count);
+    data[@"key"] = key;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
+//获取关注/粉丝列表
++ (void)aboutFollowUserList:(NSString *)user_sha1 max_id:(NSInteger)max_id count:(NSInteger)count followMe:(BOOL)followMe success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"fans_user_list";
+    if(!followMe) {//我的关注列表
+        params[@"action"] = @"follow_user_list";
+    }
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"max_id"] = @(max_id);
+    data[@"count"] = @(count);
+    data[@"user_sha1"] = user_sha1;
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
 @end

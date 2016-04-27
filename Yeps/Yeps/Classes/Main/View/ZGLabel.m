@@ -10,9 +10,19 @@
 
 @implementation ZGLabel
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self setup];
+}
+
+- (void)setup {
+    self.textColor = [UIColor popFontColor];
+    self.font = [UIFont systemFontOfSize:16];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.textColor = [UIColor popFontColor];
+        [self setup];
     }
     return self;
 }

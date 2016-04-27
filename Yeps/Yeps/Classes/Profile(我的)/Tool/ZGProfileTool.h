@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class UserInfoModel;
+@class UserInfoModel, UserBaseInfoModel;
 @interface ZGProfileTool : NSObject
 
 + (NSArray *)profileItems;
@@ -19,4 +19,6 @@
 + (UIImage *)profileBackImageWithPhone:(NSString *)phone;
 
 + (void)popToUserStatusListViewController:(UserInfoModel *)userInfo nav:(UINavigationController *)nav;
++ (void)popToUserFollowListViewController:(UserBaseInfoModel *)userInfo nav:(UINavigationController *)nav;
++ (void)popToUserFansListViewController:(UserBaseInfoModel *)userInfo nav:(UINavigationController *)nav;
 @end

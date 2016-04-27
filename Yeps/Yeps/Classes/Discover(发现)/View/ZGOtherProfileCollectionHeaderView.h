@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UserInfoModel;
+@class UserInfoModel, ZGOtherProfileHeaderView;
+@protocol ZGOtherProfileHeaderViewDelegate;
 @interface ZGOtherProfileCollectionHeaderView : UICollectionReusableView
 
 @property (nonatomic, strong) UserInfoModel *userInfo;
+@property (nonatomic, weak) id<ZGOtherProfileHeaderViewDelegate> delegate;
 
 
 @end

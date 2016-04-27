@@ -56,4 +56,11 @@
     return _smallPhoto;
 }
 
+- (void)setIntro:(NSString *)intro {
+    if (intro == nil || intro.length <= 0) {
+        intro = @"Yeps 分享校园生活";
+    }
+    _intro = [intro copy];
+}
+
 @end

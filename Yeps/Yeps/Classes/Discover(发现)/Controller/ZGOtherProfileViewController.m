@@ -14,6 +14,9 @@
 #import "ZGOtherProfileCollectionHeaderView.h"
 #import "ZGOtherProfilePhotoModel.h"
 #import "StatusDetailViewController.h"
+#import "ZGProfileHeaderViewButton.h"
+#import "ZGBarButtonItem.h"
+#import "ZGProfileTool.h"
 
 #import <MJRefresh/MJRefresh.h>
 #import <MJExtension/MJExtension.h>
@@ -23,7 +26,7 @@
 #define kHeaderW [UIScreen mainScreen].bounds.size.width
 #define kHeaderH (414 + 44)
 
-@interface ZGOtherProfileViewController ()<UIScrollViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
+@interface ZGOtherProfileViewController ()<UIScrollViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, ZGOtherProfileHeaderViewDelegate>
 
 @property (nonatomic, weak) ZGOtherProfileCollectionHeaderView *headerView;
 @property (nonatomic, weak) UIScrollView *scrollView;
@@ -120,6 +123,14 @@ static NSString *collectionHeaderID = @"ZGOtherProfileCollectionHeaderView";
         [self.collectionView.mj_header beginRefreshing];
     }
     [self.collectionView.mj_footer beginRefreshing];
+    
+    if (self.navigationController.childViewControllers.count == 1) {//模态出来的
+        self.navigationItem.leftBarButtonItem = [ZGBarButtonItem leftBarButtonItemWithImage:@"close_icon"highlightImage:@"close_icon_h" addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+- (void)dismiss {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)updateScrollViewContentSize {
@@ -167,6 +178,7 @@ static NSString *collectionHeaderID = @"ZGOtherProfileCollectionHeaderView";
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     ZGOtherProfileCollectionHeaderView *cell = (ZGOtherProfileCollectionHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:collectionHeaderID forIndexPath:indexPath];
+    cell.delegate = self;
     cell.userInfo = self.userInfo;
     return cell;
 }
@@ -228,6 +240,25 @@ static NSString *collectionHeaderID = @"ZGOtherProfileCollectionHeaderView";
     } failure:^(NSError *error) {
         [self.collectionView.mj_footer endRefreshing];
     }];
+}
+
+- (void)OtherProfileHeaderViewHeaderViewButtonDidClick:(ZGOtherProfileHeaderView *)headerView btn:(ZGProfileHeaderViewButton *)btn {
+    switch (btn.type) {
+        case ZGProfileHeaderViewButtonTypeFans:
+            [ZGProfileTool popToUserFansListViewController:headerView.userInfo nav:self.navigationController];
+            break;
+        case ZGProfileHeaderViewButtonTypeFollow:
+            [ZGProfileTool popToUserFollowListViewController:headerView.userInfo nav:self.navigationController];
+            break;
+        case ZGProfileHeaderViewButtonTypeStatus:{
+            [ZGProfileTool popToUserStatusListViewController:headerView.userInfo nav:self.navigationController];
+            break;
+        }
+        case ZGProfileHeaderViewButtonTypePhoto:
+            break;
+        default:
+            break;
+    }
 }
 
 @end

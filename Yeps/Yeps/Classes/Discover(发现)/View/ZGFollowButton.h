@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UserInfoModel;
+@class UserBaseInfoModel;
 @interface ZGFollowButton : UIButton
 
-@property (nonatomic, strong) UserInfoModel *userInfo;
+@property (nonatomic, strong) UserBaseInfoModel *userInfo;
 
 @end

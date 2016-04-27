@@ -15,5 +15,8 @@
 @property (nonatomic, copy) NSString *photo;
 @property (nonatomic, copy) NSString *smallPhoto;
 @property (nonatomic, assign) NSInteger recommend_id;
+@property (nonatomic, assign) NSInteger search_id;
+@property (nonatomic, copy) NSString *intro;
+@property (nonatomic, assign) BOOL is_follow;
 
 @end

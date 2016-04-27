@@ -35,11 +35,31 @@
 @implementation ZGOtherProfileHeaderView
 
 - (void)awakeFromNib {
-    
+    [super awakeFromNib];
+    [self setup];
 }
 
 + (instancetype)headerView {
     return [[[NSBundle mainBundle] loadNibNamed:@"ZGOtherProfileHeaderView" owner:nil options:nil] firstObject];
+}
+
+-  (void)setup {
+    self.followBtn.type = ZGProfileHeaderViewButtonTypeFollow;
+    self.fansBtn.type = ZGProfileHeaderViewButtonTypeFans;
+    self.statusBtn.type = ZGProfileHeaderViewButtonTypeStatus;
+    self.photoBtn.type = ZGProfileHeaderViewButtonTypePhoto;
+    
+    [self.followBtn addTarget:self action:@selector(headerViewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.fansBtn addTarget:self action:@selector(headerViewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.statusBtn addTarget:self action:@selector(headerViewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.photoBtn addTarget:self action:@selector(headerViewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+
+- (void)headerViewBtnClick:(ZGProfileHeaderViewButton *)btn {
+    if ([self.delegate respondsToSelector:@selector(OtherProfileHeaderViewHeaderViewButtonDidClick:btn:)]) {
+        [self.delegate OtherProfileHeaderViewHeaderViewButtonDidClick:self btn:btn];
+    }
 }
 
 - (void)miniStyle {

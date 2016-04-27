@@ -8,7 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    ZGProfileHeaderViewButtonTypeFollow,
+    ZGProfileHeaderViewButtonTypeFans,
+    ZGProfileHeaderViewButtonTypeStatus,
+    ZGProfileHeaderViewButtonTypePhoto
+}ZGProfileHeaderViewButtonType;
+
 @interface ZGProfileHeaderViewButton : UIButton
+
+@property (nonatomic, assign) ZGProfileHeaderViewButtonType type;
 
 - (void)setCount:(NSInteger)count;
 

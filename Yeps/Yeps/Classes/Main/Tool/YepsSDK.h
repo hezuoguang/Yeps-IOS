@@ -135,4 +135,10 @@
 //匹配操作
 + (void)matchOption:(NSString *)user_sha1 is_match:(NSInteger)is_match success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
 
+//搜索用户
++ (void)searchUsers:(NSString *)key max_id:(NSInteger)max_id count:(NSInteger)count success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
+//获取关注/粉丝列表
++ (void)aboutFollowUserList:(NSString *)user_sha1 max_id:(NSInteger)max_id count:(NSInteger)count followMe:(BOOL)followMe success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
 @end

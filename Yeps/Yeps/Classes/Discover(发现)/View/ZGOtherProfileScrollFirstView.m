@@ -34,41 +34,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self setup];
+
 }
 
-- (void)setup {
-    [self.followBtn addTarget:self action:@selector(followBtnClick) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)followBtnClick {
-    self.followBtn.userInteractionEnabled = NO;
-    if (self.followBtn.selected) {
-        [YepsSDK removeFollow:self.userInfo.user_sha1 success:^(id data) {
-            self.followBtn.selected = !self.followBtn.selected;
-            self.followBtn.userInteractionEnabled = YES;
-            self.userInfo.is_follow = NO;
-        } error:^(id data) {
-            [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
-            self.followBtn.userInteractionEnabled = YES;
-        } failure:^(NSError *error) {
-            [SVProgressHUD showErrorWithStatus:@"操作失败" maskType:SVProgressHUDMaskTypeGradient];
-            self.followBtn.userInteractionEnabled = YES;
-        }];
-    } else {
-        [YepsSDK follow:self.userInfo.user_sha1 success:^(id data) {
-            self.followBtn.selected = !self.followBtn.selected;
-            self.followBtn.userInteractionEnabled = YES;
-            self.userInfo.is_follow = YES;
-        } error:^(id data) {
-            [SVProgressHUD showErrorWithStatus:data[@"info"] maskType:SVProgressHUDMaskTypeGradient];
-            self.followBtn.userInteractionEnabled = YES;
-        } failure:^(NSError *error) {
-            [SVProgressHUD showErrorWithStatus:@"操作失败" maskType:SVProgressHUDMaskTypeGradient];
-            self.followBtn.userInteractionEnabled = YES;
-        }];
-    }
-}
 
 - (void)setUserInfo:(UserInfoModel *)userInfo {
     _userInfo = userInfo;

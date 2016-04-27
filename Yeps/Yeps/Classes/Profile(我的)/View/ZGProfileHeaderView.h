@@ -8,19 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
-    ZGProfileHeaderViewButtonTypeFollow,
-    ZGProfileHeaderViewButtonTypeFans,
-    ZGProfileHeaderViewButtonTypeStatus
-}ZGProfileHeaderViewButtonType;
-
 @class UserInfoModel, ZGProfileHeaderView, ZGProfileHeaderViewButton;
 
 @protocol ZGProfileHeaderViewDelegate <NSObject>
 
 @optional
 
-- (void)profileHeaderViewHeaderViewButtonDidClick:(ZGProfileHeaderView *)headerView type:(ZGProfileHeaderViewButtonType)type;
+- (void)profileHeaderViewHeaderViewButtonDidClick:(ZGProfileHeaderView *)headerView btn:(ZGProfileHeaderViewButton *)btn;
 
 @end
 

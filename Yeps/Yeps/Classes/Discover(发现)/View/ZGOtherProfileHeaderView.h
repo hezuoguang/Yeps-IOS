@@ -7,9 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-@class UserInfoModel;
+@class UserInfoModel, ZGOtherProfileHeaderView, ZGProfileHeaderViewButton;
+
+@protocol ZGOtherProfileHeaderViewDelegate <NSObject>
+
+@optional
+
+- (void)OtherProfileHeaderViewHeaderViewButtonDidClick:(ZGOtherProfileHeaderView *)headerView btn:(ZGProfileHeaderViewButton *)btn;
+
+@end
+
 @interface ZGOtherProfileHeaderView : UIView
 
+@property (nonatomic, weak) id<ZGOtherProfileHeaderViewDelegate> delegate;
 @property (nonatomic, strong) UserInfoModel *userInfo;
 
 + (instancetype)headerView;

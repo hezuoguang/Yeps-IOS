@@ -12,6 +12,7 @@
 #import "UserTool.h"
 #import "ZGOtherProfileViewController.h"
 #import "ZGBarButtonItem.h"
+#import "ZGSearchUserViewController.h"
 
 #import <MJExtension/MJExtension.h>
 
@@ -268,9 +269,17 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     if (self.isFirstGetData && self.isGetData) {
-        [SVProgressHUD show];
+        [SVProgressHUD dismiss];
     }
 }
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    if (self.isFirstGetData && self.isGetData) {
+        [SVProgressHUD dismiss];
+    }
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -287,7 +296,8 @@
 }
 
 - (void)searchUser {
-    
+    ZGSearchUserViewController *vc = [[ZGSearchUserViewController alloc] init];
+    [self presentViewController:vc animated:NO completion:nil];
 }
 
 - (void)updateHeaderViewUserInfo {

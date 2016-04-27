@@ -43,4 +43,9 @@
     self.headerView.frame = self.bounds;
 }
 
+- (void)setDelegate:(id<ZGOtherProfileHeaderViewDelegate>)delegate {
+    _delegate = delegate;
+    self.headerView.delegate = delegate;
+}
+
 @end

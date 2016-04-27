@@ -23,6 +23,7 @@
 #import "ZGEditProfileViewController.h"
 #import "PickTagsViewController.h"
 #import "ZGEditIntroViewController.h"
+#import "ZGProfileHeaderViewButton.h"
 
 @interface ZGProfileViewController ()<UIScrollViewDelegate, ZGProfileSettingItemCellDelegate, UIAlertViewDelegate, UzysAssetsPickerControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, ZGProfileHeaderViewDelegate>
 
@@ -470,14 +471,20 @@
     }];
 }
 
-- (void)profileHeaderViewHeaderViewButtonDidClick:(ZGProfileHeaderView *)headerView type:(ZGProfileHeaderViewButtonType)type {
-    switch (type) {
-        case ZGProfileHeaderViewButtonTypeFans:
-            
+- (void)profileHeaderViewHeaderViewButtonDidClick:(ZGProfileHeaderView *)headerView btn:(ZGProfileHeaderViewButton *)btn {
+    switch (btn.type) {
+        case ZGProfileHeaderViewButtonTypeFans:{
+            [self didPush:^{
+                [ZGProfileTool popToUserFansListViewController:headerView.userInfo nav:self.navigationController];
+            }];
             break;
-        case ZGProfileHeaderViewButtonTypeFollow:
-            
+        }
+        case ZGProfileHeaderViewButtonTypeFollow:{
+            [self didPush:^{
+                [ZGProfileTool popToUserFollowListViewController:headerView.userInfo nav:self.navigationController];
+            }];
             break;
+        }
         case ZGProfileHeaderViewButtonTypeStatus:{
             [self didPush:^{
                 [ZGProfileTool popToUserStatusListViewController:headerView.userInfo nav:self.navigationController];
