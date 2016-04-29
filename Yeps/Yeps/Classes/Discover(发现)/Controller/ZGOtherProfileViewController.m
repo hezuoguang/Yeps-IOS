@@ -260,11 +260,16 @@ static NSString *collectionHeaderID = @"ZGOtherProfileCollectionHeaderView";
             [ZGProfileTool popToUserStatusListViewController:headerView.userInfo nav:self.navigationController];
             break;
         }
-        case ZGProfileHeaderViewButtonTypePhoto:
+        case ZGProfileHeaderViewButtonTypePhoto:{
+            [UIView animateWithDuration:0.25 animations:^{
+                self.collectionView.contentOffset = CGPointMake(0, kHeaderH-64);
+            }];
             break;
+        }
         default:
             break;
     }
 }
+
 
 @end
