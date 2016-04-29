@@ -17,16 +17,18 @@
 #import <MJExtension/MJExtension.h>
 
 #import <pop/POP.h>
-
+#define kBtnViewH 120
+#define kBtnWH 80
 #define kHeaderViewOutPadding 6
 #define kHeaderViewCount 4
 #define kHeaderViewPadding 10
 #define kHeaderViewY (kHeaderViewPadding + 64)
-#define kHeaderViewMinHeight 350
+//#define kHeaderViewMinHeight 350
+#define kHeaderViewMinHeight ([UIScreen mainScreen].bounds.size.height - kHeaderViewY - 49 - kBtnViewH)
 #define kHeaderViewMaxHeigth (414 + 44)
 #define kHeaderViewMaxWidth ([UIScreen mainScreen].bounds.size.width)
 #define kHeaderViewMinWidth (kHeaderViewMaxWidth - 2 * kHeaderViewPadding)
-#define kBtnWH 55
+
 
 @interface ZGDiscoverViewController ()<UIGestureRecognizerDelegate>
 
