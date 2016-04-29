@@ -37,9 +37,13 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [self setup];
     
+}
+
+- (void)setup {
     self.introLabel.textColor = [UIColor popContentColor];
-    self.introLabel.font = [UIFont systemFontOfSize:14];
+    self.introLabel.font = [UIFont systemFontOfSize:13];
     
     self.nickLabel.font = [UIFont systemFontOfSize:17];
     
@@ -55,6 +59,9 @@
 }
 
 - (void)setUserBaseInfo:(UserBaseInfoModel *)userBaseInfo {
+    if (_userBaseInfo == nil) {
+        [self setup];
+    }
     _userBaseInfo = userBaseInfo;
     self.photoView.userBaseInfo = userBaseInfo;
     self.nickLabel.text = userBaseInfo.nick;

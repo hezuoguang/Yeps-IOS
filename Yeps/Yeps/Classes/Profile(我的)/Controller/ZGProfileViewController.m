@@ -24,6 +24,8 @@
 #import "PickTagsViewController.h"
 #import "ZGEditIntroViewController.h"
 #import "ZGProfileHeaderViewButton.h"
+#import "ZGMessageListViewController.h"
+#import "ZGAboutViewController.h"
 
 @interface ZGProfileViewController ()<UIScrollViewDelegate, ZGProfileSettingItemCellDelegate, UIAlertViewDelegate, UzysAssetsPickerControllerDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate, ZGProfileHeaderViewDelegate>
 
@@ -60,6 +62,7 @@
     [super viewWillAppear:animated];
     [self updateHeaderView:self.scrollView];
     [self update];
+    [self getSelfInfo];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -214,12 +217,11 @@
     self.navigationItem.rightBarButtonItem = [ZGBarButtonItem rightBarButtonItemWithImage:@"setting" highlightImage:@"setting_h" addTarget:self action:@selector(rightBarButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self setupSettingItems];
     [self updateUI];
-    [self getSelfInfo];
+//    [self getSelfInfo];
 }
 
 /** push 之前做一些事情*/
 - (void)didPush:(void(^)())complete {
-    [self getSelfInfo];
     [UIView animateWithDuration:0.25 animations:^{
         if (self.scrollView.contentOffset.y < self.headerH - 64) {
             self.scrollView.contentOffset = CGPointMake(0, self.headerH - 64);
@@ -314,7 +316,10 @@
 
 
 - (void)aboutAction {
-    
+    [self didPush:^{
+        ZGAboutViewController *vc = [[ZGAboutViewController alloc] initWithNibName:@"ZGAboutViewController" bundle:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 - (void)infoAction {
@@ -342,6 +347,10 @@
 
 - (void)messgeAction {
     
+    [self didPush:^{
+        ZGMessageListViewController *vc = [[ZGMessageListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 //- (void)clearCacheAction {

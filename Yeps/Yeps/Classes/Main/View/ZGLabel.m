@@ -17,7 +17,7 @@
 
 - (void)setup {
     self.textColor = [UIColor popFontColor];
-    self.font = [UIFont systemFontOfSize:16];
+//    self.font = [UIFont systemFontOfSize:16];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {

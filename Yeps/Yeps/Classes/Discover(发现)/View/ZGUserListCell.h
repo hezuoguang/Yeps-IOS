@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define KZGUserListCellHeight 60
+#define KZGUserListCellHeight 70
 
 @class UserBaseInfoModel;
 @interface ZGUserListCell : UITableViewCell

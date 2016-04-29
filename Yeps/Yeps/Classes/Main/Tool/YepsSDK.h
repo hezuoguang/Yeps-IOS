@@ -141,4 +141,7 @@
 //获取关注/粉丝列表
 + (void)aboutFollowUserList:(NSString *)user_sha1 max_id:(NSInteger)max_id count:(NSInteger)count followMe:(BOOL)followMe success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
 
+//获取消息列表
++ (void)getMessageList:(NSInteger)max_id count:(NSInteger)count success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure;
+
 @end

@@ -24,7 +24,8 @@
 #define kCellMargin 2
 #define kCellWH (([UIScreen mainScreen].bounds.size.width - 2 * kCellMargin) / 3.0)
 #define kHeaderW [UIScreen mainScreen].bounds.size.width
-#define kHeaderH (414 + 44)
+//#define kHeaderH (414 + 44)
+#define kHeaderH ([UIScreen mainScreen].bounds.size.height)
 
 @interface ZGOtherProfileViewController ()<UIScrollViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, ZGOtherProfileHeaderViewDelegate>
 
@@ -73,6 +74,7 @@ static NSString *collectionHeaderID = @"ZGOtherProfileCollectionHeaderView";
         collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             [self getImages];
         }];
+        collectionView.contentInset = UIEdgeInsetsMake(collectionView.contentInset.top, collectionView.contentInset.left, collectionView.contentInset.bottom - kCellMargin, collectionView.contentInset.right);
         [self.view addSubview:collectionView];
     }
     return _collectionView;
@@ -197,6 +199,10 @@ static NSString *collectionHeaderID = @"ZGOtherProfileCollectionHeaderView";
     StatusDetailViewController *detailVC = [[StatusDetailViewController alloc] init];
     detailVC.status_sha1 = model.status_sha1;
     [self.navigationController pushViewController:detailVC animated:YES];
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(kCellMargin, 0, 0, 0);
 }
 
 - (void)getOtherUserInfo {

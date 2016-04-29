@@ -976,4 +976,26 @@ static FMDatabase *_db;
     } failure:failure];
 }
 
+//获取消息列表
++ (void)getMessageList:(NSInteger)max_id count:(NSInteger)count success:(void (^)(id data))success error:(void (^)(id data))error failure:(void (^)(NSError *error))failure {
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"action"] = @"message_list";
+    NSMutableDictionary *data = [NSMutableDictionary dictionary];
+    data[@"max_id"] = @(max_id);
+    data[@"count"] = @(count);
+    data[@"access_token"] = [UserTool getAccessToken];
+    params[@"data"] = [NSString jsonStringWithObj:data];
+    [HttpTool POST:HOST parameters:params progress:nil success:^(id data) {
+        if ([data[@"ret"] isEqualToString:@"0001"]) {
+            if (success) {
+                success(data[@"data"]);
+            }
+        } else {
+            if (error) {
+                error(data);
+            }
+        }
+    } failure:failure];
+}
+
 @end

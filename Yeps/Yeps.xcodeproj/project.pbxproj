@@ -58,6 +58,12 @@
 		3047A8981CD067BC00057159 /* ZGUserListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3047A8961CD067BC00057159 /* ZGUserListCell.m */; };
 		3047A8991CD067BC00057159 /* ZGUserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3047A8971CD067BC00057159 /* ZGUserListCell.xib */; };
 		3047A89C1CD0E57B00057159 /* ZGFollowListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3047A89B1CD0E57B00057159 /* ZGFollowListViewController.m */; };
+		3047A8A01CD1F60300057159 /* ZGMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3047A89E1CD1F60300057159 /* ZGMessageCell.m */; };
+		3047A8A11CD1F60300057159 /* ZGMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3047A89F1CD1F60300057159 /* ZGMessageCell.xib */; };
+		3047A8A41CD1F6F000057159 /* ZGMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3047A8A31CD1F6F000057159 /* ZGMessageModel.m */; };
+		3047A8A71CD1FA2D00057159 /* ZGMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3047A8A61CD1FA2D00057159 /* ZGMessageListViewController.m */; };
+		3047A8AB1CD2F4C000057159 /* ZGAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3047A8A91CD2F4C000057159 /* ZGAboutViewController.m */; };
+		3047A8AC1CD2F4C000057159 /* ZGAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3047A8AA1CD2F4C000057159 /* ZGAboutViewController.xib */; };
 		304BFFDE1CC88D2D00156B43 /* ZGProfileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 304BFFDD1CC88D2D00156B43 /* ZGProfileTool.m */; };
 		304BFFE11CC88DED00156B43 /* ZGProfileSettingItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 304BFFE01CC88DED00156B43 /* ZGProfileSettingItemModel.m */; };
 		304BFFE41CC8AFC600156B43 /* ZGProfileSettingItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 304BFFE31CC8AFC600156B43 /* ZGProfileSettingItemCell.m */; };
@@ -239,6 +245,16 @@
 		3047A8971CD067BC00057159 /* ZGUserListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZGUserListCell.xib; sourceTree = "<group>"; };
 		3047A89A1CD0E57B00057159 /* ZGFollowListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGFollowListViewController.h; sourceTree = "<group>"; };
 		3047A89B1CD0E57B00057159 /* ZGFollowListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGFollowListViewController.m; sourceTree = "<group>"; };
+		3047A89D1CD1F60300057159 /* ZGMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGMessageCell.h; sourceTree = "<group>"; };
+		3047A89E1CD1F60300057159 /* ZGMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGMessageCell.m; sourceTree = "<group>"; };
+		3047A89F1CD1F60300057159 /* ZGMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZGMessageCell.xib; sourceTree = "<group>"; };
+		3047A8A21CD1F6F000057159 /* ZGMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGMessageModel.h; sourceTree = "<group>"; };
+		3047A8A31CD1F6F000057159 /* ZGMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGMessageModel.m; sourceTree = "<group>"; };
+		3047A8A51CD1FA2D00057159 /* ZGMessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGMessageListViewController.h; sourceTree = "<group>"; };
+		3047A8A61CD1FA2D00057159 /* ZGMessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGMessageListViewController.m; sourceTree = "<group>"; };
+		3047A8A81CD2F4C000057159 /* ZGAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGAboutViewController.h; sourceTree = "<group>"; };
+		3047A8A91CD2F4C000057159 /* ZGAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGAboutViewController.m; sourceTree = "<group>"; };
+		3047A8AA1CD2F4C000057159 /* ZGAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZGAboutViewController.xib; sourceTree = "<group>"; };
 		304BFFDC1CC88D2D00156B43 /* ZGProfileTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProfileTool.h; sourceTree = "<group>"; };
 		304BFFDD1CC88D2D00156B43 /* ZGProfileTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProfileTool.m; sourceTree = "<group>"; };
 		304BFFDF1CC88DED00156B43 /* ZGProfileSettingItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProfileSettingItemModel.h; sourceTree = "<group>"; };
@@ -552,6 +568,11 @@
 				304BFFF51CCA32E700156B43 /* ZGEditProfileViewController.storyboard */,
 				3032B50A1CCC95EC00A413A8 /* ZGEditIntroViewController.h */,
 				3032B50B1CCC95EC00A413A8 /* ZGEditIntroViewController.m */,
+				3047A8A51CD1FA2D00057159 /* ZGMessageListViewController.h */,
+				3047A8A61CD1FA2D00057159 /* ZGMessageListViewController.m */,
+				3047A8A81CD2F4C000057159 /* ZGAboutViewController.h */,
+				3047A8A91CD2F4C000057159 /* ZGAboutViewController.m */,
+				3047A8AA1CD2F4C000057159 /* ZGAboutViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -561,6 +582,8 @@
 			children = (
 				304BFFDF1CC88DED00156B43 /* ZGProfileSettingItemModel.h */,
 				304BFFE01CC88DED00156B43 /* ZGProfileSettingItemModel.m */,
+				3047A8A21CD1F6F000057159 /* ZGMessageModel.h */,
+				3047A8A31CD1F6F000057159 /* ZGMessageModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -579,6 +602,9 @@
 				304BFFF81CCA3E9E00156B43 /* ZGPrefileTipLabel.m */,
 				304BFFFA1CCA3F8400156B43 /* ZGProfileTextField.h */,
 				304BFFFB1CCA3F8400156B43 /* ZGProfileTextField.m */,
+				3047A89D1CD1F60300057159 /* ZGMessageCell.h */,
+				3047A89E1CD1F60300057159 /* ZGMessageCell.m */,
+				3047A89F1CD1F60300057159 /* ZGMessageCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1043,9 +1069,11 @@
 				309843D91CC2091E002F4889 /* ZGProfileHeaderView.xib in Resources */,
 				3032B5251CCDD42200A413A8 /* ZGOtherProfileScrollSecondView.xib in Resources */,
 				304BFFF61CCA32E700156B43 /* ZGEditProfileViewController.storyboard in Resources */,
+				3047A8A11CD1F60300057159 /* ZGMessageCell.xib in Resources */,
 				305977531CC12397003FD1C2 /* LaunchScreen.xib in Resources */,
 				304BFFF11CC90CEA00156B43 /* ZGModifyPwdViewController.storyboard in Resources */,
 				3032B5111CCCC74A00A413A8 /* ZGOtherProfileHeaderView.xib in Resources */,
+				3047A8AC1CD2F4C000057159 /* ZGAboutViewController.xib in Resources */,
 				30E5C0E41C8182B4000EF4E8 /* Assets.xcassets in Resources */,
 				3032B5231CCDD3EF00A413A8 /* ZGOtherProfileScrollFirstView.xib in Resources */,
 			);
@@ -1141,6 +1169,7 @@
 				30BE4D951C8C622E0077C8FB /* LoginStepTwoViewController.m in Sources */,
 				302A2BFC1C887D8300CF21CE /* RegisterStepTwoViewController.m in Sources */,
 				302A2BE51C87287500CF21CE /* ZGHomeViewController.m in Sources */,
+				3047A8AB1CD2F4C000057159 /* ZGAboutViewController.m in Sources */,
 				304BFFF41CCA32DF00156B43 /* ZGEditProfileViewController.m in Sources */,
 				30E5C11C1C81A44B000EF4E8 /* MainNavigationController.m in Sources */,
 				30BE4D991C8DB5030077C8FB /* StatusModel.m in Sources */,
@@ -1178,6 +1207,7 @@
 				303FF6A31C9322D9002B746F /* UIFont+Extension.m in Sources */,
 				304BFFE41CC8AFC600156B43 /* ZGProfileSettingItemCell.m in Sources */,
 				30E5C0DC1C8182B3000EF4E8 /* AppDelegate.m in Sources */,
+				3047A8A01CD1F60300057159 /* ZGMessageCell.m in Sources */,
 				304BFFE71CC8EC3F00156B43 /* ZGProfileSettingViewController.m in Sources */,
 				30E5C0D91C8182B3000EF4E8 /* main.m in Sources */,
 				302A2BF51C87368200CF21CE /* RegisterStepOneViewController.m in Sources */,
@@ -1190,6 +1220,7 @@
 				30BE4D841C8C50220077C8FB /* UserBaseInfoModel.m in Sources */,
 				303FF6BA1C998869002B746F /* CommentModel.m in Sources */,
 				30BE4D7E1C8BFF120077C8FB /* ZGTagListView.m in Sources */,
+				3047A8A71CD1FA2D00057159 /* ZGMessageListViewController.m in Sources */,
 				3013234F1C9EA8B700AB7011 /* ZGSwitchStatusTypeButton.m in Sources */,
 				3084B1DD1CB91A4C00ECE1F9 /* ZGShareButton.m in Sources */,
 				302A2C051C89C2EC00CF21CE /* RegisterStepFourViewController.m in Sources */,
@@ -1209,6 +1240,7 @@
 				3047A8881CCE4DCA00057159 /* ZGOtherProfileCollectionHeaderView.m in Sources */,
 				30BE4D871C8C50940077C8FB /* UserInfoModel.m in Sources */,
 				3032B50F1CCCC72F00A413A8 /* ZGOtherProfileHeaderView.m in Sources */,
+				3047A8A41CD1F6F000057159 /* ZGMessageModel.m in Sources */,
 				302A2BFF1C887E7700CF21CE /* RegisterStepBaseViewController.m in Sources */,
 				3047A8921CD05CAF00057159 /* ZGSearchUserViewController.m in Sources */,
 				30BE4DA81C8F164E0077C8FB /* ZGImageView.m in Sources */,

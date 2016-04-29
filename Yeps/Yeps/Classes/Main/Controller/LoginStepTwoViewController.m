@@ -37,6 +37,7 @@
     [btn setTitleColor:[UIColor popColor] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont systemFontOfSize:16.0];
     [btn setTitle:@"忘记密码了?" forState:UIControlStateNormal];
+    btn.hidden = YES;
     [self.view addSubview:btn];
     
     ZGTextField *textField = [[ZGTextField alloc] init];

@@ -26,13 +26,18 @@
 #define kHeaderViewMaxHeigth (414 + 44)
 #define kHeaderViewMaxWidth ([UIScreen mainScreen].bounds.size.width)
 #define kHeaderViewMinWidth (kHeaderViewMaxWidth - 2 * kHeaderViewPadding)
+#define kBtnWH 55
 
-@interface ZGDiscoverViewController ()
+@interface ZGDiscoverViewController ()<UIGestureRecognizerDelegate>
 
 @property (nonatomic, assign) NSInteger currnetIndex;
 @property (nonatomic, weak) UIView *headerViewBackView;
 @property (nonatomic, strong) NSMutableArray *headerViews;
 @property (nonatomic, strong) NSMutableArray *headerViewFrames;
+@property (nonatomic, weak) UIView *btnView;
+@property (nonatomic, weak) UIButton *likeBtn;
+@property (nonatomic, weak) UIButton *unLikeBtn;
+@property (nonatomic, weak) UIView *tapView;
 //是否正在获取数据
 @property (nonatomic, assign) BOOL isGetData;
 //是否可以获取数据 NO 允许 YES 不允许
@@ -40,11 +45,45 @@
 @property (nonatomic, strong) NSMutableArray *models;
 @property (nonatomic, assign) BOOL isFirstGetData;
 
+@property (nonatomic, assign) CGRect likeF;
+@property (nonatomic, assign) CGRect unLikeF;
 
 
 @end
 
 @implementation ZGDiscoverViewController
+
+- (UIView *)btnView {
+    if (_btnView == nil) {
+        UIView *view = [[UIView alloc] init];
+        _btnView = view;
+        CGRect frame = [self.headerViewFrames.lastObject CGRectValue];
+        CGFloat Y = CGRectGetMaxY(frame);
+        CGFloat H = self.view.bounds.size.height - Y - 49;
+        view.frame = CGRectMake(0, Y, self.view.bounds.size.width, H);
+//        view.backgroundColor = [UIColor redColor];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nothing)];
+        [view addGestureRecognizer:tap];
+        [self.view insertSubview:view atIndex:0];
+    }
+    return _btnView;
+}
+
+- (UIView *)tapView {
+    if (_tapView == nil) {
+        UIView *tapView = [[UIView alloc] init];
+        CGRect frame = [self.headerViewFrames.firstObject CGRectValue];
+        tapView.frame = frame;
+        tapView.backgroundColor = [UIColor clearColor];
+        _tapView = tapView;
+        [self.view addSubview:_tapView];
+    }
+    return _tapView;
+}
+
+- (void)nothing {
+    
+}
 
 - (NSMutableArray *)models {
     if (_models == nil) {
@@ -57,6 +96,7 @@
     if (_headerViewBackView == nil) {
         UIView *headerViewBackView = [[UIView alloc] initWithFrame:self.view.bounds];
         _headerViewBackView = headerViewBackView;
+        headerViewBackView.userInteractionEnabled = NO;
         [self.view addSubview:headerViewBackView];
     }
     return _headerViewBackView;
@@ -134,6 +174,22 @@
     if (progress > kHeaderViewOutPadding) {
         progress = kHeaderViewOutPadding;
     }
+    CGRect unLikeF = self.unLikeF;
+    CGRect likeF = self.likeF;
+    if (curX <= centerX) {//左滑
+        unLikeF.size.width += 2 * progress;
+        unLikeF.size.height += 2 * progress;
+        unLikeF.origin.x -= progress;
+        unLikeF.origin.y -= progress;
+    } else {//右滑
+        likeF.size.width += 2 * progress;
+        likeF.size.height += 2 * progress;
+        likeF.origin.x -= progress;
+        likeF.origin.y -= progress;
+    }
+    self.likeBtn.frame = likeF;
+    self.unLikeBtn.frame = unLikeF;
+    
     for (NSInteger i = 1; i < kHeaderViewCount; i++) {
         if (i == kHeaderViewCount - 1) {
             continue;
@@ -153,7 +209,7 @@
 - (void)slideOut:(BOOL)isLeft {
     self.view.userInteractionEnabled = NO;
     UserInfoModel *model = self.models[self.currnetIndex];
-    [YepsSDK matchOption:model.user_sha1 is_match:isLeft success:nil error:nil failure:nil];
+    [YepsSDK matchOption:model.user_sha1 is_match:!isLeft success:nil error:nil failure:nil];
     ZGOtherProfileHeaderView *headerView = [self getCurrentFirstHeaderView];
     CGFloat centerX = -(headerView.frame.size.width * 0.5);
     if (!isLeft) {
@@ -169,6 +225,8 @@
     }
     [UIView animateWithDuration:0.25 animations:^{
         headerView.center = CGPointMake(centerX, headerView.center.y);
+        self.likeBtn.frame = self.likeF;
+        self.unLikeBtn.frame = self.unLikeF;
     } completion:^(BOOL finished) {
         [headerView removeFromSuperview];
         headerView.frame = [self.headerViewFrames[kHeaderViewCount - 1] CGRectValue];
@@ -222,10 +280,20 @@
             };
         }
         [view pop_addAnimation:anima forKey:kPOPViewFrame];
-//        [UIView animateWithDuration:0.25 animations:^{
-//            view.frame =  [self.headerViewFrames[i] CGRectValue];
-//        }];
     }
+    
+    POPSpringAnimation *anima0 = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+    anima0.fromValue = [NSValue valueWithCGRect:self.likeBtn.frame];
+    anima0.toValue = [NSValue valueWithCGRect:self.likeF];
+    anima0.springBounciness = 15;
+    [self.likeBtn pop_addAnimation:anima0 forKey:kPOPViewFrame];
+    
+    POPSpringAnimation *anima1 = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+    anima1.fromValue = [NSValue valueWithCGRect:self.unLikeBtn.frame];
+    anima1.toValue = [NSValue valueWithCGRect:self.unLikeF];
+    anima1.springBounciness = 15;
+    [self.unLikeBtn pop_addAnimation:anima1 forKey:kPOPViewFrame];
+    
 }
 
 //滑动结束
@@ -280,6 +348,32 @@
     }
 }
 
+- (void)setupButtons {
+    CGRect btnViewFrame = self.btnView.frame;
+    CGFloat midW = btnViewFrame.size.width * 0.5;
+    CGFloat maxH = btnViewFrame.size.height;
+    CGFloat X = (midW - kBtnWH) * 0.5;
+    CGFloat Y = (maxH - kBtnWH) * 0.5;
+    CGRect unlikeBtnF = CGRectMake(X, Y, kBtnWH, kBtnWH);
+    UIButton *unlikeBtn = [[UIButton alloc] initWithFrame:unlikeBtnF];
+    self.unLikeBtn = unlikeBtn;
+    [unlikeBtn addTarget:self action:@selector(leftSlideOut) forControlEvents:UIControlEventTouchUpInside];
+    [unlikeBtn setBackgroundImage:[UIImage imageNamed:@"un_like_btn"] forState:UIControlStateNormal];
+    [unlikeBtn setBackgroundImage:[UIImage imageNamed:@"un_like_btn"] forState:UIControlStateHighlighted];
+    [self.btnView addSubview:unlikeBtn];
+    
+    CGRect likeBtnF = CGRectMake(midW + X, Y, kBtnWH, kBtnWH);
+    UIButton *likeBtn = [[UIButton alloc] initWithFrame:likeBtnF];
+    [likeBtn addTarget:self action:@selector(rightSlideOut) forControlEvents:UIControlEventTouchUpInside];
+    self.likeBtn = likeBtn;
+    [likeBtn setBackgroundImage:[UIImage imageNamed:@"like_btn"] forState:UIControlStateNormal];
+    [likeBtn setBackgroundImage:[UIImage imageNamed:@"like_btn"] forState:UIControlStateHighlighted];
+    [self.btnView addSubview:likeBtn];
+    
+    self.likeF = likeBtnF;
+    self.unLikeF = unlikeBtnF;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -288,11 +382,14 @@
     self.navigationItem.title = @"发现";
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popToProfileDetail)];
+    tap.delegate = self;
     [self.view addGestureRecognizer:tap];
     
     self.isFirstGetData = YES;
     
     self.navigationItem.rightBarButtonItem = [ZGBarButtonItem rightBarButtonItemWithImage:@"search_user" highlightImage:@"search_user_h" addTarget:self action:@selector(searchUser) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self setupButtons];
 }
 
 - (void)searchUser {
@@ -302,6 +399,7 @@
 
 - (void)updateHeaderViewUserInfo {
     NSInteger index = self.currnetIndex % kHeaderViewCount;
+    BOOL flag = YES;
     for (NSInteger i = 0; i < kHeaderViewCount; i++) {
         NSInteger j = self.currnetIndex + i;
         ZGOtherProfileHeaderView *view = self.headerViews[(index + i) % kHeaderViewCount];
@@ -310,8 +408,14 @@
             view.hidden = YES;
         } else {
             view.hidden = NO;
+            flag = NO;
             view.userInfo = self.models[j];
         }
+    }
+    if (flag) {
+        self.btnView.hidden = YES;
+    } else {
+        self.btnView.hidden = NO;
     }
 }
 
@@ -386,6 +490,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation
