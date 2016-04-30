@@ -167,7 +167,8 @@
 - (NSURL *)imageUrlWithUrlStr:(NSString *)urlStr {
     SDWebImageManager *mgr = [SDWebImageManager sharedManager];
     NSURL *url = [NSURL URLWithString:urlStr];
-    if ([mgr cachedImageExistsForURL:url]) {
+    //若内存中有大图 高清图片  则使用内存中的图片
+    if ([[mgr imageCache] imageFromMemoryCacheForKey:[mgr cacheKeyForURL:url]]) {
         return url;
     }
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",urlStr, kIMAGESMALLURLENDFIX]];

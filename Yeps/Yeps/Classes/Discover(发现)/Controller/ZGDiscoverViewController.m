@@ -15,6 +15,7 @@
 #import "ZGSearchUserViewController.h"
 
 #import <MJExtension/MJExtension.h>
+#import <SDWebImage/SDWebImageManager.h>
 
 #import <pop/POP.h>
 #define kBtnViewH 120
@@ -210,8 +211,17 @@
 //滑出
 - (void)slideOut:(BOOL)isLeft {
     self.view.userInteractionEnabled = NO;
-    UserInfoModel *model = self.models[self.currnetIndex];
+    
+    UserInfoModel *model = self.models.firstObject;
+    //清除 图片内存
+    if (model.image_list.firstObject) {
+        SDWebImageManager *mgr = [SDWebImageManager sharedManager];
+        [[mgr imageCache] removeImageForKey:[mgr cacheKeyForURL:[NSURL URLWithString:model.image_list.firstObject]] fromDisk:NO];
+    }
     [YepsSDK matchOption:model.user_sha1 is_match:!isLeft success:nil error:nil failure:nil];
+    if (self.models.count > 0) {
+        [self.models removeObjectAtIndex:0];
+    }
     ZGOtherProfileHeaderView *headerView = [self getCurrentFirstHeaderView];
     CGFloat centerX = -(headerView.frame.size.width * 0.5);
     if (!isLeft) {
@@ -233,11 +243,11 @@
         [headerView removeFromSuperview];
         headerView.frame = [self.headerViewFrames[kHeaderViewCount - 1] CGRectValue];
         [self.headerViewBackView insertSubview:headerView atIndex:0];
-        self.view.userInteractionEnabled = self.currnetIndex < self.models.count;
+        self.view.userInteractionEnabled = self.models.count > 0;
         [self updateHeaderViewUserInfo];
     }];
-    self.currnetIndex ++;
-    if (self.currnetIndex == self.models.count) {
+    self.currnetIndex = (self.currnetIndex + 1) % kHeaderViewCount;
+    if (self.models.count == 0) {
         self.view.userInteractionEnabled = NO;
         if (self.cannotGetData) {
             [SVProgressHUD showErrorWithStatus:@"没有下一个了" maskType:SVProgressHUDMaskTypeGradient];
@@ -249,7 +259,7 @@
             [SVProgressHUD show];
             self.isFirstGetData = YES;
         }
-    } else if(self.currnetIndex + 10 >= self.models.count) {
+    } else if(self.models.count <= 15) {
         [self recommendUserList];
     }
 }
@@ -277,7 +287,7 @@
             anima.springBounciness = 6;
             anima.completionBlock = ^(POPAnimation *anim, BOOL complete) {
                 if (complete) {
-                    self.view.userInteractionEnabled = self.currnetIndex < self.models.count;
+                    self.view.userInteractionEnabled = self.models.count > 0;
                 }
             };
         }
@@ -402,9 +412,9 @@
 - (void)updateHeaderViewUserInfo {
     NSInteger index = self.currnetIndex % kHeaderViewCount;
     BOOL flag = YES;
-    for (NSInteger i = 0; i < kHeaderViewCount; i++) {
-        NSInteger j = self.currnetIndex + i;
-        ZGOtherProfileHeaderView *view = self.headerViews[(index + i) % kHeaderViewCount];
+    NSInteger j = 0;
+    for (NSInteger i = index; i < kHeaderViewCount + index; i++) {
+        ZGOtherProfileHeaderView *view = self.headerViews[i % kHeaderViewCount];
         if (j >= self.models.count) {
             view.userInfo = nil;
             view.hidden = YES;
@@ -413,6 +423,7 @@
             flag = NO;
             view.userInfo = self.models[j];
         }
+        j++;
     }
     if (flag) {
         self.btnView.hidden = YES;
