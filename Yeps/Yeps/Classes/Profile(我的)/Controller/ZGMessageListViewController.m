@@ -45,6 +45,7 @@
     [self.view addSubview:tableView];
     
     self.view.backgroundColor = [UIColor popBackGroundColor];
+    self.navigationItem.title = @"消息";
 }
 
 - (void)viewDidAppear:(BOOL)animated {
