@@ -13,7 +13,8 @@
 #import <SDWebImage/SDWebImageManager.h>
 #import "UserTool.h"
 #import "UploadImageTool.h"
-#define HOST  @"http://127.0.0.1:8000/yeps/api/"
+//#define HOST  @"http://127.0.0.1:8000/yeps/api/"
+#define HOST  @"http://120.27.117.222/yeps/api/"
 #define DBPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"Yeps.sqlite"]
 
 static FMDatabase *_db;

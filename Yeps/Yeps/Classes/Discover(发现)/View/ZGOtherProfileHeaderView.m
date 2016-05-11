@@ -13,8 +13,9 @@
 #import "UserInfoModel.h"
 #import "UserTool.h"
 #import "ZGOtherProfileScrollView.h"
+#import "SDPhotoBrowser.h"
 
-@interface ZGOtherProfileHeaderView()
+@interface ZGOtherProfileHeaderView()<SDPhotoBrowserDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
@@ -54,6 +55,9 @@
     [self.statusBtn addTarget:self action:@selector(headerViewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.photoBtn addTarget:self action:@selector(headerViewBtnClick:) forControlEvents:UIControlEventTouchUpInside];
 //    self.photoBtn.enabled = NO;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showUserProfileBack)];
+    [self addGestureRecognizer:tap];
     
 }
 
@@ -99,8 +103,31 @@
 }
 
 - (void)setUserInfo:(UserInfoModel *)userInfo {
+    if (userInfo == _userInfo) {
+        return;
+    }
     _userInfo = userInfo;
     [self update];
+}
+
+- (void)showUserProfileBack {
+    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+    browser.sourceImagesContainerView = self;
+    browser.imageCount = 1;
+    browser.currentImageIndex = 0;
+    browser.delegate = self;
+    [browser show];
+}
+
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index {
+    
+    return self.imageView.image;
+}
+
+
+- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index {
+    NSString *url = self.userInfo.image_list.firstObject;
+    return [NSURL URLWithString:url];
 }
 
 
